@@ -184,12 +184,12 @@ namespace Homework5
         {
             Console.WriteLine("Отразите массив относительно его главной диагонали\n");
             int[,] arr = GetRandomTwoDimArray();
-            int[,] result = TransponseMatrix(arr);
+            TransponseMatrix(arr);
             Console.WriteLine($"\nРезультат задачи 6, домашки 5: \n ");
-            MatrixOnWindow(result);
+            MatrixOnWindow(arr);
         }
 
-        public int[,] TransponseMatrix(int[,] arr)
+        public void TransponseMatrix(int[,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
             {
@@ -200,7 +200,6 @@ namespace Homework5
                     arr[j, i] = temp;
                 }
             }
-            return arr;
         }
         public void MatrixOnWindow(int[,] arr)
         {

@@ -134,12 +134,12 @@ namespace Homework4
         {
             Console.WriteLine("Сделать реверс массива (массив в обратном направлении)\n");
             int[] arr = GetRandomArray("Введите длину массива: ");
-            int[] result = ReverseArray(arr);
+            ReverseArray(arr);
             Console.WriteLine($"\nРезультат задачи 6, домашки 4: \n");
-            ArrayOnWindow(result);
+            ArrayOnWindow(arr);
         }
 
-        public int[] ReverseArray(int[] arr)
+        public void ReverseArray(int[] arr)
         {
             for (int i = arr.Length - 1; i >= arr.Length / 2; i--)
             {
@@ -147,7 +147,6 @@ namespace Homework4
                 arr[i] = arr[arr.Length - 1 - i];
                 arr[arr.Length - 1 - i] = temp;
             }
-            return arr;
         }
         public void ArrayOnWindow(int[] arr)
         {
@@ -182,12 +181,12 @@ namespace Homework4
                 "например, для массива 1 2 3 4, результат 3 4 1 2,  " +
                 "или для 12345 - 45312.\n");
             int[] arr = GetRandomArray("Введите длину массива: ");
-            int[] result = ChangeHalfsOfArray(arr);
+            ChangeHalfsOfArray(arr);
             Console.WriteLine($"\nРезультат задачи 8, домашки 4: \n");
-            ArrayOnWindow(result);
+            ArrayOnWindow(arr);
         }
 
-        public int[] ChangeHalfsOfArray(int[] arr)
+        public void ChangeHalfsOfArray(int[] arr)
         {
             for (int i = 0; i < arr.Length / 2; i++)
             {
@@ -195,19 +194,18 @@ namespace Homework4
                 arr[i] = arr[arr.Length - arr.Length / 2 + i];
                 arr[arr.Length - arr.Length / 2 + i] = temp;
             }
-            return arr;
         }
 
         public void SolveTask9()
         {
             Console.WriteLine("Отсортировать массив по возрастанию пузырьком(Bubble)");
             int[] arr = GetRandomArray("Введите длину массива: ");
-            int[] result = SortBubble(arr);
+            SortBubble(arr);
             Console.WriteLine($"\nРезультат задачи 9, домашки 4: \n");
-            ArrayOnWindow(result);
+            ArrayOnWindow(arr);
         }
 
-        public int[] SortBubble(int[] arr)
+        public void SortBubble(int[] arr)
         {
             int countExchange = 1;
             while (countExchange != 0)
@@ -227,19 +225,18 @@ namespace Homework4
                     }
                 }
             }
-            return arr;
         }
 
         public void SolveTask10()
         {
             Console.WriteLine("Отсортировать массив по убыванию вставками(Insert)");
             int[] arr = GetRandomArray("Введите длину массива: ");
-            int[] result = SortInsert(arr);
+            SortInsert(arr);
             Console.WriteLine($"\nРезультат задачи 10, домашки 4: \n");
-            ArrayOnWindow(result);
+            ArrayOnWindow(arr);
         }
 
-        public int[] SortInsert(int[] arr)
+        public void SortInsert(int[] arr)
         {
             for (int i = 0; i < arr.Length; i++)
             {
@@ -253,7 +250,6 @@ namespace Homework4
                     }
                 }
             }
-            return arr;
         }
     }
 }
