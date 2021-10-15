@@ -272,20 +272,32 @@ namespace Homework3
 
             int N = GetNumberFromUser("Bведите число, являющееся " +
                 "кубом какого-то целого числа: ");
+            try
+            {
+                int result = CalcWithHalfDivisionMethod(N);
+                Console.WriteLine($"Результат задачи 8, домашки 3: \n {result}");
+            }
+            catch (Exception ex)
+            {
 
-            double result = CalcWithHalfDivisionMethod(N);
-            Console.WriteLine($"Результат задачи 8, домашки 3: \n {result}");
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
-        public double CalcWithHalfDivisionMethod(int number)
+        public int CalcWithHalfDivisionMethod(int number)
         {
-            double start, end, middle;
+            if (number < 0)
+            {
+                throw new Exception("Число должно быть положительным");
+            }
+            int start, end, middle;
             start = 0;
-            end = 1.0 * number;
+            end = number;
             middle = 0;
-            double result;
+            int result;
 
-            while (Math.Abs(middle * middle * middle - number) > 0.00001)
+            while (Math.Abs(middle * middle * middle - number) > 0)
             {
                 middle = start + (end - start) / 2;
 
@@ -306,11 +318,11 @@ namespace Homework3
 
             int N = GetNumberFromUser("Bведите число: ");
 
-            int result = CalcOddNumber(N);
+            int result = CalculateTheNumberOfOddDigitsOfANumber(N);
             Console.WriteLine($"Результат задачи 9, домашки 3: \n {result}");
         }
 
-        public int CalcOddNumber(int number)
+        public int CalculateTheNumberOfOddDigitsOfANumber(int number)
         {
             int remainder = 0;
             int counter = 0;
