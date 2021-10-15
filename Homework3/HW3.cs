@@ -33,13 +33,26 @@ namespace Homework3
         {
             Console.WriteLine("Пользователь вводит 1 число (A). " +
                 "Вывести все числа от 1 до 1000, которые делятся на A.\n");
-            int A = GetNumberFromUser("Введите число А: ");
-            Console.WriteLine($"Результат задачи 2, домашки 2: \n");
-            DivisionByA(A);
+            try
+            {
+                int A = GetNumberFromUser("Введите число А: ");
+                Console.WriteLine($"Результат задачи 2, домашки 2: \n");
+                DivisionByA(A);
+            }
+            catch (DivideByZeroException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
             
         }
         public void DivisionByA(int number)
         {
+            if (number == 0)
+            {
+                throw new DivideByZeroException("Введённое число должно быть не равно 0");
+            }
+
             int dividedByA;
             for (int i = 1; i <= 1000; i++)
             {
@@ -59,12 +72,31 @@ namespace Homework3
                 "чисел, квадрат которых меньше A.\n");
             int A = GetNumberFromUser("Введите число А: ");
 
+            try
+            {
+                int result = CalculatingTheNumbersLessSquarA(A);
+                Console.WriteLine($"Результат задачи 3, домашки 3: \n {result}");
+            }
+            catch (DivideByZeroException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
-            int result = CalculatingTheNumbersLessSquarA(A);
-            Console.WriteLine($"Результат задачи 3, домашки 3: \n {result}");
         }
         public int CalculatingTheNumbersLessSquarA (int number)
         {
+            if (number == 0)
+            {
+                throw new DivideByZeroException("Введённое число должно быть не равно 0");
+            }
+            if (number < 0)
+            {
+                throw new Exception("Введённое число должно быть больше 0");
+            }
             int squaredNumberLessA = 1;
             while (squaredNumberLessA * squaredNumberLessA < number)
                 squaredNumberLessA++;
@@ -75,17 +107,29 @@ namespace Homework3
         {
             Console.WriteLine("Пользователь вводит 1 число (A). " +
                 "Вывести наибольший делитель (кроме самого A) числа A" + "\n");
-            int A = GetNumberFromUser("Введите число А: ");
-
-            int result = CalcGreatDividerA(A);
-            Console.WriteLine($"Результат задачи 4, домашки 3: \n {result}");
+            try
+            {
+                int A = GetNumberFromUser("Введите число А: ");
+                int result = CalcGreatDividerA(A);
+                Console.WriteLine($"Результат задачи 4, домашки 3: \n {result}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+            
         }
 
         public int CalcGreatDividerA(int number)
         {
             int dividerA = 0;
+            if (Math.Abs(number) <= 1) 
+            {
+                throw new Exception("Число должно быть по модулю больше единицы");
+            }
 
-            for (int i = number - 1; i > 0; i--)
+            for (int i = Math.Abs(number) - 1; i > 0; i--)
             {
                 if (number % i == 0 && number != i)
                 {
@@ -146,13 +190,24 @@ namespace Homework3
                 "В ряду фибоначчи каждое следующее число является суммой двух предыдущих. " +
                 "Первое и второе считаются равными 1. \n");
             int N = GetNumberFromUser("Введите число N: ");
-
-            int result = CalcNumberFibonacci(N);
-            Console.WriteLine($"Результат задачи 6, домашки 3: \n {result}");
+            try
+            {
+                int result = CalcNumberFibonacci(N);
+                Console.WriteLine($"Результат задачи 6, домашки 3: \n {result}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         public int CalcNumberFibonacci(int number)
         {
+            if (number < 0)
+            {
+                throw new Exception("Число должно быть положительным");
+            }
             int firstPrev = 1;
             int secondPrev = 1;
             int numberFibonacci = 0;
@@ -174,13 +229,13 @@ namespace Homework3
 
             int firstNum = GetNumberFromUser("Введите первое число: ");
             int secondNum = GetNumberFromUser("Введите второе число: ");
-            int[] maxAndMin = SearchMaxAndMin(firstNum, secondNum);
+            int[] maxAndMin = SearchForHigherAndLowerNumbers(firstNum, secondNum);
 
-            int result = CalcNODEvclid(maxAndMin[0], maxAndMin[1]);
+            int result = CalcTheGCDUsingEuclidsAlgorithm(maxAndMin[0], maxAndMin[1]);
             Console.WriteLine($"Результат задачи 7, домашки 3: \n {result}");
         }
 
-        public int[] SearchMaxAndMin(int firstNum, int secondNum)
+        public int[] SearchForHigherAndLowerNumbers(int firstNum, int secondNum)
         {
             int[] minMax = new int[2];
 
@@ -197,7 +252,7 @@ namespace Homework3
             return minMax;
         }
 
-        public int CalcNODEvclid(int min, int max)
+        public int CalcTheGCDUsingEuclidsAlgorithm(int min, int max)
         {
             int remainder;
             while (max % min != 0)
@@ -218,17 +273,17 @@ namespace Homework3
             int N = GetNumberFromUser("Bведите число, являющееся " +
                 "кубом какого-то целого числа: ");
 
-            int result = CalcWithHalfDivisionMethod(N);
+            double result = CalcWithHalfDivisionMethod(N);
             Console.WriteLine($"Результат задачи 8, домашки 3: \n {result}");
         }
 
-        public int CalcWithHalfDivisionMethod(int number)
+        public double CalcWithHalfDivisionMethod(int number)
         {
             double start, end, middle;
             start = 0;
             end = 1.0 * number;
             middle = 0;
-            int result;
+            double result;
 
             while (Math.Abs(middle * middle * middle - number) > 0.00001)
             {
@@ -240,7 +295,7 @@ namespace Homework3
                     start = middle;
             }
 
-            result = (int)Math.Round(middle);
+            result = middle;
             return result;
         }
 
