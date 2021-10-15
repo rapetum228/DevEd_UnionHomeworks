@@ -12,7 +12,7 @@ namespace Homework2
             int A = GetNumberFromUser("Введите число А: ");
             int B = GetNumberFromUser("Введите число В: ");
 
-            int result = CalculationDependingOnNumbers(A, B);
+            int result = CalculateTheValuesDependingOnTheEnteredNumbers(A, B);
             Console.WriteLine($"Результат задачи 1, домашки 2: \n {result}");
         }
 
@@ -23,7 +23,7 @@ namespace Homework2
             return userNumber;
         }
 
-        public int CalculationDependingOnNumbers(int A, int B)
+        public int CalculateTheValuesDependingOnTheEnteredNumbers(int A, int B)
         {
             int result;
             if (A > B)
@@ -74,34 +74,26 @@ namespace Homework2
             int A = GetNumberFromUser("Введите число А: ");
             int B = GetNumberFromUser("Введите число В: ");
             int C = GetNumberFromUser("Введите число C: ");
+            string result = "";
+            result = OutputAscending(ref result, A, B, C);
+            result = OutputAscending(ref result, B, A, C);
+            result = OutputAscending(ref result, C, A, B);
 
-            string result = OutputAscending(A, B, C);
             Console.WriteLine($"Результат задачи 3, домашки 2: \n {result}");
         }
 
-        public string OutputAscending(int A, int B, int C)
+        public string OutputAscending(ref string result, int num1, int num2, int num3)
         {
-            string result = "";
+            
 
-            if (A < B && A < C)
+            if (result=="" && num1 <= num2 && num1 <= num2)
             {
-                if (B < C)
-                    result = $" A < B < C: {A} , {B}, {C}";
-                else result = $" A < C < B: {A} , {C}, {B}";
-            }
-            else if (B < A && B < C)
-            {
-                if (A < C)
-                    result = $" B < A < C: {B} , {A}, {C}";
-                else result = $" B < C < A: {B} , {C}, {A}";
-            }
-            else if (C < A && C < B)
-            {
-                if (A < B)
-                    result = $" C < A < B: {C} , {A}, {B}";
-                else result = $" C < B < A: {C} , {B}, {A}";
+                if (num2 <= num3)
+                    result = $" {num1}, {num2}, {num3}";
+                else result = $" {num1}, {num3}, {num2}";
             }
             return result;
+            ;
         }
 
         public void SolveTask4()
@@ -113,33 +105,44 @@ namespace Homework2
             int B = GetNumberFromUser("Введите число В: ");
             int C = GetNumberFromUser("Введите число C: ");
 
-            string result = SolveQuadraticEquation(A, B, C);
-            Console.WriteLine($"Результат задачи 4, домашки 2: \n{result}");
+            Console.WriteLine($"Результат задачи 4, домашки 2: \n");
+            SolveQuadraticEquation(A, B, C);
         }
 
        
-        public string SolveQuadraticEquation (int A, int B, int C) 
+        public void SolveQuadraticEquation (int A, int B, int C) 
         {
             double D = B * B - 4 * A * C;
-            string startLet = "Дискриминант D: " + D;
-            string result;
+            
             if (D > 0)
             {
-                double firstRootX = (-B + Math.Sqrt(D)) / (2 * A);
-                double secondRootX = (-B - Math.Sqrt(D)) / (2 * A);
-                result = $"{startLet} > 0, значит уравнение имеет два корня. " +
-                    $"Первый: {firstRootX}, второй: { secondRootX}";
+                CalculateIfTheDiscriminantIsGreaterThanZero(D, B, A);
             }
             else if (D == 0)
             {
-                double rootX = -B / (2 * A);
-                result = $"{startLet} = 0, значит уравнение имеет один корень - {rootX}";
+                CalculateIfTheDiscriminantIsEqualsZero(B, A);
             }
-            else result = $"{startLet} < 0, значит уравнение не имеет решений ";
+            else CalculateIfTheDiscriminantIsLessThanZero(D);
 
-            return result;
+            
         }
 
+        public void CalculateIfTheDiscriminantIsLessThanZero( double D)
+        {
+            Console.WriteLine($"{D} < 0, значит уравнение не имеет решений "); 
+        }
+        public void CalculateIfTheDiscriminantIsEqualsZero(double B, double A)
+        {
+            double rootX = -B / (2 * A);
+            Console.WriteLine($"Дискриминант = 0, значит уравнение имеет один корень - {rootX}");
+        }
+        public void CalculateIfTheDiscriminantIsGreaterThanZero(double D, double B, double A)
+        {
+            double firstRootX = (-B + Math.Sqrt(D)) / (2 * A);
+            double secondRootX = (-B - Math.Sqrt(D)) / (2 * A);
+            Console.WriteLine($"{D} > 0, значит уравнение имеет два корня. " +
+                $"Первый: {firstRootX}, второй: { secondRootX}");
+        }
         public void SolveTask5()
         {
             Console.WriteLine("Пользователь вводит двузначное число. " +

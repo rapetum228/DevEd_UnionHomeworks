@@ -11,7 +11,7 @@ namespace AllHomeworks
     {
         static void Main(string[] args)
         {
-            HW1 hw = new HW1();
+            HW2 hw = new HW2();
 
             hw.SolveTask4();
 
