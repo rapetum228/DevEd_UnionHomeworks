@@ -7,10 +7,22 @@ namespace Homework5
         public void SolveTask1()
         {
             Console.WriteLine("Найти минимальный элемент массива\n");
-            int[,] arr = GetRandomTwoDimArray();
-            int result = SearchMinElementTwoDimArr(arr);
 
-            Console.WriteLine($"\nРезультат задачи 1, домашки 5: \n {result}");
+            try
+            {
+                int[,] arr = GetRandomTwoDimArray();
+                int result = SearchMinElementTwoDimArr(arr);
+                Console.WriteLine($"\nРезультат задачи 1, домашки 5: \n {result}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Размерности массива должны быть числами");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         public int[,] GetRandomTwoDimArray()
@@ -21,7 +33,11 @@ namespace Homework5
             Console.WriteLine("Введите количество столбцов массива: ");
             int lengthArrColumn = Convert.ToInt32(Console.ReadLine());
             int[,] arr = new int[lengthArrRow, lengthArrColumn];
-
+            if (lengthArrRow <= 0 || lengthArrColumn <= 0)
+            {
+                throw new Exception("Размерности массива должны быть положительным числом" +
+                    "больше нуля");
+            }
             Console.WriteLine("\nМассив: ");
             for (int i = 0; i < arr.GetLength(0); i++)
             {
@@ -52,10 +68,20 @@ namespace Homework5
         public void SolveTask2()
         {
             Console.WriteLine("Найти максимальный элемент массива\n");
-            int[,] arr = GetRandomTwoDimArray();
-            int result = SearchMaxElementTwoDimArr(arr);
-
-            Console.WriteLine($"\nРезультат задачи 2, домашки 5: \n {result}");
+            try
+            {
+                int[,] arr = GetRandomTwoDimArray();
+                int result = SearchMaxElementTwoDimArr(arr);
+                Console.WriteLine($"\nРезультат задачи 2, домашки 5: \n {result}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Размерности массива должны быть числами");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public int SearchMaxElementTwoDimArr(int[,] arr)
@@ -75,14 +101,24 @@ namespace Homework5
 
         public void SolveTask3()
         {
-            Console.WriteLine("Найти индекс маинимального элемента массива\n");
-            int[,] arr = GetRandomTwoDimArray();
-            int[] result = SearchIndexMinElementMatrix(arr);
-
-            Console.WriteLine($"\nРезультат задачи 3, домашки 5: \n");
-            ArrayOnWindow(result);
+            Console.WriteLine("Найти индекс минимального элемента массива\n");
+            try
+            {
+                int[,] arr = GetRandomTwoDimArray();
+                int[] result = SearchIndexMinElementMatrix(arr);
+                Console.WriteLine($"\nРезультат задачи 3, домашки 5: \n");
+                ShowMeAnArrayAnScreen(result);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Размерности массива должны быть числами");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
-        public void ArrayOnWindow(int[] arr)
+        public void ShowMeAnArrayAnScreen(int[] arr)
         {
             for (int i = 0; i < arr.Length; i++)
                 Console.Write($"{arr[i]}\t");
@@ -113,11 +149,21 @@ namespace Homework5
         public void SolveTask4()
         {
             Console.WriteLine("Найти индекс максимального элемента массива\n");
-            int[,] arr = GetRandomTwoDimArray();
-            int[] result = SearchIndexMaxElementMatrix(arr);
-
-            Console.WriteLine($"\nРезультат задачи 4, домашки 5: \n");
-            ArrayOnWindow(result);
+            try
+            {
+                int[,] arr = GetRandomTwoDimArray();
+                int[] result = SearchIndexMaxElementMatrix(arr);
+                Console.WriteLine($"\nРезультат задачи 4, домашки 5: \n");
+                ShowMeAnArrayAnScreen(result);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Размерности массива должны быть числами");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public int[] SearchIndexMaxElementMatrix(int[,] arr)
@@ -146,9 +192,20 @@ namespace Homework5
         {
             Console.WriteLine("Найти количество элементов массива, " +
                 "которые больше всех своих соседей одновременно");
-            int[,] arr = GetRandomTwoDimArray();
-            int result = IteratingOverArray(arr);
-            Console.WriteLine($"\nРезультат задачи 6, домашки 5: {result}\n ");
+            try
+            {
+                int[,] arr = GetRandomTwoDimArray();
+                int result = IteratingOverArray(arr);
+                Console.WriteLine($"\nРезультат задачи 6, домашки 5: {result}\n ");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Размерности массива должны быть числами");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public int IteratingOverArray(int[,] arr)
@@ -183,14 +240,33 @@ namespace Homework5
         public void SolveTask6()
         {
             Console.WriteLine("Отразите массив относительно его главной диагонали\n");
-            int[,] arr = GetRandomTwoDimArray();
-            TransponseMatrix(arr);
-            Console.WriteLine($"\nРезультат задачи 6, домашки 5: \n ");
-            MatrixOnWindow(arr);
+            try
+            {
+                int[,] arr = GetRandomTwoDimArray();
+                TransponseTheMatrix(arr);
+                Console.WriteLine($"\nРезультат задачи 6, домашки 5: \n ");
+                MatrixOnWindow(arr);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Размерности массива должны быть числами");
+            }
+            catch(IncorrectMatrixDimension ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
-        public void TransponseMatrix(int[,] arr)
+        public void TransponseTheMatrix(int[,] arr)
         {
+            if (arr.GetLength(0) != arr.GetLength(1))
+            {
+                throw new IncorrectMatrixDimension("Матрица должна быть квадратной");
+            }
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 for (int j = i; j < arr.GetLength(1); j++)
@@ -217,11 +293,22 @@ namespace Homework5
         public void SolveAddTask()
         {
             Console.WriteLine("Сделать красивый вывод массива\n");
-            int[,] arr = GetRandomTwoDimArray();
-            int maxElArr = SearchMaxElementTwoDimArr(arr);
+            try
+            {
+                int[,] arr = GetRandomTwoDimArray();
+                int maxElArr = SearchMaxElementTwoDimArr(arr);
 
-            Console.WriteLine($"\nРезультат дополнительной задачи, домашки 5: \n ");
-            DoBeautifulArray(arr, maxElArr);
+                Console.WriteLine($"\nРезультат дополнительной задачи, домашки 5: \n ");
+                DoBeautifulArray(arr, maxElArr);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Размерности массива должны быть числами");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void DoBeautifulArray(int[,] arr, int maxElementArr)
@@ -256,5 +343,12 @@ namespace Homework5
 
             Console.Write($"{probel}{elementArr}\t");
         }
+    }
+
+    class IncorrectMatrixDimension : Exception
+    {
+        public IncorrectMatrixDimension(string message)
+            : base(message)
+        { }
     }
 }
