@@ -7,10 +7,21 @@ namespace Homework4
         public void SolveTask1()
         {
             Console.WriteLine("Найти минимальный элемент массива\n");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            int result = SearchMinElementArr(arr);
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                int result = SearchMinElementArr(arr);
 
-            Console.WriteLine($"\nРезультат задачи 1, домашки 4: \n {result}");
+                Console.WriteLine($"\nРезультат задачи 1, домашки 4: \n {result}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public int[] GetRandomArray(string message)
@@ -19,7 +30,10 @@ namespace Homework4
             Random rnd = new Random();
             int lengthArr = Convert.ToInt32(Console.ReadLine());
             int[] arr = new int[lengthArr];
-
+            if (lengthArr <= 0)
+            {
+                throw new Exception("Длина массива представляет положительно число больше нуля");
+            }
             Console.WriteLine("\nМассив: ");
             for (int i = 0; i < arr.Length; i++)
             {
@@ -43,10 +57,22 @@ namespace Homework4
         public void SolveTask2()
         {
             Console.WriteLine("Найти максимальный элемент массива\n");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            int result = SearchMaxElementArr(arr);
 
-            Console.WriteLine($"\nРезультат задачи 2, домашки 4: \n {result}");
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                int result = SearchMaxElementArr(arr);
+                Console.WriteLine($"\nРезультат задачи 2, домашки 4: \n {result}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         public int SearchMaxElementArr(int[] arr)
@@ -63,11 +89,23 @@ namespace Homework4
 
         public void SolveTask3()
         {
-            Console.WriteLine("Найти индекс маинимального элемента массива\n");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            int result = SearchIndexMinElementArr(arr);
+            Console.WriteLine("Найти индекс минимального элемента массива\n");
 
-            Console.WriteLine($"\nРезультат задачи 3, домашки 4: \n {result}");
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                int result = SearchIndexMinElementArr(arr);
+                Console.WriteLine($"\nРезультат задачи 3, домашки 4: \n {result}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         public int SearchIndexMinElementArr(int[] arr)
@@ -89,10 +127,20 @@ namespace Homework4
         public void SolveTask4()
         {
             Console.WriteLine("Найти индекс максимального элемента массива\n");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            int result = SearchIndexMaxElementArr(arr);
-
-            Console.WriteLine($"\nРезультат задачи 4, домашки 4: \n {result}");
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                int result = SearchIndexMaxElementArr(arr);
+                Console.WriteLine($"\nРезультат задачи 4, домашки 4: \n {result}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public int SearchIndexMaxElementArr(int[] arr)
@@ -114,13 +162,25 @@ namespace Homework4
         public void SolveTask5()
         {
             Console.WriteLine("Посчитать сумму элементов массива с нечетными индексами\n");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            int result = CalcSumOddIndexesArray(arr);
 
-            Console.WriteLine($"\nРезультат задачи 5, домашки 4: \n {result}");
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                int result = CalculateTheSumOfTheElementsOfAnArrayWithWddIndices(arr);
+                Console.WriteLine($"\nРезультат задачи 5, домашки 4: \n {result}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
-        public int CalcSumOddIndexesArray(int[] arr)
+        public int CalculateTheSumOfTheElementsOfAnArrayWithWddIndices(int[] arr)
         {
             int sumOddIndex = 0;
             for (int i = 0; i < arr.Length; i++)
@@ -133,13 +193,26 @@ namespace Homework4
         public void SolveTask6()
         {
             Console.WriteLine("Сделать реверс массива (массив в обратном направлении)\n");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            ReverseArray(arr);
-            Console.WriteLine($"\nРезультат задачи 6, домашки 4: \n");
-            ArrayOnWindow(arr);
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                ReverseTheArray(arr);
+                Console.WriteLine($"\nРезультат задачи 6, домашки 4: \n");
+                ShowMeAnArrayAnScreen(arr);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
         }
 
-        public void ReverseArray(int[] arr)
+        public void ReverseTheArray(int[] arr)
         {
             for (int i = arr.Length - 1; i >= arr.Length / 2; i--)
             {
@@ -147,8 +220,9 @@ namespace Homework4
                 arr[i] = arr[arr.Length - 1 - i];
                 arr[arr.Length - 1 - i] = temp;
             }
+
         }
-        public void ArrayOnWindow(int[] arr)
+        public void ShowMeAnArrayAnScreen(int[] arr)
         {
             for (int i = 0; i < arr.Length; i++)
                 Console.Write($"{arr[i]}\t");
@@ -158,13 +232,26 @@ namespace Homework4
         public void SolveTask7()
         {
             Console.WriteLine("Посчитать количество нечетных элементов массива");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            int result = CalcNumberOddElementsOfArray(arr);
-            Console.WriteLine($"\nРезультат задачи 7, домашки 4: {result}\n");
+
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                int result = CountTheNumberOfOddElementsInAnArray(arr);
+                Console.WriteLine($"\nРезультат задачи 7, домашки 4: {result}\n");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
 
         }
 
-        public int CalcNumberOddElementsOfArray(int[] arr)
+        public int CountTheNumberOfOddElementsInAnArray(int[] arr)
         {
             int itemArrOdd = 0;
             for (int i = 0; i < arr.Length; i++)
@@ -180,10 +267,22 @@ namespace Homework4
             Console.WriteLine("Поменять местами первую и вторую половину массива, " +
                 "например, для массива 1 2 3 4, результат 3 4 1 2,  " +
                 "или для 12345 - 45312.\n");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            ChangeHalfsOfArray(arr);
-            Console.WriteLine($"\nРезультат задачи 8, домашки 4: \n");
-            ArrayOnWindow(arr);
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                ChangeHalfsOfArray(arr);
+                Console.WriteLine($"\nРезультат задачи 8, домашки 4: \n");
+                ShowMeAnArrayAnScreen(arr);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         public void ChangeHalfsOfArray(int[] arr)
@@ -199,10 +298,23 @@ namespace Homework4
         public void SolveTask9()
         {
             Console.WriteLine("Отсортировать массив по возрастанию пузырьком(Bubble)");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            SortBubble(arr);
-            Console.WriteLine($"\nРезультат задачи 9, домашки 4: \n");
-            ArrayOnWindow(arr);
+           
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                SortBubble(arr);
+                Console.WriteLine($"\nРезультат задачи 9, домашки 4: \n");
+                ShowMeAnArrayAnScreen(arr);
+            }
+            
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void SortBubble(int[] arr)
@@ -230,10 +342,22 @@ namespace Homework4
         public void SolveTask10()
         {
             Console.WriteLine("Отсортировать массив по убыванию вставками(Insert)");
-            int[] arr = GetRandomArray("Введите длину массива: ");
-            SortInsert(arr);
-            Console.WriteLine($"\nРезультат задачи 10, домашки 4: \n");
-            ArrayOnWindow(arr);
+            try
+            {
+                int[] arr = GetRandomArray("Введите длину массива: ");
+                SortInsert(arr);
+                Console.WriteLine($"\nРезультат задачи 10, домашки 4: \n");
+                ShowMeAnArrayAnScreen(arr);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Длина массива должна быть числом");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         public void SortInsert(int[] arr)
