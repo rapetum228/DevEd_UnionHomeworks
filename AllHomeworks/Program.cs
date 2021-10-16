@@ -13,7 +13,7 @@ namespace AllHomeworks
         {
             HW5 hw = new HW5();
 
-            hw.SolveTask6();
+            hw.SolveAddTask();
 
         }
     }

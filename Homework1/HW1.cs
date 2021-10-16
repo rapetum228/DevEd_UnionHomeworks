@@ -43,18 +43,16 @@ namespace Homework1
         {
             double A = GetNumberFromUser("Введите число А: ");
             double B = GetNumberFromUser("Введите число В: ");
-            double[] result = SwapTheVariables(A, B);
+            SwapTheVariables(ref A, ref B);
             Console.WriteLine($"Результат задачи 2, домашки 1: \n" +
-                $"Число А теперь: {result[0]}, число B: {result[1]}");
+                $"Число А теперь: {A}, число B: {B}");
         }
 
-        public double[] SwapTheVariables (double A, double B)
+        public void SwapTheVariables ( ref double A, ref double B)
         {
             double copyA = A;
             A = B;
             B = copyA;
-            double[] result = { A, B };
-            return result;
         }
 
         public void SolveTask3()
