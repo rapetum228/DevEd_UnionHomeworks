@@ -70,6 +70,17 @@ namespace Homework1.Tests
             //assert - проверяем результаты
             Assert.AreEqual(expectedResult, actualResult);
         }
+        [TestCase(5, 5,
+            "Ошибка. Деление на ноль... Числа не должны быть равны")]
+        public void FindASolutionUsingTheFormulaNegativeTest(
+            double numberA, double numberB, string expectedMessage
+            )
+        {
+            //arrange - готовим переменные
+
+            //act - вызываем метод 
+            Exception ex = Assert.Throws(typeof(DivideByZeroException), 
+                () => _hw1.FindASolutionUsingTheFormula(numberA, numberB));
 
         [TestCase(5, 0,
             "Ошибка. Деление на ноль... Число В не должно быть равно нулю...")]
