@@ -25,6 +25,21 @@ namespace Homework1.Tests
             //assert - проверяем результаты
             Assert.AreEqual(expectedResult, actualResult);
         }
+        [TestCase(5, 5,
+            "Ошибка. Деление на ноль... Числа не должны быть равны")]
+        public void FindASolutionUsingTheFormulaNegativeTest(
+            double numberA, double numberB, string expectedMessage
+            )
+        {
+            //arrange - готовим переменные
+
+            //act - вызываем метод 
+            Exception ex = Assert.Throws(typeof(DivideByZeroException), 
+                () => _hw1.FindASolutionUsingTheFormula(numberA, numberB));
+
+            //assert - проверяем результаты
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
 
         [TestCase(5, 9, 9)]
         public void SwapTheVariablesTest(double numberA, double numberB,
@@ -71,15 +86,25 @@ namespace Homework1.Tests
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+<<<<<<< HEAD
         [TestCase(5, 0,
             "Ошибка. Деление на ноль... Число В не должно быть равно нулю...")]
         public void CalculateTheWholePartOfTheDivisionNegativeTest(
             double numberA, double numberB, string expectedMessage
             )
+=======
+        [TestCase(2, 3, 0)]
+        [TestCase(-6, -3, 2)]
+        [TestCase(0, 3, 0)]
+        [TestCase(7, 3, 2)]
+        public void CalculateTheWholePartOfTheDivisionTest(double numberA, double numberB,
+           int expectedResult)
+>>>>>>> 702b390ac91cf9ac014bedcb4a87b245e9115d40
         {
             //arrange - готовим переменные
 
             //act - вызываем метод 
+<<<<<<< HEAD
             Exception ex = Assert.Throws(typeof(OverflowException),
                 () => _hw1.CalculateTheWholePartOfTheDivision(numberA, numberB));
 
@@ -194,6 +219,13 @@ namespace Homework1.Tests
 
             //assert - проверяем результаты
             Assert.AreEqual(expectedResult, actualResult);
+=======
+            int actualResult = _hw1.CalculateTheWholePartOfTheDivision(numberA, numberB);
+
+            //assert - проверяем результаты
+            Assert.AreEqual(expectedResult, actualResult);
+            
+>>>>>>> 702b390ac91cf9ac014bedcb4a87b245e9115d40
         }
     }
 }
