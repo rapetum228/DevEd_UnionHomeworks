@@ -66,7 +66,7 @@ namespace Homework1
                 Console.WriteLine($"Результат задачи 3, домашки 1: \n" +
                 $"Результат деления: {resultDivision}, остаток: {remainder}");
             }
-            catch(DivideByZeroException ex)
+            catch(OverflowException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -79,7 +79,7 @@ namespace Homework1
         {
             if (B == 0)
             {
-                throw new DivideByZeroException("Ошибка. Деление на ноль..." +
+                throw new OverflowException("Ошибка. Деление на ноль..." +
                     " Число В не должно быть равно нулю...");
             }
             int result = (int)Math.Floor(A / B);
@@ -87,6 +87,11 @@ namespace Homework1
         }
         public int CalculateTheRemainderOfTheDivision(double A, double B)
         {
+            if (B == 0)
+            {
+                throw new OverflowException("Ошибка. Деление на ноль..." +
+                    " Число В не должно быть равно нулю...");
+            }
             int result = Convert.ToInt32(A % B);
             return result;
         }
@@ -105,7 +110,7 @@ namespace Homework1
                 Console.WriteLine($"Результат задачи 4, домашки 1: \n" +
                     $"Решение уравнения: {resultX}");
             }
-            catch (DivideByZeroException ex)
+            catch (OverflowException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -116,7 +121,7 @@ namespace Homework1
         {
             if (A == 0 )
             {
-                throw new DivideByZeroException("Ошибка. Деление на ноль..." +
+                throw new OverflowException(
                     " Число A не должно быть равно нулю, так как область значения корня" +
                     "в таком случае будет лежать на промежутке от -Inf до +Inf");
             }
@@ -145,8 +150,12 @@ namespace Homework1
             double x1, double x2, double y1, double y2
             )
         {
+            if (x1 == x2)
+            {
+                throw new OverflowException(
+                    " Число x1 не должно быть равно x2");
+            }
             double A = (y2 - y1) / (x2 - x1);
-            double B = -A * x1 + y1;
             return A;
         }
 
