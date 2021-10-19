@@ -270,6 +270,7 @@ namespace Homework3.Tests
 
         [TestCase(10, "2\n4\n6\n8\n")]
         [TestCase(35, "2\n4\n6\n8\n12\n14\n16\n18\n20\n21\n22\n24\n26\n28\n34\n")]
+        [TestCase(0, "")]
         public void CalcNumbersSumEvenGreaterOddTest(int number, string expected)
         {
             //arrange
@@ -278,6 +279,17 @@ namespace Homework3.Tests
             string actual = _hw3.CalcNumbersSumEvenGreaterOdd(number);
             //asert
             Assert.AreEqual(expected, actual);
+        }
+        [TestCase(-10, "Число должно быть положительным")]
+        public void CalcNumbersSumEvenGreaterOddNegativeTest(int number, string expected)
+        {
+            //arrange
+
+            //act
+            Exception ex = Assert.Throws(typeof(ArgumentException),
+                () => _hw3.CalcNumbersSumEvenGreaterOdd(number));
+            //asert
+            Assert.AreEqual(expected, ex.Message);
         }
 
         [TestCase(100, 202, true)]

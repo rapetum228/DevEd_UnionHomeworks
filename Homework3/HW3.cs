@@ -384,6 +384,8 @@ namespace Homework3
 
         public string CalcNumbersSumEvenGreaterOdd(int userNum)
         {
+            if (userNum < 0)
+                throw new ArgumentException("Число должно быть положительным");
             string result = "";
             int remainder = 0;
             for (int i = 1; i <= userNum; i++)
