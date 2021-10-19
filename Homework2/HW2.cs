@@ -43,28 +43,49 @@ namespace Homework2
             int X = GetNumberFromUser("Введите число X: ");
             int Y = GetNumberFromUser("Введите число Y: ");
 
-            string result = DetermineThePositionOnTheCoordinatePlane(X, Y);
+            int numberQuarter = DetermineThePositionOnTheCoordinatePlane(X, Y);
+            string result = ConvertNumbersFromConditionsToAString(numberQuarter);
             Console.WriteLine($"Результат задачи 2, домашки 2: \n {result}");
+            Console.WriteLine($"Точка имеет координаты ({X}, {Y}), " +
+                $"а значит расположена {result}");
         }
 
-        public string DetermineThePositionOnTheCoordinatePlane(int X, int Y)
+        public int DetermineThePositionOnTheCoordinatePlane(int X, int Y)
         {
-            string quarter = "1";
+            int quarter;
             if (X > 0 && Y > 0)
-                quarter = "в 1 четверти";
+                quarter = 1;
             else if (X < 0 && Y > 0)
-                quarter = "в 2 четверти";
+                quarter = 2;
             else if (X < 0 && Y < 0)
-                quarter = "в 3 четверти";
+                quarter = 3;
             else if (X > 0 && Y < 0)
-                quarter = "в 4 четверти";
+                quarter = 4;
             else if (X == 0 && Y != 0)
-                quarter = "на оси Y";
+                quarter = 11;
             else if (X != 0 && Y == 0)
-                quarter = "на оси X";
+                quarter = 22;
+            else 
+                quarter = 0;
 
-            return $"Точка имеет координаты ({X}, {Y}), " +
-                $"а значит расположена {quarter}";
+            return quarter;
+        }
+
+        public string ConvertNumbersFromConditionsToAString (int numberFromCondition)
+        {
+                string stringFromNumber = numberFromCondition switch
+            {
+                1 => "в 1 четверти",
+                2 => "в 2 четверти",
+                3 => "в 3 четверти",
+                4 => "в 4 четверти",
+                11 => "на оси Y",
+                22 => "на оси X",
+                0 => "в центре",
+                _ => "данное число получено не из предыдущего условия :D",
+            };
+
+            return stringFromNumber;
         }
 
         public void SolveTask3()
@@ -84,16 +105,14 @@ namespace Homework2
 
         public string OutputAscending(ref string result, int num1, int num2, int num3)
         {
-            
-
-            if (result=="" && num1 <= num2 && num1 <= num2)
+            if (result=="" && num1 <= num2 && num1 <= num3)
             {
                 if (num2 <= num3)
                     result = $" {num1}, {num2}, {num3}";
                 else result = $" {num1}, {num3}, {num2}";
             }
             return result;
-            ;
+
         }
 
         public void SolveTask4()
@@ -106,43 +125,71 @@ namespace Homework2
             int C = GetNumberFromUser("Введите число C: ");
 
             Console.WriteLine($"Результат задачи 4, домашки 2: \n");
-            SolveQuadraticEquation(A, B, C);
+            double [] result = SolveQuadraticEquation(A, B, C);
+            if (result.Length == 0)
+               Console.WriteLine("Корней нет");
+            else
+            {
+                foreach (var item in result)
+                {
+                    Console.WriteLine($"Корень: {item}");
+                }
+            }
+            
         }
 
        
-        public void SolveQuadraticEquation (int A, int B, int C) 
+        public double[] SolveQuadraticEquation (int A, int B, int C) 
         {
+            if (A == 0)
+            {
+                throw new ArgumentException("Число А не должно быть равно 0, иначе это не " +
+                    "квадратное уравнение");
+            }
             double D = B * B - 4 * A * C;
-            
+            double[] result;
             if (D > 0)
             {
-                CalculateIfTheDiscriminantIsGreaterThanZero(D, B, A);
+                result = new double[] { 
+                    (-B + Math.Sqrt(D))*1.0 / (2 * A), 
+                    (-B - Math.Sqrt(D))*1.0 / (2 * A) };
             }
             else if (D == 0)
             {
-                CalculateIfTheDiscriminantIsEqualsZero(B, A);
+                result = new double[] { (-B*1.0 / (2 * A)) };
             }
-            else CalculateIfTheDiscriminantIsLessThanZero(D);
+            else 
+            { 
+                result = Array.Empty<double>(); 
+            }
 
-            
-        }
+            return result;
 
-        public void CalculateIfTheDiscriminantIsLessThanZero( double D)
-        {
-            Console.WriteLine($"{D} < 0, значит уравнение не имеет решений "); 
         }
-        public void CalculateIfTheDiscriminantIsEqualsZero(double B, double A)
+        /*
+        public double[] CalculateIfTheDiscriminantIsEqualsZero(double B, double A)
         {
-            double rootX = -B / (2 * A);
-            Console.WriteLine($"Дискриминант = 0, значит уравнение имеет один корень - {rootX}");
+            if (A == 0)
+            {
+                throw new ArgumentException("Число А не должно быть равно 0, иначе это не " +
+                    "квадратное уравнение");
+            }
+            double[] rootX = { -B / (2 * A) };
+            return rootX;
         }
-        public void CalculateIfTheDiscriminantIsGreaterThanZero(double D, double B, double A)
+        public double[] CalculateIfTheDiscriminantIsGreaterThanZero(double D, double B, double A)
         {
+            if (A == 0)
+            {
+                throw new ArgumentException("Число А не должно быть равно 0, иначе это не " +
+                    "квадратное уравнение");
+            }
             double firstRootX = (-B + Math.Sqrt(D)) / (2 * A);
             double secondRootX = (-B - Math.Sqrt(D)) / (2 * A);
-            Console.WriteLine($"{D} > 0, значит уравнение имеет два корня. " +
-                $"Первый: {firstRootX}, второй: { secondRootX}");
+            double[] roots = { firstRootX, secondRootX };
+            return roots;
         }
+        */
         public void SolveTask5()
         {
             Console.WriteLine("Пользователь вводит двузначное число. " +
@@ -168,7 +215,7 @@ namespace Homework2
             {
                 wordTwoDigitNumber = $"{WriteTillTwenty(number)}";
             }
-            else wordTwoDigitNumber = "Зайди правильно!!!!!";
+            else wordTwoDigitNumber = "Число не двузначное";
 
             return wordTwoDigitNumber;
         }
@@ -176,6 +223,10 @@ namespace Homework2
         public string WriteADozens(int dozens)
         {
             string dozenWord;
+            if (dozens > 9 || dozens < 2)
+            {
+                throw new ArgumentException("Число не из главного метода");
+            }
             dozenWord = dozens switch
             {
                 2 => "двадцать",
@@ -193,10 +244,13 @@ namespace Homework2
 
         public string WriteAUnits(int units)
         {
+            if (units < 0 || units > 9)
+            {
+                throw new ArgumentException("Число не из главного метода");
+            }
             string unitsWord;
             unitsWord = units switch
             {
-                0 => "",
                 1 => "один",
                 2 => "два",
                 3 => "три",
@@ -213,6 +267,10 @@ namespace Homework2
 
         public string WriteTillTwenty(int number)
         {
+            if (number < 10 || number > 19)
+            {
+                throw new ArgumentException("Число не из главного метода");
+            }
             string wordTillTwenty = number switch
             {
                 10 => "десять",

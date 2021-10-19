@@ -26,9 +26,10 @@ namespace Homework1.Tests
             Assert.AreEqual(expectedResult, actualResult);
         }
 
-        [TestCase(5, 9, 9)]
+        [TestCase(5, 9, 9, 5)]
+        [TestCase(9, 5, 5, 9)]
         public void SwapTheVariablesTest(double numberA, double numberB,
-            double expectedResultA)
+            double expectedResultA, double expectedResultB)
         {
             //arrange - готовим переменные
 
@@ -37,6 +38,7 @@ namespace Homework1.Tests
 
             //assert - проверяем результаты
             Assert.AreEqual(expectedResultA, numberA);
+            Assert.AreEqual(expectedResultB, numberB);
         }
 
         [TestCase(5, 5,
@@ -70,17 +72,6 @@ namespace Homework1.Tests
             //assert - проверяем результаты
             Assert.AreEqual(expectedResult, actualResult);
         }
-        [TestCase(5, 5,
-            "Ошибка. Деление на ноль... Числа не должны быть равны")]
-        public void FindASolutionUsingTheFormulaNegativeTest(
-            double numberA, double numberB, string expectedMessage
-            )
-        {
-            //arrange - готовим переменные
-
-            //act - вызываем метод 
-            Exception ex = Assert.Throws(typeof(DivideByZeroException), 
-                () => _hw1.FindASolutionUsingTheFormula(numberA, numberB));
 
         [TestCase(5, 0,
             "Ошибка. Деление на ноль... Число В не должно быть равно нулю...")]
