@@ -33,17 +33,17 @@ namespace Homework3.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(250, "250\n500\n750\n1000\n")]
-        [TestCase(333, "333\n666\n999\n")]
-        [TestCase(-444, "444\n888\n")]
-        [TestCase(1500, "")]
+        [TestCase(250, new int[] {250, 500, 750, 1000 })]
+        [TestCase(333, new int[] { 333, 666, 999 })]
+        [TestCase(-444, new int[] { 444, 888 })]
+        [TestCase(1500, new int[] {})]
         public void DivisionByATest(int divider,
-            string expected)
+            int[] expected)
         {
             //arrange
 
             //act
-            string actual = _hw3.DivisionByA(divider);
+            int[] actual = _hw3.DivisionByA(divider);
             //asert
             Assert.AreEqual(expected, actual);
         }
@@ -268,15 +268,14 @@ namespace Homework3.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(10, "2\n4\n6\n8\n")]
-        [TestCase(35, "2\n4\n6\n8\n12\n14\n16\n18\n20\n21\n22\n24\n26\n28\n34\n")]
-        [TestCase(0, "")]
-        public void CalcNumbersSumEvenGreaterOddTest(int number, string expected)
+        [TestCase(10, new int[] { 2, 4, 6, 8 })]
+        [TestCase(35, new int[] { 2, 4, 6, 8, 12, 14, 16, 18, 20, 21, 22, 24, 26, 28, 34 })]
+        public void CalcNumbersSumEvenGreaterOddTest(int number, int[] expected)
         {
             //arrange
 
             //act
-            string actual = _hw3.CalcNumbersSumEvenGreaterOdd(number);
+            int[] actual = _hw3.CalcNumbersSumEvenGreaterOdd(number);
             //asert
             Assert.AreEqual(expected, actual);
         }
@@ -292,6 +291,54 @@ namespace Homework3.Tests
             Assert.AreEqual(expected, ex.Message);
         }
 
+        [TestCase(1, new int[] { 1, 0 })]
+        [TestCase(35, new int[] { 8, 0 })]
+        [TestCase(2, new int[] { 0, 2 })]
+        [TestCase(163, new int[] { 4, 6 })]
+        [TestCase(4569, new int[] { 14, 10 })]
+        public void CalculatedTheSumsOfEvenAndOddDigitsANumberTest(int i, int[] expected)
+        {
+            //arrange
+
+            //act
+            int[] actual = _hw3.CalculatedTheSumsOfEvenAndOddDigitsANumber(i);
+            //asert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestCase(-10, "Число должно быть больше нуля")]
+        public void CalculatedTheSumsOfEvenAndOddDigitsANumberNegativeTest(int i, 
+            string expected)
+        {
+            //arrange
+
+            //act
+            Exception ex = Assert.Throws(typeof(ArgumentException),
+                () => _hw3.CalculatedTheSumsOfEvenAndOddDigitsANumber(i));
+            //asert
+            Assert.AreEqual(expected, ex.Message);
+        }
+        
+        [TestCase(163, new int[] { 4, 6 }, 163, 163, 163)]
+        [TestCase(1, new int[] { 1, 0 }, 1, 0, 0)]
+        [TestCase(35, new int[] { 8, 0 }, 35, 0, 34)]
+        [TestCase(2, new int[] { 0, 2 }, 2, 2, 2)]
+        [TestCase(4569, new int[] { 14, 10 }, 4569, 0, 4568)]
+        [TestCase(8565, new int[] { 10, 14 }, 8565, 8565, 8565)]
+        [TestCase(0, new int[] { 0, 0 }, 0, 0, -1)]
+        public void FindNumWhereSumOfEvenDigitsIsGreaterThanOddDigitsTest(
+            int i, int[] counterOddEven, ref int arrLength, 
+            int expectedResNum, int expectedLengthArray)
+        {
+            //arrange
+
+            //act
+            int actual = _hw3.FindNumWhereSumOfEvenDigitsIsGreaterThanOddDigits(i,
+                counterOddEven, ref arrLength);
+            //asert
+            Assert.AreEqual(expectedResNum, actual);
+            Assert.AreEqual(expectedLengthArray, arrLength);
+        }
+       
         [TestCase(100, 202, true)]
         [TestCase(100, 222, false)]
         [TestCase(100, 0, true)]
