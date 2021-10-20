@@ -1,9 +1,16 @@
-﻿using System;
+﻿using Core;
+using System;
 
 namespace Homework3
 {
     public class HW3
     {
+        private readonly ForArrays _forArrays;
+
+        public HW3()
+        {
+            _forArrays = new ForArrays();
+        }
         public void SolveTask1()
         {
             Console.WriteLine("Пользователь вводит 2 числа (A и B). " +
@@ -47,8 +54,9 @@ namespace Homework3
             try
             {
                 int A = GetNumberFromUser("Введите число А: ");
-                string result = DivisionByA(A);
-                Console.WriteLine($"Результат задачи 2, домашки 2: \n {result}");  
+                int[] result = DivisionByA(A);
+                Console.WriteLine($"Результат задачи 2, домашки 2: \n");
+                _forArrays.ShowMeAnArrayAnScreen(result);
             }
             catch (DivideByZeroException ex)
             {
@@ -56,20 +64,21 @@ namespace Homework3
             }
 
         }
-        public string DivisionByA(int number)
+        public int[] DivisionByA(int number)
         {
             
             if (number == 0)
             {
                 throw new DivideByZeroException("На ноль делить нельзя");
             }
-            
-            string dividedByA = "";
+            int indexArr = 0;
+            int[] dividedByA = new int[1000 / Math.Abs(number)];
             for (int i = 1; i <= 1000; i++)
             {
                 if (i % number == 0)
                 {
-                    dividedByA +=$"{i}\n";
+                    dividedByA[indexArr] = i;
+                    indexArr++;
                 }
             }
 
@@ -376,35 +385,65 @@ namespace Homework3
                 "больше суммы нечетных. \n");
 
             int N = GetNumberFromUser("Bведите число: ");
-            string result = CalcNumbersSumEvenGreaterOdd(N);
-            Console.WriteLine($"Результат задачи 11, домашки 3: \n{result}");
-            
-            
+            int[] resultArray = CalcNumbersSumEvenGreaterOdd(N);
+            Console.WriteLine($"Результат задачи 11, домашки 3: \n");
+            _forArrays.ShowMeAnArrayAnScreen(resultArray);
         }
 
-        public string CalcNumbersSumEvenGreaterOdd(int userNum)
+        public int[] CalcNumbersSumEvenGreaterOdd(int userNum)
         {
             if (userNum < 0)
                 throw new ArgumentException("Число должно быть положительным");
-            string result = "";
-            int remainder = 0;
+            int[] result = new int[userNum];
+            int arrLenght = userNum;
             for (int i = 1; i <= userNum; i++)
             {
-                int counterEven = 0;
-                int counterOdd = 0;
-                int iCopy = i;
-                while (iCopy != 0)
-                {
-                    remainder = iCopy % 10;
-                    iCopy /= 10;
-                    if (remainder % 2 == 1)
-                        counterOdd += remainder;
-                    else counterEven += remainder;
-                }
-                if (counterEven > counterOdd)
-                    result += $"{i}\n";
+                int[] sumOddAndEvenDigits = CalculatedTheSumsOfEvenAndOddDigitsANumber(i);
+                result [i-1] = FindNumWhereSumOfEvenDigitsIsGreaterThanOddDigits(
+                    i, sumOddAndEvenDigits, ref arrLenght
+                    );
             }
-            return result;
+            int[] expResult = new int[arrLenght];
+            int index = -1;
+            foreach (var item in result)
+            {
+                if (item != 0)
+                {
+                    index++;
+                    expResult[index] = item;
+                }
+            }
+            return expResult;
+        }
+
+        public int[] CalculatedTheSumsOfEvenAndOddDigitsANumber(int i)
+        {
+            if (i <= 0)
+                throw new ArgumentException("Число должно быть больше нуля");
+            int[] counterOddEven = { 0, 0 };
+
+            while (i != 0)
+            {
+                int remainder = i % 10;
+                i/= 10;
+                if (remainder % 2 == 1)
+                    counterOddEven[0] += remainder;
+                else counterOddEven[1] += remainder;
+            }
+            return counterOddEven;
+        }
+        public int FindNumWhereSumOfEvenDigitsIsGreaterThanOddDigits(int i, 
+            int[] counterOddEven, ref int arrLength)
+        {
+            if (counterOddEven[1] > counterOddEven[0])
+            {
+                return i;
+            }
+            else 
+            {
+                arrLength--;
+                return 0; 
+            }
         }
 
         public void SolveTask12()
