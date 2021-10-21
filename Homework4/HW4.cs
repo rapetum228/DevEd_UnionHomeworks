@@ -51,6 +51,7 @@ namespace Homework4
         }
         public int SearchMinElementArr(int[] arr)
         {
+            
             int minElementArr = arr[0];
 
             for (int i = 0; i < arr.Length; i++)
