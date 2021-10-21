@@ -1,15 +1,9 @@
 ﻿using System;
-using Core;
+
 namespace Homework4
 {
     public class HW4
     {
-        private readonly Helper _helper;
-
-        public HW4()
-        {
-            _helper = new Helper();
-        }
         public void SolveTask1()
         {
             Console.WriteLine("Найти минимальный элемент массива\n");
@@ -50,7 +44,7 @@ namespace Homework4
         }
         public int SearchMinElementArr(int[] arr)
         {
-            int minElementArr = arr[0];
+            int minElementArr = 0;
 
             for (int i = 0; i < arr.Length; i++)
             {
@@ -83,7 +77,7 @@ namespace Homework4
 
         public int SearchMaxElementArr(int[] arr)
         {
-            int maxElementArr = arr[0];
+            int maxElementArr = 0;
 
             for (int i = 0; i < arr.Length; i++)
             {
@@ -172,7 +166,7 @@ namespace Homework4
             try
             {
                 int[] arr = GetRandomArray("Введите длину массива: ");
-                int result = CalculateTheSumOfTheElementsOfAnArrayWithOddIndices(arr);
+                int result = CalculateTheSumOfTheElementsOfAnArrayWithWddIndices(arr);
                 Console.WriteLine($"\nРезультат задачи 5, домашки 4: \n {result}");
             }
             catch (FormatException)
@@ -186,7 +180,7 @@ namespace Homework4
 
         }
 
-        public int CalculateTheSumOfTheElementsOfAnArrayWithOddIndices(int[] arr)
+        public int CalculateTheSumOfTheElementsOfAnArrayWithWddIndices(int[] arr)
         {
             int sumOddIndex = 0;
             for (int i = 0; i < arr.Length; i++)
@@ -204,7 +198,7 @@ namespace Homework4
                 int[] arr = GetRandomArray("Введите длину массива: ");
                 ReverseTheArray(arr);
                 Console.WriteLine($"\nРезультат задачи 6, домашки 4: \n");
-                _helper.ShowMeAnArrayAnScreen(arr);
+                ShowMeAnArrayAnScreen(arr);
             }
             catch (FormatException)
             {
@@ -222,9 +216,17 @@ namespace Homework4
         {
             for (int i = arr.Length - 1; i >= arr.Length / 2; i--)
             {
-                _helper.SwapTheVariables(ref arr[i], ref arr[arr.Length - 1 - i]);              
+                int temp = arr[i];
+                arr[i] = arr[arr.Length - 1 - i];
+                arr[arr.Length - 1 - i] = temp;
             }
 
+        }
+        public void ShowMeAnArrayAnScreen(int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+                Console.Write($"{arr[i]}\t");
+            Console.WriteLine("\n");
         }
 
         public void SolveTask7()
@@ -270,7 +272,7 @@ namespace Homework4
                 int[] arr = GetRandomArray("Введите длину массива: ");
                 ChangeHalfsOfArray(arr);
                 Console.WriteLine($"\nРезультат задачи 8, домашки 4: \n");
-                _helper.ShowMeAnArrayAnScreen(arr);
+                ShowMeAnArrayAnScreen(arr);
             }
             catch (FormatException)
             {
@@ -287,15 +289,9 @@ namespace Homework4
         {
             for (int i = 0; i < arr.Length / 2; i++)
             {
-                /*
                 int temp = arr[i];
                 arr[i] = arr[arr.Length - arr.Length / 2 + i];
-                arr[arr.Length - arr.Length / 2 + i] = temp;*/
-                _helper.SwapTheVariables(ref arr[i], ref arr[arr.Length - arr.Length / 2 + i]);
-                /*int copyA = a;
-                a = b;
-                b = copyA;
-                */
+                arr[arr.Length - arr.Length / 2 + i] = temp;
             }
         }
 
@@ -306,9 +302,9 @@ namespace Homework4
             try
             {
                 int[] arr = GetRandomArray("Введите длину массива: ");
-                SortBubbleAscending(arr);
+                SortBubble(arr);
                 Console.WriteLine($"\nРезультат задачи 9, домашки 4: \n");
-                _helper.ShowMeAnArrayAnScreen(arr);
+                ShowMeAnArrayAnScreen(arr);
             }
             
             catch (FormatException)
@@ -321,7 +317,7 @@ namespace Homework4
             }
         }
 
-        public void SortBubbleAscending(int[] arr)
+        public void SortBubble(int[] arr)
         {
             int countExchange = 1;
             while (countExchange != 0)
@@ -349,9 +345,9 @@ namespace Homework4
             try
             {
                 int[] arr = GetRandomArray("Введите длину массива: ");
-                SortInsertDescending(arr);
+                SortInsert(arr);
                 Console.WriteLine($"\nРезультат задачи 10, домашки 4: \n");
-                _helper.ShowMeAnArrayAnScreen(arr);
+                ShowMeAnArrayAnScreen(arr);
             }
             catch (FormatException)
             {
@@ -364,7 +360,7 @@ namespace Homework4
 
         }
 
-        public void SortInsertDescending(int[] arr)
+        public void SortInsert(int[] arr)
         {
             for (int i = 0; i < arr.Length; i++)
             {
