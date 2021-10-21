@@ -52,7 +52,7 @@ namespace Homework5
         }
         public int SearchMinElementTwoDimArr(int[,] arr)
         {
-            int minElementArr = 0;
+            int minElementArr = arr[0, 0];
 
             for (int i = 0; i < arr.GetLength(0); i++)
             {
@@ -86,7 +86,7 @@ namespace Homework5
 
         public int SearchMaxElementTwoDimArr(int[,] arr)
         {
-            int maxElementArr = 0;
+            int maxElementArr = arr[0,0];
 
             for (int i = 0; i < arr.GetLength(0); i++)
             {
@@ -126,7 +126,7 @@ namespace Homework5
         }
         public int[] SearchIndexMinElementMatrix(int[,] arr)
         {
-            int minElementArr = 0;
+            int minElementArr = arr[0, 0];
             int minRowInd = 0;
             int minColumnInd = 0;
 
@@ -168,7 +168,7 @@ namespace Homework5
 
         public int[] SearchIndexMaxElementMatrix(int[,] arr)
         {
-            int maxElementArr = 0;
+            int maxElementArr = arr[0, 0];
             int maxRowInd = 0;
             int maxColumnInd = 0;
 
