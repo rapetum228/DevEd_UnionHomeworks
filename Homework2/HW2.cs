@@ -1,9 +1,16 @@
-﻿using System;
+﻿using Core;
+using System;
 
 namespace Homework2
 {
     public class HW2
     {
+        private readonly Helper _helper;
+
+        public HW2()
+        {
+            _helper = new Helper();
+        }
         public void SolveTask1()
         {
             Console.WriteLine("Пользователь вводит 2 числа (A и B). " +
