@@ -23,7 +23,7 @@ namespace Homework2.Tests
             //act
             int actualResult = _hw2.CalculateTheValuesDependingOnTheEnteredNumbers(A, B);
             //assert
-            Assert.Pass();
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestCase(3, 1, 1)]
