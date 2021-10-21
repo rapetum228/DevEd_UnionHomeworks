@@ -5,11 +5,11 @@ namespace Homework3
 {
     public class HW3
     {
-        private readonly ForArrays _forArrays;
+        private readonly Helper _helper;
 
         public HW3()
         {
-            _forArrays = new ForArrays();
+            _helper = new Helper();
         }
         public void SolveTask1()
         {
@@ -56,7 +56,7 @@ namespace Homework3
                 int A = GetNumberFromUser("Введите число А: ");
                 int[] result = DivisionByA(A);
                 Console.WriteLine($"Результат задачи 2, домашки 2: \n");
-                _forArrays.ShowMeAnArrayAnScreen(result);
+                _helper.ShowMeAnArrayAnScreen(result);
             }
             catch (DivideByZeroException ex)
             {
@@ -387,7 +387,7 @@ namespace Homework3
             int N = GetNumberFromUser("Bведите число: ");
             int[] resultArray = CalcNumbersSumEvenGreaterOdd(N);
             Console.WriteLine($"Результат задачи 11, домашки 3: \n");
-            _forArrays.ShowMeAnArrayAnScreen(resultArray);
+            _helper.ShowMeAnArrayAnScreen(resultArray);
         }
 
         public int[] CalcNumbersSumEvenGreaterOdd(int userNum)
