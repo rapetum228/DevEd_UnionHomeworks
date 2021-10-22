@@ -1,9 +1,16 @@
-﻿using System;
+﻿using Core;
+using System;
 
 namespace Homework5
 {
     public class HW5
     {
+        private readonly Helper _helper;
+
+        public HW5()
+        {
+            _helper = new Helper();
+        }
         public void SolveTask1()
         {
             Console.WriteLine("Найти минимальный элемент массива\n");
@@ -52,6 +59,10 @@ namespace Homework5
         }
         public int SearchMinElementTwoDimArr(int[,] arr)
         {
+            if (arr.Length == 0)
+            {
+                throw new ArgumentException("Массив пустой");
+            }
             int minElementArr = arr[0, 0];
 
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -86,6 +97,10 @@ namespace Homework5
 
         public int SearchMaxElementTwoDimArr(int[,] arr)
         {
+            if (arr.Length == 0)
+            {
+                throw new ArgumentException("Массив пустой");
+            }
             int maxElementArr = arr[0,0];
 
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -126,6 +141,10 @@ namespace Homework5
         }
         public int[] SearchIndexMinElementMatrix(int[,] arr)
         {
+            if (arr.Length == 0)
+            {
+                throw new ArgumentException("Массив пустой");
+            }
             int minElementArr = arr[0, 0];
             int minRowInd = 0;
             int minColumnInd = 0;
@@ -168,6 +187,10 @@ namespace Homework5
 
         public int[] SearchIndexMaxElementMatrix(int[,] arr)
         {
+            if (arr.Length == 0)
+            {
+                throw new ArgumentException("Массив пустой");
+            }
             int maxElementArr = arr[0, 0];
             int maxRowInd = 0;
             int maxColumnInd = 0;
@@ -195,7 +218,7 @@ namespace Homework5
             try
             {
                 int[,] arr = GetRandomTwoDimArray();
-                int result = IteratingOverArray(arr);
+                int result = СountTheNumberOfElementsThatAreLargerThanAllTheirNeighborsAtTheSameTime(arr);
                 Console.WriteLine($"\nРезультат задачи 6, домашки 5: {result}\n ");
             }
             catch (FormatException)
@@ -208,32 +231,23 @@ namespace Homework5
             }
         }
 
-        public int IteratingOverArray(int[,] arr)
+        public int СountTheNumberOfElementsThatAreLargerThanAllTheirNeighborsAtTheSameTime(int[,] arr)
         {
             int count = 0;
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    count += CountTheNumbersOfGreaterItems(i, j, arr.GetLength(0),
-            arr.GetLength(1), arr);
+                    bool rowPlus, rowMinus, columnPlus, columnMinus;
+                    rowPlus = (i + 1 > arr.GetLength(0) - 1) || (arr[i, j] > arr[i + 1, j]);
+                    columnPlus = (j + 1 > arr.GetLength(1) - 1) || (arr[i, j] > arr[i, j + 1]);
+                    rowMinus = (i - 1 < 0) || (arr[i, j] > arr[i - 1, j]);
+                    columnMinus = (j - 1 < 0) || (arr[i, j] > arr[i, j - 1]);
+
+                    if (rowPlus && rowMinus && columnPlus && columnMinus && arr.Length > 1 )
+                        count++;
                 }
             }
-            return count;
-        }
-        public int CountTheNumbersOfGreaterItems(int i, int j, int arrLenghtRow, 
-            int arrLenghtColumn, int[,] arr)
-        {
-            bool rowPlus, rowMinus, columnPlus, columnMinus;
-            int count = 0;
-            rowPlus = (i + 1 > arrLenghtRow - 1) || (arr[i, j] >= arr[i + 1, j]);
-            columnPlus = (j + 1 > arrLenghtColumn - 1) || (arr[i, j] >= arr[i, j + 1]);
-            rowMinus = (i - 1 < 0) || (arr[i, j] >= arr[i - 1, j]);
-            columnMinus = (j - 1 < 0) || (arr[i, j] >= arr[i, j - 1]);
-
-            if (rowPlus && rowMinus && columnPlus && columnMinus)
-                count = 1;
-
             return count;
         }
 
@@ -271,9 +285,7 @@ namespace Homework5
             {
                 for (int j = i; j < arr.GetLength(1); j++)
                 {
-                    int temp = arr[i, j];
-                    arr[i, j] = arr[j, i];
-                    arr[j, i] = temp;
+                    _helper.SwapTheVariables(ref arr[i, j], ref arr[j, i]);
                 }
             }
         }
@@ -345,7 +357,7 @@ namespace Homework5
         }
     }
 
-    class IncorrectMatrixDimension : Exception
+    public class IncorrectMatrixDimension : Exception
     {
         public IncorrectMatrixDimension(string message)
             : base(message)
