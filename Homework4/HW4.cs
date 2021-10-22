@@ -51,7 +51,10 @@ namespace Homework4
         }
         public int SearchMinElementArr(int[] arr)
         {
-            
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Массив нулевой размерности");
+            }
             int minElementArr = arr[0];
 
             for (int i = 0; i < arr.Length; i++)
@@ -85,6 +88,10 @@ namespace Homework4
 
         public int SearchMaxElementArr(int[] arr)
         {
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Массив нулевой размерности");
+            }
             int maxElementArr = arr[0];
 
             for (int i = 0; i < arr.Length; i++)
@@ -118,6 +125,10 @@ namespace Homework4
 
         public int SearchIndexMinElementArr(int[] arr)
         {
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Массив нулевой размерности");
+            }
             int minElementArr = 0;
             int minIndex = 0;
 
@@ -153,6 +164,10 @@ namespace Homework4
 
         public int SearchIndexMaxElementArr(int[] arr)
         {
+            if (arr.Length < 1)
+            {
+                throw new ArgumentException("Массив нулевой размерности");
+            }
             int maxElementArr = 0;
             int maxIndex = 0;
 

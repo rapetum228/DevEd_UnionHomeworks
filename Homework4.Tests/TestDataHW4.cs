@@ -46,7 +46,7 @@ namespace Homework4.Tests
                     return new int[] { 0, 2, 0, -6 }; //0
                     break;
                 default:
-                    return new int[] { };
+                    return new int[] { }; //0
                     break;
             }
         }
