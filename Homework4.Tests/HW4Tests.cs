@@ -27,6 +27,20 @@ namespace Homework4.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(56, "Массив нулевой размерности")]
+        public void SearchMinElementArrNegativeTest(int arrayID, string expectedMessage)
+        {
+            //arrange
+            int[] arrayToTest = TestDataHW4.
+                GetArrayForSearchMinAndMaxAndThemIndexesElementArrTest(arrayID);
+
+            //act
+            Exception ex = Assert.Throws(typeof(ArgumentException), 
+                ()=> _hw4.SearchMinElementArr(arrayToTest));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
         [TestCase(0, 3)]
         [TestCase(1, 10)]
         [TestCase(2, 1)]
@@ -41,6 +55,20 @@ namespace Homework4.Tests
             int actual = _hw4.SearchMaxElementArr(arrayToTest);
             //assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(-10000, "Массив нулевой размерности")]
+        public void SearchMaxElementArrNegativeTest(int arrayID, string expectedMessage)
+        {
+            //arrange
+            int[] arrayToTest = TestDataHW4.
+                GetArrayForSearchMinAndMaxAndThemIndexesElementArrTest(arrayID);
+
+            //act
+            Exception ex = Assert.Throws(typeof(ArgumentException),
+                () => _hw4.SearchMaxElementArr(arrayToTest));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
         }
         [TestCase(0, 0)]
         [TestCase(1, 5)]
@@ -58,6 +86,19 @@ namespace Homework4.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(-10000, "Массив нулевой размерности")]
+        public void SearchIndexMinElementArrNegativeTest(int arrayID, string expectedMessage)
+        {
+            //arrange
+            int[] arrayToTest = TestDataHW4.
+                GetArrayForSearchMinAndMaxAndThemIndexesElementArrTest(arrayID);
+
+            //act
+            Exception ex = Assert.Throws(typeof(ArgumentException),
+                () => _hw4.SearchIndexMinElementArr(arrayToTest));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
         [TestCase(0, 2)]
         [TestCase(1, 4)]
         [TestCase(2, 0)]
@@ -74,10 +115,25 @@ namespace Homework4.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(1800, "Массив нулевой размерности")]
+        public void SearchIndexMaxElementArrNegativeTest(int arrayID, string expectedMessage)
+        {
+            //arrange
+            int[] arrayToTest = TestDataHW4.
+                GetArrayForSearchMinAndMaxAndThemIndexesElementArrTest(arrayID);
+
+            //act
+            Exception ex = Assert.Throws(typeof(ArgumentException),
+                () => _hw4.SearchIndexMaxElementArr(arrayToTest));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
+
         [TestCase(0, 8)]
         [TestCase(1, 0)]
         [TestCase(2, 6)]
         [TestCase(3, 0)]
+        [TestCase(-3, 0)]
         public void CalculateTheSumOfTheElementsOfAnArrayWithOddIndicesTest(int arrayID, int expected)
         {
             //arrange
