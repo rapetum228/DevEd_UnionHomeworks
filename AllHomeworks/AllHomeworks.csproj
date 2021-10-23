@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ArrayListLibrary\ArrayListLibrary.csproj" />
     <ProjectReference Include="..\Homework1\Homework1.csproj" />
     <ProjectReference Include="..\Homework2\Homework2.csproj" />
     <ProjectReference Include="..\Homework3\Homework3.csproj" />
