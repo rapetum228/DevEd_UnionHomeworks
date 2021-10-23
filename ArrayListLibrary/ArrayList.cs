@@ -229,5 +229,70 @@ namespace ArrayListLibrary
             }
                 
         }
+
+        public void RemoveFirstMultiple(int n)
+        {
+            _lengthArr -= n;
+
+            if (_lengthArr < (_arr.Length * 2) / 3) 
+            {
+                int[] newArr = new int[(_arr.Length * 2) / 3];
+                for (int i = 0; i < _lengthArr; i++)
+                    newArr[i] = _arr[i + n];
+                _arr = newArr;
+            }
+            else
+            {
+                for (int i = 0; i < _lengthArr; i++)
+                    _arr[i] = _arr[i+n];
+            }
+        }
+
+        public void RemoveLastMultiple(int n)
+        {
+            _lengthArr -= n;
+
+            if (_lengthArr < (_arr.Length * 2) / 3)
+            {
+                int[] newArr = new int[(_arr.Length * 2) / 3];
+                for (int i = 0; i < _lengthArr; i++)
+                    newArr[i] = _arr[i];
+                _arr = newArr;
+            }
+            else
+            {
+                for (int i = _lengthArr; i < _lengthArr + n; i++)
+                    _arr[i] = 0;
+            }
+        }
+
+        public void RemoveAtMultiple(int idx, int n)
+        {
+            _lengthArr -= n;
+
+            if (_lengthArr < (_arr.Length * 2) / 3)
+            {
+                int[] newArr = new int[(_arr.Length * 2) / 3];
+
+                for (int i = 0; i < idx; i++)
+                    newArr[i] = _arr[i];
+                
+                for (int i = idx; i < _lengthArr; i++)
+                    newArr[i] = _arr[i + n];
+                
+                _arr = newArr;
+            }
+            else
+            {
+                for (int i = idx; i < _lengthArr; i++)
+                {
+                    _arr[i] = _arr[i + n];
+                    _arr[i + n] = 0;
+                    /*{1, 2, 3, 4, 5, 6, 7, 8} removeAt(2, 3)
+                     {1, 2, 6, 7, 8}*/
+                }
+            }
+
+        }
     }
 }
