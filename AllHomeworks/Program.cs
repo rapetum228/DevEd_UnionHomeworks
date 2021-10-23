@@ -21,7 +21,9 @@ namespace AllHomeworks
             aList.AddLast(15);
             aList.AddAt(9, 32);
             aList.AddAt(0, 32);
-
+            aList.RemoveFirst();
+            aList.RemoveFirst();
+            aList.RemoveLast();
 
             Console.ReadLine();
         }

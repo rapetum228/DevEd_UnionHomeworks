@@ -95,8 +95,45 @@ namespace ArrayListLibrary
                 for (int i = _lengthArr; i > idx; i--)
                     _arr[i] = _arr[i - 1];
                 _arr[idx] = val;
+            } 
+        }
+
+        public void Set(int idx, int val)
+        {
+            _arr[idx] = val;
+        }
+
+        public void RemoveFirst()
+        {
+            _lengthArr--;
+            if (_lengthArr < (_arr.Length * 2) / 3)
+            {
+                int[] newArr = new int[(_arr.Length * 2) / 3];
+                for (int i = 0; i < _lengthArr; i++)
+                    newArr[i] = _arr[i + 1];
+                newArr[_lengthArr] = 0;
+                _arr = newArr;
             }
-                
+            else
+            {
+                for (int i = 0; i < _lengthArr; i++)
+                    _arr[i] = _arr[i + 1];
+                _arr[_lengthArr] = 0;
+            }
+        }
+
+        public void RemoveLast()
+        {
+            _lengthArr--;
+            if (_lengthArr < (_arr.Length * 2) / 3)
+            {
+                int[] newArr = new int[(_arr.Length * 2) / 3];
+                for (int i = 0; i < _lengthArr; i++)
+                    newArr[i] = _arr[i];
+                _arr = newArr;
+            }
+            else
+                _arr[_lengthArr] = 0;
         }
     }
 }
