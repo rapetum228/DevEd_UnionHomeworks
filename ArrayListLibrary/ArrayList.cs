@@ -135,5 +135,26 @@ namespace ArrayListLibrary
             else
                 _arr[_lengthArr] = 0;
         }
+
+        public void RemoveAt(int idx)
+        {
+            _lengthArr--;
+            if (_lengthArr < (_arr.Length * 2) / 3)
+            {
+                int[] newArr = new int[(_arr.Length * 2) / 3];
+                for (int i = 0; i < idx; i++)
+                    newArr[i] = _arr[i];
+                for (int i = idx; i < _lengthArr; i++)
+                    newArr[i] = _arr[i+1];
+                _arr = newArr;
+            }
+            else 
+            {
+                for (int i = idx; i < _lengthArr; i++)
+                    _arr[i] = _arr[i + 1];
+                _arr[_lengthArr] = 0;
+            }
+                
+        }
     }
 }

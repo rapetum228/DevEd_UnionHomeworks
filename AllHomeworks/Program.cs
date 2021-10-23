@@ -10,6 +10,20 @@ namespace AllHomeworks
 {
     class Program
     {
+        /*
+         Сделано:
+        3 конструктора
+        GetLength
+        ToArray
+        AddFirst(int val)
+        AddLast(int val)
+        AddAt(int idx, int val)
+        Set(int idx)
+        RemoveFirst
+        RemoveLast
+        RemoveAt(int idx)
+
+         */
         static void Main(string[] args)
         {
             ArrayList aList = new ArrayList(new int[]{1, 2, 3 });
@@ -24,6 +38,21 @@ namespace AllHomeworks
             aList.RemoveFirst();
             aList.RemoveFirst();
             aList.RemoveLast();
+            aList.RemoveAt(3);
+            aList.RemoveAt(0);
+            aList.AddAt(2, 32);
+            aList.AddAt(4, 32);
+            aList.AddLast(9);
+            aList.AddLast(9);
+            aList.AddLast(9);
+            aList.AddLast(9);
+            aList.AddLast(9);
+            aList.RemoveAt(5);
+            aList.RemoveAt(3);
+            aList.RemoveAt(5);
+            aList.RemoveAt(3);
+            aList.RemoveAt(5);
+            aList.RemoveAt(3);
 
             Console.ReadLine();
         }
