@@ -33,15 +33,9 @@ namespace AllHomeworks
         {
             ArrayList aList = new ArrayList(new int[]{1, 2, 3 });
 
-            aList.AddFirst(new int[] { 4, 5, 6 });
-            aList.AddAt(3, new int[] { 4, 5, 6 });
-            aList.RemoveFirstMultiple(2);
-            aList.AddAt(3, new int[] { 8, 9, 10 });
-            aList.AddAt(5, new int[] { 8, 9, 10 });
-            aList.AddFirst(new int[] { 4, 5, 6, 99, 100 });
-            aList.RemoveAtMultiple(3, 4);
-            aList.RemoveAtMultiple(0, 4);
-            aList.RemoveAtMultiple(0, 4);
+            aList.AddFirst(new int[] { 8, 5, 6 });
+            aList.AddAt(4, new int[] { 7, 9, 8 });
+            aList.RemoveAll(8);
             Console.ReadLine();
         }
     }
