@@ -18,6 +18,9 @@ namespace AllHomeworks
         AddFirst(int val)
         AddLast(int val)
         AddAt(int idx, int val)
+        AddFirst(int idx, arr)
+        AddLast(int idx, arr)
+        AddAt(int idx, arr)
         Set(int idx)
         RemoveFirst
         RemoveLast
@@ -27,33 +30,10 @@ namespace AllHomeworks
         static void Main(string[] args)
         {
             ArrayList aList = new ArrayList(new int[]{1, 2, 3 });
-            aList.AddFirst(45);
-            aList.AddLast(9);
-            aList.AddFirst(15);
-            aList.AddFirst(15);
-            aList.AddFirst(15);
-            aList.AddLast(15);
-            aList.AddAt(9, 32);
-            aList.AddAt(0, 32);
-            aList.RemoveFirst();
-            aList.RemoveFirst();
-            aList.RemoveLast();
-            aList.RemoveAt(3);
-            aList.RemoveAt(0);
-            aList.AddAt(2, 32);
-            aList.AddAt(4, 32);
-            aList.AddLast(9);
-            aList.AddLast(9);
-            aList.AddLast(9);
-            aList.AddLast(9);
-            aList.AddLast(9);
-            aList.RemoveAt(5);
-            aList.RemoveAt(3);
-            aList.RemoveAt(5);
-            aList.RemoveAt(3);
-            aList.RemoveAt(5);
-            aList.RemoveAt(3);
 
+            aList.AddFirst(new int[] { 4, 5, 6 });
+            aList.AddAt(3, new int[] { 4, 5, 6 });
+            aList.AddAt(3, new int[] { 8, 9, 10 });
             Console.ReadLine();
         }
     }
