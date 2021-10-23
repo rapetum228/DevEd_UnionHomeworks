@@ -74,7 +74,29 @@ namespace ArrayListLibrary
             }                
             else
                 _arr[_lengthArr - 1] = val;
+        }
 
+        public void AddAt(int idx, int val)
+        {
+            _lengthArr++;
+            if (_lengthArr >= _arr.Length)
+            {
+                int[] newArr = new int[(_arr.Length * 3) / 2];
+                
+                for (int i = _lengthArr; i > idx; i--)
+                    newArr[i] = _arr[i-1];
+                for (int i = 0; i < idx; i++)
+                    newArr[i] = _arr[i];
+                newArr[idx] = val;
+                _arr = newArr;
+            }
+            else
+            {
+                for (int i = _lengthArr; i > idx; i--)
+                    _arr[i] = _arr[i - 1];
+                _arr[idx] = val;
+            }
+                
         }
     }
 }
