@@ -25,7 +25,9 @@ namespace AllHomeworks
         RemoveFirst
         RemoveLast
         RemoveAt(int idx)
-
+        RemoveFirstMultiple(int n)
+        RemoveLastMultiple(int n)
+        RemoveAtMultiple(int idx, int n)
          */
         static void Main(string[] args)
         {
@@ -33,7 +35,13 @@ namespace AllHomeworks
 
             aList.AddFirst(new int[] { 4, 5, 6 });
             aList.AddAt(3, new int[] { 4, 5, 6 });
+            aList.RemoveFirstMultiple(2);
             aList.AddAt(3, new int[] { 8, 9, 10 });
+            aList.AddAt(5, new int[] { 8, 9, 10 });
+            aList.AddFirst(new int[] { 4, 5, 6, 99, 100 });
+            aList.RemoveAtMultiple(3, 4);
+            aList.RemoveAtMultiple(0, 4);
+            aList.RemoveAtMultiple(0, 4);
             Console.ReadLine();
         }
     }
