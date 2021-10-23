@@ -19,19 +19,9 @@ namespace AllHomeworks
             aList.AddFirst(15);
             aList.AddFirst(15);
             aList.AddLast(15);
-            aList.AddLast(15);
-            aList.AddLast(15);
-            aList.AddLast(15);
-            aList.AddFirst(20);
-            aList.AddFirst(20);
-            aList.AddFirst(20);
-            aList.AddFirst(20);
-            aList.AddFirst(20);
-            aList.AddFirst(20);
-            aList.AddLast(20);
-            aList.AddLast(29);
-            aList.AddLast(23);
-            aList.AddLast(22);
+            aList.AddAt(9, 32);
+            aList.AddAt(0, 32);
+
 
             Console.ReadLine();
         }
