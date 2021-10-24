@@ -313,5 +313,65 @@ namespace ArrayList.Tests
                 _ => new int[] { },
             };
         }
+
+        public static ArrList GetArrListForRemoveFirstOnValTest(int arrayID)
+        {
+            return arrayID switch
+            {
+                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList(4),
+                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
+                _ => new ArrList(),
+            };
+        }
+
+        public static int[] GetExpectedArrListForRemoveFirstOnValTest(int arrayID)
+        {
+            return arrayID switch
+            {
+                0 => new int[] { 5, 3, 98, 0, 100, 15 },
+                1 => new int[] { 4 },
+                2 => new int[] { 1, 2, 3 },
+                _ => new int[] { },
+            };
+        }
+
+        public static ArrList GetArrListForRemoveAllTest(int arrayID)
+        {
+            return arrayID switch
+            {
+                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList(4),
+                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList(),
+            };
+        }
+
+        public static int[] GetExpectedArrListForRemoveAllTest(int arrayID)
+        {
+            return arrayID switch
+            {
+                0 => new int[] { 5, 3, 0, 100, 15 },
+                1 => new int[] { 4 },
+                2 => new int[] { 1, 2, 3 },
+                3 => new int[] { },
+                _ => new int[] { },
+            };
+        }
+
+        public static ArrList GetArrListForContainsTest(int arrayID)
+        {
+            return arrayID switch
+            {
+                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList(4),
+                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList(),
+            };
+        }
+
+        
     }
 }

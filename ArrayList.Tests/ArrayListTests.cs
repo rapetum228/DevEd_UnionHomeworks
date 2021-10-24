@@ -267,5 +267,58 @@ namespace ArrayList.Tests
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expectedLength, arrToTest.GetLength());
         }
+
+        [TestCase(0, 98, 6)]
+        [TestCase(1, 3, 1)]
+        [TestCase(2, 4, 3)]
+        public void RemoveFirstOnValTest(int arrayID, int val, int expectedLength)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForRemoveFirstOnValTest(arrayID);
+            int[] expected = TestDataArrList.GetExpectedArrListForRemoveFirstOnValTest(arrayID);
+
+            //act
+            arrToTest.RemoveFirst(val);
+            int[] actual = arrToTest.ToArray();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedLength, arrToTest.GetLength());
+        }
+
+        [TestCase(0, 98, 5)]
+        [TestCase(1, 3, 1)]
+        [TestCase(2, 4, 3)]
+        [TestCase(3, 5, 0)]
+        public void RemoveAllTest(int arrayID, int val, int expectedLength)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAllTest(arrayID);
+            int[] expected = TestDataArrList.GetExpectedArrListForRemoveAllTest(arrayID);
+
+            //act
+            arrToTest.RemoveAll(val);
+            int[] actual = arrToTest.ToArray();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedLength, arrToTest.GetLength());
+        }
+
+        [TestCase(0, 98, true)]
+        [TestCase(1, 3, false)]
+        [TestCase(2, 4, true)]
+        [TestCase(3, 5, true)]
+        public void ContainsTest(int arrayID, int val, bool expected)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForContainsTest(arrayID);
+
+            //act
+            bool actual = arrToTest.Contains(val);
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
