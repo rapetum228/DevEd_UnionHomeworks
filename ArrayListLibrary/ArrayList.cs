@@ -351,7 +351,7 @@ namespace ArrayListLibrary
 
         public void RemoveFirst(int val)
         {
-            _lengthArr--;
+            /*
             if (_lengthArr < (_arr.Length * 2) / 3)
             {
                 int[] newArr = new int[(_arr.Length * 2) / 3];
@@ -378,6 +378,27 @@ namespace ArrayListLibrary
                     }
                 }
                 _arr[_lengthArr] = 0;
+            }*/
+
+            for (int i = 0; i < _lengthArr; i++)
+            {
+                if (_arr[i] == val)
+                {
+                    _lengthArr--;
+                    for (int j = i; j < _lengthArr; j++)
+                        _arr[j] = _arr[j + 1];
+                    break;
+                }
+            }
+
+            _arr[_lengthArr + 1] = 0;
+
+            if (_lengthArr < (_arr.Length * 2) / 3)
+            {
+                int[] newArr = new int[(_arr.Length * 2) / 3];
+                for (int i = 0; i < _lengthArr; i++)
+                    newArr[i] = _arr[i];
+                _arr = newArr;
             }
         }
 
