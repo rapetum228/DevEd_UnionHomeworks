@@ -35,7 +35,12 @@ namespace ArrayListLibrary
 
         public int[] ToArray()
         {
-            return _arr;
+            int[] newArr = new int[_lengthArr];
+            for (int i = 0; i < _lengthArr; i++)
+            {
+                newArr[i] = _arr[i];
+            }
+            return newArr;
         }
 
         public void AddFirst(int val)
