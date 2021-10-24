@@ -2,25 +2,25 @@
 
 namespace ArrayListLibrary
 {
-    public class ArrayList
+    public class ArrList
     {
         private int[] _arr;
         private int _lengthArr;
 
-        public ArrayList()
+        public ArrList()
         {
             _arr = new int[10];
             _lengthArr = 0;
         }
 
-        public ArrayList(int firstElementArrList)
+        public ArrList(int firstElementArrList)
         {
             _arr = new int[10];
             _arr[0] = firstElementArrList;
             _lengthArr = 1;
         }
 
-        public ArrayList(int[] inputArray)
+        public ArrList(int[] inputArray)
         {
             _lengthArr = inputArray.Length;
             _arr = new int[10];
@@ -267,6 +267,8 @@ namespace ArrayListLibrary
             {
                 int[] newArr = new int[10];
                 _arr = newArr;
+                _lengthArr = 0;
+                return;
             }
             _lengthArr -= n;
 
@@ -290,6 +292,8 @@ namespace ArrayListLibrary
             {
                 int[] newArr = new int[10];
                 _arr = newArr;
+                _lengthArr = 0;
+                return;
             }
 
             _lengthArr -= n;

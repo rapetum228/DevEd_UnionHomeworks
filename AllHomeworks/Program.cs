@@ -31,9 +31,9 @@ namespace AllHomeworks
          */
         static void Main(string[] args)
         {
-            ArrayList aList = new ArrayList(new int[]{1, 2, 3 });
+            ArrList aList = new ArrList();
 
-            aList.AddFirst(new int[] { 8, 5, 6 });
+            aList.AddFirst(6);
             aList.AddAt(4, new int[] { 7, 9, 8 });
             aList.RemoveAll(8);
             Console.ReadLine();
