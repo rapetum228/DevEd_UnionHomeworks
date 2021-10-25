@@ -320,5 +320,187 @@ namespace ArrayList.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(0, 98, 1)]
+        [TestCase(1, 3, -1)]
+        [TestCase(2, 4, 3)]
+        [TestCase(3, 5, 0)]
+        public void IndexOfTest(int arrayID, int idx, int expected)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForIndexOfTest(arrayID);
+
+            //act
+            int actual = arrToTest.IndexOf(idx);
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestCase(0, 5)]
+        [TestCase(1, 4)]
+        [TestCase(2, 1)]
+        [TestCase(3, 5)]
+        public void GetFirstTest(int arrayID,  int expected)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
+
+            //act
+            int actual = arrToTest.GetFirst();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, 15)]
+        [TestCase(1, 4)]
+        [TestCase(2, 4)]
+        [TestCase(3, 5)]
+        public void GetLastTest(int arrayID, int expected)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
+
+            //act
+            int actual = arrToTest.GetLast();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, 4, 0)]
+        [TestCase(1, 0, 4)]
+        [TestCase(2, 1, 2)]
+        [TestCase(3, 3, 5)]
+        public void GetTest(int arrayID, int idx, int expected)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
+
+            //act
+            int actual = arrToTest.Get(idx);
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public void ReverseTest(int arrayID)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForReverseTest(arrayID);
+            ArrList expected = TestDataArrList.GetExpectedArrListForReverseTest(arrayID);
+
+            //act
+            arrToTest.Reverse();
+
+            //assert
+            Assert.AreEqual(expected.ToArray(), arrToTest.ToArray());
+        }
+
+        [TestCase(0, 100)]
+        [TestCase(1, 4)]
+        [TestCase(2, 4)]
+        [TestCase(3, 5)]
+        public void MaxTest(int arrayID, int expected)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
+
+            //act
+            int actual = arrToTest.Max();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, 0)]
+        [TestCase(1, 4)]
+        [TestCase(2, 1)]
+        [TestCase(3, 5)]
+        public void MinTest(int arrayID, int expected)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
+
+            //act
+            int actual = arrToTest.Min();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, 5)]
+        [TestCase(1, 0)]
+        [TestCase(2, 3)]
+        [TestCase(3, 0)]
+        public void IndexOfMaxTest(int arrayID, int expected)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
+
+            //act
+            int actual = arrToTest.IndexOfMax();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, 4)]
+        [TestCase(1, 0)]
+        [TestCase(2, 0)]
+        [TestCase(3, 0)]
+        public void IndexOfMinTest(int arrayID, int expected)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
+
+            //act
+            int actual = arrToTest.IndexOfMin();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        public void SortTest(int arrayID)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForSortAndSortDescTest(arrayID);
+            ArrList expected = TestDataArrList.GetExpectedArrListForSortTest(arrayID);
+
+            //act
+            arrToTest.Sort();
+
+            //assert
+            Assert.AreEqual(expected.ToArray(), arrToTest.ToArray());
+        }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        public void SortDescTest(int arrayID)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForSortAndSortDescTest(arrayID);
+            ArrList expected = TestDataArrList.GetExpectedArrListForSortDescTest(arrayID);
+
+            //act
+            arrToTest.SortDesc();
+
+            //assert
+            Assert.AreEqual(expected.ToArray(), arrToTest.ToArray());
+        }
     }
 }
