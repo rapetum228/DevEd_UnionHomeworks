@@ -97,6 +97,11 @@ namespace ArrayListLibrary
             }
         }
 
+        public void AddFirst(ArrList list)
+        {
+            AddFirst(list.ToArray());
+        }
+
         public void AddLast(int val)
         {
             _lengthArr++;
@@ -137,6 +142,11 @@ namespace ArrayListLibrary
                 for (int i = _lengthArr - arr.Length; i < _lengthArr; i++)
                     _arr[i] = arr[i - (_lengthArr - arr.Length)];
             }
+        }
+
+        public void AddLast(ArrList list)
+        {
+            AddLast(list.ToArray());
         }
 
         public void AddAt(int idx, int val)
@@ -194,6 +204,11 @@ namespace ArrayListLibrary
             }
         }
 
+        public void AddAt(int idx, ArrList list)
+        {
+            AddAt(idx, list.ToArray());
+        }
+
         public void Set(int idx, int val)
         {
             if (idx > _lengthArr - 1)
@@ -206,7 +221,7 @@ namespace ArrayListLibrary
         public void RemoveFirst()
         {
             _lengthArr--;
-            if (_lengthArr < (_arr.Length * 2) / 3)
+            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
             {
                 int[] newArr = new int[(_arr.Length * 2) / 3];
                 for (int i = 0; i < _lengthArr; i++)
@@ -225,7 +240,7 @@ namespace ArrayListLibrary
         public void RemoveLast()
         {
             _lengthArr--;
-            if (_lengthArr < (_arr.Length * 2) / 3)
+            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
             {
                 int[] newArr = new int[(_arr.Length * 2) / 3];
                 for (int i = 0; i < _lengthArr; i++)
@@ -243,7 +258,7 @@ namespace ArrayListLibrary
                 return;
             }
             _lengthArr--;
-            if (_lengthArr < (_arr.Length * 2) / 3)
+            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
             {
                 int[] newArr = new int[(_arr.Length * 2) / 3];
                 for (int i = 0; i < idx; i++)
@@ -272,7 +287,7 @@ namespace ArrayListLibrary
             }
             _lengthArr -= n;
 
-            if (_lengthArr < (_arr.Length * 2) / 3) 
+            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10) 
             {
                 int[] newArr = new int[(_arr.Length * 2) / 3];
                 for (int i = 0; i < _lengthArr; i++)
@@ -288,7 +303,7 @@ namespace ArrayListLibrary
 
         public void RemoveLastMultiple(int n)
         {
-            if (n > _lengthArr)
+            if (n >= _lengthArr)
             {
                 int[] newArr = new int[10];
                 _arr = newArr;
@@ -298,7 +313,7 @@ namespace ArrayListLibrary
 
             _lengthArr -= n;
 
-            if (_lengthArr < (_arr.Length * 2) / 3)
+            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
             {
                 int[] newArr = new int[(_arr.Length * 2) / 3];
                 for (int i = 0; i < _lengthArr; i++)
@@ -326,7 +341,7 @@ namespace ArrayListLibrary
 
             _lengthArr -= n;
 
-            if (_lengthArr < (_arr.Length * 2) / 3)
+            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
             {
                 int[] newArr = new int[(_arr.Length * 2) / 3];
 
@@ -393,7 +408,7 @@ namespace ArrayListLibrary
 
             _arr[_lengthArr + 1] = 0;
 
-            if (_lengthArr < (_arr.Length * 2) / 3)
+            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
             {
                 int[] newArr = new int[(_arr.Length * 2) / 3];
                 for (int i = 0; i < _lengthArr; i++)
@@ -421,7 +436,7 @@ namespace ArrayListLibrary
             for (int i = _lengthArr; i < _lengthArr + numberOfRemoveElements; i++)
                 _arr[i] = 0;
 
-            if (_lengthArr < (_arr.Length * 2) / 3)
+            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
             {
                 int[] newArr = new int[(_arr.Length * 2) / 3];
                 for (int i = 0; i < _lengthArr; i++)
@@ -466,7 +481,7 @@ namespace ArrayListLibrary
 
         public int GetLast()
         {
-            return _arr[_lengthArr];
+            return _arr[_lengthArr-1];
         }
 
         public int Get(int idx)
@@ -562,7 +577,7 @@ namespace ArrayListLibrary
             }
         }
 
-        public void SorttDesc()
+        public void SortDesc()
         {
             for (int i = 0; i < _lengthArr; i++)
             {
