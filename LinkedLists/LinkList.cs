@@ -9,7 +9,7 @@ namespace LinkedLists
     public class LinkList
     {
         public Node Head { get; private set; }
-        private Node _tail;
+        public Node Tail { get; private set; }
 
         public LinkList(int value)
         {
@@ -17,19 +17,43 @@ namespace LinkedLists
             {
                 Value = value
             };
-            _tail = Head;
+            Tail = Head;
+        }
+
+        public LinkList(LinkList list)
+        {
+            Head = new Node
+            {
+                Value = list.Head.Value,
+            };
+            Node tempUS = Head;
+             
+            
+            Node temp = list.Head;
+            while (temp.Next != null)
+            {
+                temp = temp.Next;
+                Node current = new Node { Value = temp.Value };
+                
+                tempUS.Next = current;
+                tempUS = tempUS.Next;
+            }
+            Tail = tempUS;//new Node { Value = list.Tail.Value, Next = null };
         }
 
         public void AddLast(int val)
         {
             Node current = new Node { Value = val};
-            _tail.Next = current;
-            _tail = current;
+            Tail.Next = current;
+            Tail = current;
         }
         
         public void AddLast(LinkList list)
         {
-            _tail.Next = list.Head;
+            LinkList temp = new LinkList(list);
+            Tail.Next = list.Head;
+            Tail = list.Tail;
+            list = temp;
         }
        
         public void AddFirst(int val)
@@ -41,7 +65,10 @@ namespace LinkedLists
 
         public void AddFirst(LinkList list)
         {
-            Head = list.Head.Next;
+            LinkList temp = new LinkList(list);
+            list.Tail.Next = Head;
+            Head = list.Head;
+            list = temp;
         }
 
         public void AddAt(int idx, int val)
@@ -49,17 +76,58 @@ namespace LinkedLists
             Node current = new Node { Value = val };
             Node temp = Head;
             for (int i = 0; i < idx-1; i++)
-            {
                 temp = temp.Next;
-            }
 
             current.Next = temp.Next;
             temp.Next = current;
             //temp.Next = new Node { Value = 228 };
             //temp.Next = new Node { Value = 229 };
-            temp.Next = current;
+            //temp.Next = current;
         }
 
+        public void AddAt(int idx, LinkList list)
+        {
+            LinkList newList = new LinkList(list);
+            Node temp = Head;
+            for (int i = 0; i < idx - 1; i++)
+                temp = temp.Next;
+
+            newList.Tail.Next = temp.Next;
+            temp.Next = newList.Head;
+
+        }
+
+        public void Set(int idx, int val)
+        {
+            Node temp = Head;
+            for (int i = 0; i < idx - 1; i++)
+                temp = temp.Next;
+
+            temp.Value = val;
+        }
+
+        public void RemoveFirst()
+        {
+            Head = Head.Next;
+        }
+        public void RemoveLast()
+        {
+            Node temp = Head;
+            while (temp.Next.Next != null)
+                temp = temp.Next;
+
+            temp.Next = null;
+            Tail = temp;
+        }
+
+        public void RemoveAt(int idx)
+        {
+            Node temp = Head;
+            for (int i = 0; i < idx - 1; i++)
+                temp = temp.Next;
+
+            temp.Next = temp.Next.Next;
+        }
 
     }
 }

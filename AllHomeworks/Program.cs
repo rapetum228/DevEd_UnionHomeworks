@@ -28,15 +28,17 @@ namespace AllHomeworks
             lList.AddLast(3);
             lList.AddLast(4);
             lList.AddFirst(0);
-            lList.AddLast(5);
-            lList.AddLast(6);
-            lList.AddLast(7);
-            lList.AddAt(4, -4);
+            lList.AddAt(2, -2);
             LinkList lList1 = new LinkList(-9);
-            lList1.AddLast(-10);
+            lList1.AddLast(-11);
             lList1.AddFirst(-8);
-            lList1.AddAt(2, -11);
-            lList.AddFirst(lList1);
+            lList1.AddAt(2, -10);//до сюда всё чётко
+            lList.AddLast(lList1);
+            lList.AddAt(4, lList1);
+            lList.Set(4, 228);
+            lList.RemoveFirst();
+            lList.RemoveLast();
+            lList.RemoveAt(2);
 
         }
     }
