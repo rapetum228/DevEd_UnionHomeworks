@@ -10,9 +10,10 @@ namespace LinkedLists
     {
         public Node Head { get; private set; }
         public Node Tail { get; private set; }
-
+        private int _lengthList;
         public LinkList(int value)
         {
+            _lengthList = 1;
             Head = new Node
             {
                 Value = value
@@ -27,16 +28,16 @@ namespace LinkedLists
                 Value = list.Head.Value,
             };
             Node tempUS = Head;
-             
+            _lengthList = 1; 
             
             Node temp = list.Head;
             while (temp.Next != null)
             {
                 temp = temp.Next;
                 Node current = new Node { Value = temp.Value };
-                
                 tempUS.Next = current;
                 tempUS = tempUS.Next;
+                _lengthList++;
             }
             Tail = tempUS;//new Node { Value = list.Tail.Value, Next = null };
         }
@@ -127,6 +128,22 @@ namespace LinkedLists
                 temp = temp.Next;
 
             temp.Next = temp.Next.Next;
+        }
+
+        public void RemoveFirstMultiple(int n)
+        {
+            for (int i = 0; i < n; i++)
+                Head = Head.Next;
+        }
+
+        public void RemoveLastMultiple(int n)
+        {
+            Node temp = Head;
+            while(temp.Next.Next.Next.Next != null)
+            {
+
+            }
+                
         }
 
     }

@@ -39,7 +39,7 @@ namespace AllHomeworks
             lList.RemoveFirst();
             lList.RemoveLast();
             lList.RemoveAt(2);
-
+            lList.RemoveFirstMultiple(4);
         }
     }
 }
