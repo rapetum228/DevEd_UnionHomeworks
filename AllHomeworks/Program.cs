@@ -39,7 +39,18 @@ namespace AllHomeworks
             lList.RemoveFirst();
             lList.RemoveLast();
             lList.RemoveAt(2);
-            lList.RemoveFirstMultiple(4);
+            lList.RemoveAtMultiple(3, 3);
+            lList.RemoveAll(-8);
+            lList.GetFirst();
+            lList.GetLast();
+            lList.Get(2);
+            lList.Reverse();
+            lList.Max();
+            lList.Min();
+            lList.IndexOfMax();
+            lList.IndexOfMin();
+            lList.Sort();
+            lList1.SortDesc();
         }
     }
 }
