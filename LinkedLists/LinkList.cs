@@ -54,9 +54,9 @@ namespace LinkedLists
         {
             LengthList += list.LengthList;
             LinkList temp = new LinkList(list);
-            Tail.Next = list.Head;
-            Tail = list.Tail;
-            list = temp;
+            Tail.Next = temp.Head;
+            Tail = temp.Tail;
+            //list = temp;
         }
        
         public void AddFirst(int val)
@@ -71,9 +71,9 @@ namespace LinkedLists
         {
             LengthList += list.LengthList;
             LinkList temp = new LinkList(list);
-            list.Tail.Next = Head;
-            Head = list.Head;
-            list = temp;
+            temp.Tail.Next = Head;
+            Head = temp.Head;
+            //list = temp;
         }
 
         public void AddAt(int idx, int val)
