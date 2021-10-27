@@ -56,6 +56,8 @@ namespace AllHomeworks
             lList.SortDesc();
             int[] arr = lList.ToArray();
 
+            LinkList lList12 = new LinkList(new int[] { 1, 2, 3, 4, 5 });
+
         }
     }
 }
