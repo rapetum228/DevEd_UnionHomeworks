@@ -42,6 +42,18 @@ namespace LinkedLists
             Tail = tempUS;//new Node { Value = list.Tail.Value, Next = null };
         }
 
+        public int[] ToArray()
+        {
+            int[] arr = new int[LengthList];
+            Node temp = Head;
+            for (int i = 0; i < LengthList; i++)
+            {
+                arr[i] = temp.Value;
+                temp = temp.Next;
+            }
+
+            return arr;
+        }
         public void AddLast(int val)
         {
             LengthList++;
