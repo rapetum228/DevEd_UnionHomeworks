@@ -32,7 +32,7 @@ namespace AllHomeworks
             LinkList lList1 = new LinkList(-9);
             lList1.AddLast(-11);
             lList1.AddFirst(-8);
-            lList1.AddAt(2, -10);//до сюда всё чётко
+            lList1.AddAt(2, -10);
             lList.AddFirst(lList1);
             lList.AddAt(4, lList1);
             lList.Set(4, 228);
@@ -54,6 +54,8 @@ namespace AllHomeworks
             lList.Sort();
             lList1.Sort();
             lList.SortDesc();
+            int[] arr = lList.ToArray();
+
         }
     }
 }
