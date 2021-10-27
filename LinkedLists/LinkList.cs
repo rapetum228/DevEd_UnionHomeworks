@@ -11,6 +11,13 @@ namespace LinkedLists
         public Node Head { get; private set; }
         public Node Tail { get; private set; }
         public int LengthList { get; private set; }
+
+        public LinkList()
+        {
+            LengthList = 0;
+            Head = null;
+            Tail = Head;
+        }
         public LinkList(int value)
         {
             LengthList = 1;
@@ -42,6 +49,23 @@ namespace LinkedLists
             Tail = tempUS;//new Node { Value = list.Tail.Value, Next = null };
         }
 
+        public LinkList(int[] arr)
+        {
+            LengthList = arr.Length;
+            Head = new Node
+            {
+                Value = arr[0],
+            };
+            Node temp = Head;
+            for (int i = 1; i < arr.Length; i++)
+            {
+                temp.Next = new Node { Value = arr[i] };
+                temp = temp.Next;
+            }
+            Tail = temp;
+            
+        }
+
         public int[] ToArray()
         {
             int[] arr = new int[LengthList];
@@ -58,8 +82,18 @@ namespace LinkedLists
         {
             LengthList++;
             Node current = new Node { Value = val};
-            Tail.Next = current;
-            Tail = current;
+            if (Head != null)
+            {
+                Tail.Next = current;
+                Tail = current;
+            }
+            else
+            {
+                Head = current;
+                Tail = current;
+            }
+            
+            
         }
         
         public void AddLast(LinkList list)
@@ -398,6 +432,14 @@ namespace LinkedLists
             }
             Head = sortList.Head;
             Tail = sortList.Tail;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is LinkList list &&
+                   EqualityComparer<Node>.Default.Equals(Head, list.Head) &&
+                   EqualityComparer<Node>.Default.Equals(Tail, list.Tail) &&
+                   LengthList == list.LengthList;
         }
     }
 }
