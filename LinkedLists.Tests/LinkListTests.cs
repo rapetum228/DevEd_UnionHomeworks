@@ -210,5 +210,265 @@ namespace LinkedLists.Tests
             //assert
             Assert.AreEqual(expected.ToArray(), actual);
         }
+
+        [TestCase(0, 3)]
+        [TestCase(1, 4)]
+        [TestCase(2, 4)]
+        [TestCase(23, 1)]
+        public void RemoveFirstMultipleTest(int ID, int n)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForRemoveFirstLastAtMultipleTest(ID);
+            LinkList expected = TestDataLinkList.GetExpectedListForRemoveFirstMultipleTest(ID);
+            //act
+            toTest.RemoveFirstMultiple(n);
+            int[] actual = toTest.ToArray();
+
+            //assert
+            Assert.AreEqual(expected.ToArray(), actual);
+        }
+
+        [TestCase(0, 3)]
+        [TestCase(1, 4)]
+        [TestCase(2, 4)]
+        [TestCase(23, 1)]
+        public void RemoveLastMultipleTest(int ID, int n)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForRemoveFirstLastAtMultipleTest(ID);
+            LinkList expected = TestDataLinkList.GetExpectedListForRemoveLastMultipleTest(ID);
+            //act
+            toTest.RemoveLastMultiple(n);
+            int[] actual = toTest.ToArray();
+
+            //assert
+            Assert.AreEqual(expected.ToArray(), actual);
+        }
+
+
+        [TestCase(0, 2, 3)]
+        [TestCase(1, 0, 4)]
+        [TestCase(2, 2, 5)]
+        public void RemoveAtMultipleTest(int ID, int idx, int n)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForRemoveFirstLastAtMultipleTest(ID);
+            LinkList expected = TestDataLinkList.GetExpectedListForRemoveAtMultipleTest(ID);
+            //act
+            toTest.RemoveAtMultiple(idx, n);
+            int[] actual = toTest.ToArray();
+
+            //assert
+            Assert.AreEqual(expected.ToArray(), actual);
+        }
+
+        
+        [TestCase(0, 8, 2)]
+        [TestCase(1, 8, 0)]
+        [TestCase(2, 8, 0)]
+        [TestCase(3, 8, -1)]
+        [TestCase(11, 8, -1)]
+        public void RemoveFirstValTest(int ID, int val, int expectedIndex)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFiestGetLastGetTest(ID);
+            LinkList expected = TestDataLinkList.GetExpectedListForRemoveFirstValTest(ID);
+            //act
+            int actualIndex = toTest.RemoveFirst(val);
+            int[] actual = toTest.ToArray();
+
+            //assert
+            Assert.AreEqual(expected.ToArray(), actual);
+            Assert.AreEqual(expectedIndex, actualIndex);
+        }
+
+        [TestCase(2, 8, 3)]
+        [TestCase(3, 8, 0)]
+        [TestCase(0, 8, 4)]
+        [TestCase(1, 8, 3)]
+        [TestCase(11, 8, 0)]
+        public void RemoveAllTest(int ID, int val, int expectedRemoveNumbers)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFiestGetLastGetTest(ID);
+            LinkList expected = TestDataLinkList.GetExpectedListForRemoveAllTest(ID);
+            //act
+            int actualRemoveNumbers = toTest.RemoveAll(val);
+            int[] actual = toTest.ToArray();
+
+            //assert
+            Assert.AreEqual(expected.ToArray(), actual);
+            Assert.AreEqual(expectedRemoveNumbers, actualRemoveNumbers);
+        }
+
+        [TestCase(2, 8, true)]
+        [TestCase(3, 8, false)]
+        [TestCase(0, 8, true)]
+        [TestCase(1, 8, true)]
+        [TestCase(11, 8, false)]
+        public void ContainsTest(int ID, int val, bool expected)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFiestGetLastGetTest(ID);
+            
+            //act
+            bool actual = toTest.Contains(val);
+
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(2, 8, 0)]
+        [TestCase(3, 8, -1)]
+        [TestCase(0, 8, 2)]
+        [TestCase(1, 8, 0)]
+        [TestCase(11, 8, -1)]
+        public void IndexOfTest(int ID, int val, int expected)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFiestGetLastGetTest(ID);
+
+            //act
+            int actual = toTest.IndexOf(val);
+
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(2, 4)]
+        [TestCase(3, 5)]
+        [TestCase(0, 12)]
+        [TestCase(1, 2)]
+        public void GetFirstTest(int ID, int expected)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFirstGetLastGetTest(ID);
+
+            //act
+            int actual = toTest.GetFirst();
+
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(2, 4)]
+        [TestCase(3, 5)]
+        [TestCase(0, 10)]
+        [TestCase(1, 4)]
+        public void GetLastTest(int ID, int expected)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFirstGetLastGetTest(ID);
+
+            //act
+            int actual = toTest.GetLast();
+
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(2, 0, 4)]
+        [TestCase(3, 2, 5)]
+        [TestCase(0, 2, -9)]
+        [TestCase(1, 2, 4)]
+        public void GetTest(int ID, int idx,  int expected)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFirstGetLastGetTest(ID);
+            //act
+            int actual = toTest.Get(idx);
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(11)]
+        public void ReverseTest(int ID)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForReverseTest(ID);
+            LinkList expected = TestDataLinkList.GetExpectedListForReverseTest(ID);
+            //act
+            toTest.Reverse();
+            //assert
+            Assert.AreEqual(expected.ToArray(), toTest.ToArray());
+        }
+
+        [TestCase(2, 4, 0)]
+        [TestCase(3, 5, 0)]
+        [TestCase(0, 12, 4)]
+        [TestCase(1, 4, 2)]
+        public void MaxAndIndexMaxTest(int ID, int expected, int expectedIndex)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForMaxMinAndThisIndexesTest(ID);
+            //act
+            int actual = toTest.Max();
+            int actualIndex = toTest.IndexOfMax();
+            //assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedIndex, actualIndex);
+        }
+
+        [TestCase(2, 4, 0)]
+        [TestCase(3, 5, 0)]
+        [TestCase(0, -9, 2)]
+        [TestCase(1, 1, 3)]
+        public void MinAndIndexMinTest(int ID, int expected, int expectedIndex)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForMaxMinAndThisIndexesTest(ID);
+            //act
+            int actual = toTest.Min();
+            int actualIndex = toTest.IndexOfMin();
+            //assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedIndex, actualIndex);
+        }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(55)]
+        public void SortTest(int ID)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForSortAndSortDescTest(ID);
+            LinkList expected = TestDataLinkList.GetExpectedListForSortTest(ID);
+            //act
+            toTest.Sort();
+            //assert
+            Assert.AreEqual(expected.ToArray(), toTest.ToArray());
+        }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(55)]
+        public void SortDescTest(int ID)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForSortAndSortDescTest(ID);
+            LinkList expected = TestDataLinkList.GetExpectedListForSortDescTest(ID);
+            //act
+            toTest.SortDesc();
+            //assert
+            Assert.AreEqual(expected.ToArray(), toTest.ToArray());
+        }
     }
 }
