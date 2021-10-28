@@ -10,17 +10,17 @@ namespace LinkedLists
     {
         public Node Head { get; private set; }
         public Node Tail { get; private set; }
-        public int LengthList { get; private set; }
+        //public int LengthList { get; private set; }
 
         public LinkList()
         {
-            LengthList = 0;
+            //LengthList = 0;
             Head = null;
             Tail = Head;
         }
         public LinkList(int value)
         {
-            LengthList = 1;
+           // LengthList = 1;
             Head = new Node
             {
                 Value = value
@@ -30,12 +30,17 @@ namespace LinkedLists
 
         public LinkList(LinkList list)
         {
+            if (list.Head == null)
+            {
+                Head = null;
+                return;
+            }
             Head = new Node
             {
                 Value = list.Head.Value,
             };
             Node tempUS = Head;
-            LengthList = 1; 
+            //LengthList = 1; 
             
             Node temp = list.Head;
             while (temp.Next != null)
@@ -44,14 +49,18 @@ namespace LinkedLists
                 Node current = new Node { Value = temp.Value };
                 tempUS.Next = current;
                 tempUS = tempUS.Next;
-                LengthList++;
+                //LengthList++;
             }
             Tail = tempUS;//new Node { Value = list.Tail.Value, Next = null };
         }
 
         public LinkList(int[] arr)
         {
-            LengthList = arr.Length;
+            if (arr.Length == 0)
+            {
+                Head = null;
+                return;
+            }
             Head = new Node
             {
                 Value = arr[0],
@@ -66,11 +75,23 @@ namespace LinkedLists
             
         }
 
+        public int GetLength()
+        {
+            int lengthList = 0;
+            Node temp = Head;
+            while (temp != null)
+            {
+                lengthList++;
+                temp = temp.Next;
+            }
+            return lengthList;
+        }
+
         public int[] ToArray()
         {
-            int[] arr = new int[LengthList];
+            int[] arr = new int[this.GetLength()];
             Node temp = Head;
-            for (int i = 0; i < LengthList; i++)
+            for (int i = 0; i < this.GetLength(); i++)
             {
                 arr[i] = temp.Value;
                 temp = temp.Next;
@@ -80,7 +101,7 @@ namespace LinkedLists
         }
         public void AddLast(int val)
         {
-            LengthList++;
+            //LengthList++;
             Node current = new Node { Value = val};
             if (Head != null)
             {
@@ -98,16 +119,29 @@ namespace LinkedLists
         
         public void AddLast(LinkList list)
         {
-            LengthList += list.LengthList;
+            if (list.Head == null)
+            {
+                return;
+            }
+           // LengthList += list.LengthList;
             LinkList temp = new LinkList(list);
-            Tail.Next = temp.Head;
-            Tail = temp.Tail;
+            
+            if (Head != null)
+            {
+                Tail.Next = temp.Head;
+                Tail = temp.Tail;
+            }
+            else
+            {
+                Head = temp.Head;
+                Tail = temp.Tail;
+            }
             //list = temp;
         }
        
         public void AddFirst(int val)
         {
-            LengthList++;
+            //LengthList++;
             Node current = new Node { Value = val };
             current.Next = Head;
             Head = current;
@@ -115,7 +149,11 @@ namespace LinkedLists
 
         public void AddFirst(LinkList list)
         {
-            LengthList += list.LengthList;
+            if (list.Head == null)
+            {
+                return;
+            }
+           // LengthList += list.LengthList;
             LinkList temp = new LinkList(list);
             temp.Tail.Next = Head;
             Head = temp.Head;
@@ -124,12 +162,26 @@ namespace LinkedLists
 
         public void AddAt(int idx, int val)
         {
-            LengthList++;
+            if (idx >= this.GetLength())
+            {
+                throw new IndexOutOfRangeException("Index out of range list length");
+            }
+            if (idx == 0)
+            {
+                this.AddFirst(val);
+                return;
+            }
+            //LengthList++;
             Node current = new Node { Value = val };
             Node temp = Head;
             for (int i = 0; i < idx-1; i++)
                 temp = temp.Next;
-
+            if (Head.Next == null)
+            {
+                current.Next = Head;
+                Head = current;
+                return;
+            }
             current.Next = temp.Next;
             temp.Next = current;
             //temp.Next = new Node { Value = 228 };
@@ -139,20 +191,39 @@ namespace LinkedLists
 
         public void AddAt(int idx, LinkList list)
         {
+            if (idx >= this.GetLength() || Head == null)
+            {
+                throw new IndexOutOfRangeException("Index out of range list length");
+            }
+            if (idx == 0)
+            {
+                this.AddFirst(list);
+                return;
+            }
             LinkList newList = new LinkList(list);
-            LengthList += list.LengthList;
+            //LengthList += list.LengthList;
             Node temp = Head;
             for (int i = 0; i < idx - 1; i++)
                 temp = temp.Next;
-
+            if (Head.Next == null)
+            {
+                newList.Tail.Next = Head;
+                Head = newList.Head; ;
+                return;
+            }
             newList.Tail.Next = temp.Next;
             temp.Next = newList.Head;
         }
 
         public void Set(int idx, int val)
         {
+            if (idx >= this.GetLength() || Head == null)
+            {
+                throw new IndexOutOfRangeException("Index out of range list length");
+            }
+
             Node temp = Head;
-            for (int i = 0; i < idx - 1; i++)
+            for (int i = 0; i < idx; i++)
                 temp = temp.Next;
 
             temp.Value = val;
@@ -160,12 +231,17 @@ namespace LinkedLists
 
         public void RemoveFirst()
         {
-            LengthList--;
+           // LengthList--;
             Head = Head.Next;
         }
         public void RemoveLast()
         {
-            LengthList--;
+            if (Head.Next == null)
+            {
+                Head = null;
+                return;
+            }
+            //LengthList--;
             Node temp = Head;
             while (temp.Next.Next != null)
                 temp = temp.Next;
@@ -176,7 +252,26 @@ namespace LinkedLists
 
         public void RemoveAt(int idx)
         {
-            LengthList--;
+            if (idx == 0 && Head.Next == null)
+            {
+                Head = null;
+                return;
+            }
+            if (idx == 0)
+            {
+                this.RemoveFirst();
+                return;
+            }
+            else if (idx == this.GetLength() - 1)
+            {
+                this.RemoveLast();
+                return;
+            }
+            if (Head == null || idx>= this.GetLength())
+            {
+                throw new IndexOutOfRangeException("Index out of range list length");
+            }
+            //LengthList--;
             Node temp = Head;
             for (int i = 0; i < idx - 1; i++)
                 temp = temp.Next;
@@ -186,16 +281,16 @@ namespace LinkedLists
 
         public void RemoveFirstMultiple(int n)
         {
-            LengthList -= n;
+
             for (int i = 0; i < n; i++)
                 Head = Head.Next;
         }
 
         public void RemoveLastMultiple(int n)
         {
-            LengthList -= n;
+
             Node temp = Head;
-            for (int i = 0; i < LengthList-1; i++)
+            for (int i = 0; i < this.GetLength() - 1; i++)
             {
                 temp = temp.Next;
             }
@@ -206,7 +301,7 @@ namespace LinkedLists
 
         public void RemoveAtMultiple(int idx, int n)
         {
-            LengthList -= n;
+
             Node temp = Head;
             for (int i = 0; i < idx-1 ; i++)
                 temp = temp.Next;
@@ -222,7 +317,6 @@ namespace LinkedLists
         {
             if (Head.Value == val)
             {
-                LengthList--;
                 Head = Head.Next;
                 return 0;
             }
@@ -237,7 +331,6 @@ namespace LinkedLists
                 temp = temp.Next;
             }  
             temp.Next = temp.Next.Next;
-            LengthList--;
             return index;
         }
 
@@ -262,7 +355,7 @@ namespace LinkedLists
                 else { temp = temp.Next; }
             }
             
-            LengthList -= numbersOfRemoveElements;
+            //LengthList -= numbersOfRemoveElements;
             return numbersOfRemoveElements;
         }
 
@@ -319,7 +412,7 @@ namespace LinkedLists
 
         public void Reverse()//кажись всё..
         {
-            int fakeLength = LengthList;
+            int fakeLength = this.GetLength();
             Node tempTail = Tail;
             while (fakeLength > 1)
             {
@@ -406,14 +499,16 @@ namespace LinkedLists
 
         public void Sort()
         {
+            int lengthList = this.GetLength();
             int min = this.Min();
             LinkList sortList = new LinkList(min);
             LinkList copyThis = new LinkList(this);
-            while(copyThis.LengthList > 1)
+            while(lengthList > 1)
             {
                 copyThis.RemoveFirst(min);
                 min = copyThis.Min();
                 sortList.AddLast(min);
+                lengthList--;
             }
             Head = sortList.Head;
             Tail = sortList.Tail;
@@ -421,14 +516,16 @@ namespace LinkedLists
 
         public void SortDesc()
         {
+            int lengthList = this.GetLength();
             int max = this.Max();
             LinkList sortList = new LinkList(max);
             LinkList copyThis = new LinkList(this);
-            while (copyThis.LengthList > 1)
+            while (lengthList > 1)
             {
                 copyThis.RemoveFirst(max);
                 max = copyThis.Max();
                 sortList.AddLast(max);
+                lengthList--;
             }
             Head = sortList.Head;
             Tail = sortList.Tail;
@@ -438,8 +535,8 @@ namespace LinkedLists
         {
             return obj is LinkList list &&
                    EqualityComparer<Node>.Default.Equals(Head, list.Head) &&
-                   EqualityComparer<Node>.Default.Equals(Tail, list.Tail) &&
-                   LengthList == list.LengthList;
+                   EqualityComparer<Node>.Default.Equals(Tail, list.Tail);// &&
+                   //LengthList == list.LengthList;
         }
     }
 }
