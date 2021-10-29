@@ -13,6 +13,7 @@ namespace LinkedLists.Tests
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
+        [TestCase(3)]
         [TestCase(20)]
         public void ToArrayTest(int ID)
         {
@@ -28,6 +29,7 @@ namespace LinkedLists.Tests
         [TestCase(0, 1)]
         [TestCase(1, 1)]
         [TestCase(2, 4)]
+        [TestCase(3, 5)]
         [TestCase(20, 0)]
         public void GetLengthTest(int ID, int expected)
         {
@@ -40,10 +42,12 @@ namespace LinkedLists.Tests
         }
 
 
-        [TestCase(20, 0)]
-        [TestCase(2, 5)]
+        
+        
         [TestCase(0, 2)]
         [TestCase(1, 12)]
+        [TestCase(2, 5)]
+        [TestCase(20, 0)]
         public void AddLastTest(int ID, int value)
         {
             //arrange
@@ -56,10 +60,12 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(20)]
-        [TestCase(2)]
+        
+        
         [TestCase(0)]
         [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(20)]
         public void AddLastListTest(int ID)
         {
             //arrange
@@ -74,10 +80,12 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected.ToArray(), actual);
         }
 
-        [TestCase(20, 0)]
-        [TestCase(2, 5)]
+        
+        
         [TestCase(0, 2)]
         [TestCase(1, 12)]
+        [TestCase(2, 5)]
+        [TestCase(20, 0)]
         public void AddFirstTest(int ID, int value)
         {
             //arrange
@@ -90,10 +98,11 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(20)]
-        [TestCase(2)]
+        
         [TestCase(0)]
         [TestCase(1)]
+        [TestCase(20)]
+        [TestCase(2)]
         public void AddFirstListTest(int ID)
         {
             //arrange
@@ -240,12 +249,11 @@ namespace LinkedLists.Tests
             //assert
             Assert.AreEqual(expected.ToArray(), actual);
         }
-
+        
         [TestCase(0, 2)]
         [TestCase(1, 0)]
         [TestCase(2, 0)]
         [TestCase(3, 3)]
-        [TestCase(22, 0)]
         public void RemoveAtTest(int ID, int idx)
         {
             //arrange
@@ -292,9 +300,10 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected.ToArray(), actual);
         }
 
+        
         [TestCase(0, 3)]
         [TestCase(1, 4)]
-        [TestCase(2, 4)]
+        [TestCase(2, 2)]
         [TestCase(23, 1)]
         public void RemoveLastMultipleTest(int ID, int n)
         {
@@ -304,9 +313,9 @@ namespace LinkedLists.Tests
             //act
             toTest.RemoveLastMultiple(n);
             int[] actual = toTest.ToArray();
-
+            int[] expectedArray = expected.ToArray();
             //assert
-            Assert.AreEqual(expected.ToArray(), actual);
+            CollectionAssert.AreEqual(expectedArray, actual);
         }
 
 
@@ -361,10 +370,11 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expectedIndex, actualIndex);
         }
 
-        [TestCase(2, 8, 3)]
-        [TestCase(3, 8, 0)]
+        
         [TestCase(0, 8, 4)]
         [TestCase(1, 8, 3)]
+        [TestCase(2, 8, 3)]
+        [TestCase(3, 8, 0)]
         [TestCase(11, 8, 0)]
         public void RemoveAllTest(int ID, int val, int expectedRemoveNumbers)
         {
@@ -380,10 +390,11 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expectedRemoveNumbers, actualRemoveNumbers);
         }
 
-        [TestCase(2, 8, true)]
-        [TestCase(3, 8, false)]
+        
         [TestCase(0, 8, true)]
         [TestCase(1, 8, true)]
+        [TestCase(2, 8, true)]
+        [TestCase(3, 8, false)]
         [TestCase(11, 8, false)]
         public void ContainsTest(int ID, int val, bool expected)
         {
@@ -398,10 +409,11 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(2, 8, 0)]
-        [TestCase(3, 8, -1)]
+        
         [TestCase(0, 8, 2)]
         [TestCase(1, 8, 0)]
+        [TestCase(2, 8, 0)]
+        [TestCase(3, 8, -1)]
         [TestCase(11, 8, -1)]
         public void IndexOfTest(int ID, int val, int expected)
         {
@@ -416,10 +428,11 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(2, 4)]
-        [TestCase(3, 5)]
+        
         [TestCase(0, 12)]
         [TestCase(1, 2)]
+        [TestCase(2, 4)]
+        [TestCase(3, 5)]
         public void GetFirstTest(int ID, int expected)
         {
             //arrange
@@ -446,10 +459,11 @@ namespace LinkedLists.Tests
             //assert
             Assert.AreEqual(expectedMessage, ex.Message);
         }
-        [TestCase(2, 4)]
-        [TestCase(3, 5)]
+        
         [TestCase(0, 10)]
         [TestCase(1, 4)]
+        [TestCase(2, 4)]
+        [TestCase(3, 5)]
         public void GetLastTest(int ID, int expected)
         {
             //arrange
@@ -477,10 +491,11 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expectedMessage, ex.Message);
         }
 
-        [TestCase(2, 0, 4)]
-        [TestCase(3, 2, 5)]
+        
         [TestCase(0, 2, -9)]
         [TestCase(1, 2, 4)]
+        [TestCase(2, 0, 4)]
+        [TestCase(3, 2, 5)]
         public void GetTest(int ID, int idx,  int expected)
         {
             //arrange
@@ -491,8 +506,9 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(22, 1, "List is empty")]
+        
         [TestCase(1, 4, "Entry index out of range length list")]
+        [TestCase(22, 1, "List is empty")]
         public void GetNegativeTest(int ID, int idx, string expectedMessage)
         {
             //arrange
@@ -506,10 +522,11 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expectedMessage, ex.Message);
         }
 
-        [TestCase(2)]
-        [TestCase(3)]
+        
         [TestCase(0)]
         [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
         [TestCase(11)]
         public void ReverseTest(int ID)
         {
@@ -522,10 +539,11 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected.ToArray(), toTest.ToArray());
         }
 
-        [TestCase(2, 4, 0)]
-        [TestCase(3, 5, 0)]
+        
         [TestCase(0, 12, 4)]
         [TestCase(1, 4, 2)]
+        [TestCase(2, 4, 0)]
+        [TestCase(3, 5, 0)]
         public void MaxAndIndexMaxTest(int ID, int expected, int expectedIndex)
         {
             //arrange
@@ -554,10 +572,11 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expectedMessage, exMax.Message, exIndexMax.Message);
         }
 
-        [TestCase(2, 4, 0)]
-        [TestCase(3, 5, 0)]
+        
         [TestCase(0, -9, 2)]
         [TestCase(1, 1, 3)]
+        [TestCase(2, 4, 0)]
+        [TestCase(3, 5, 0)]
         public void MinAndIndexMinTest(int ID, int expected, int expectedIndex)
         {
             //arrange
