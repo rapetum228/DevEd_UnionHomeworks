@@ -174,8 +174,7 @@ namespace LinkedLists.Tests
             {
                 0 => new LinkList(new LinkList(new int[] { 1, 2, 3, 4 })),
                 1 => new LinkList(1),
-                2 => new LinkList(new int[] { 4, 5, 6 }),
-                _ => new LinkList(new int[] { 4 }),
+                _ => new LinkList(),//for negative test
             };
         }
         public static LinkList GetExpectedListForSetTest(int ID)
@@ -197,7 +196,7 @@ namespace LinkedLists.Tests
                 1 => new LinkList(1),
                 2 => new LinkList(new int[] { 4, 5, 6 }),
                 3 => new LinkList(new LinkList(new int[] { 1, 2, 3, 4 })),
-                _ => new LinkList(new int[] { 4 }),
+                _ => new LinkList(new int[] { }),
             };
         }
         public static LinkList GetExpectedListForRemoveFirstTest(int ID)

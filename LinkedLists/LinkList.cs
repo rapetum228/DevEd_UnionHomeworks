@@ -231,12 +231,16 @@ namespace LinkedLists
 
         public void RemoveFirst()
         {
+            if (Head == null)
+            {
+                return;
+            }
            // LengthList--;
             Head = Head.Next;
         }
         public void RemoveLast()
         {
-            if (Head.Next == null)
+            if (Head == null || Head.Next == null)
             {
                 Head = null;
                 return;
@@ -252,6 +256,10 @@ namespace LinkedLists
 
         public void RemoveAt(int idx)
         {
+            if (Head == null || idx >= this.GetLength())
+            {
+                throw new IndexOutOfRangeException("Index out of range list length");
+            }
             if (idx == 0 && Head.Next == null)
             {
                 Head = null;
@@ -267,10 +275,7 @@ namespace LinkedLists
                 this.RemoveLast();
                 return;
             }
-            if (Head == null || idx>= this.GetLength())
-            {
-                throw new IndexOutOfRangeException("Index out of range list length");
-            }
+            
             //LengthList--;
             Node temp = Head;
             for (int i = 0; i < idx - 1; i++)
@@ -343,7 +348,7 @@ namespace LinkedLists
             current.Next = temp;
         }
 
-        public int RemoveFirst(int val)//поправить
+        public int RemoveFirst(int val)
         {
             if (Head == null)
                 return -1;
@@ -493,6 +498,11 @@ namespace LinkedLists
 
         public int Max()
         {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
+
             Node temp = Head;
             int max = Head.Value;
             while (temp.Next != null)
@@ -508,6 +518,10 @@ namespace LinkedLists
 
         public int Min()
         {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
             Node temp = Head;
             int min = Head.Value;
             while (temp.Next != null)
@@ -523,6 +537,10 @@ namespace LinkedLists
 
         public int IndexOfMax()
         {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
             Node temp = Head;
             int max = Head.Value;
             int indexOfMax = 0;
@@ -542,6 +560,10 @@ namespace LinkedLists
 
         public int IndexOfMin()
         {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
             Node temp = Head;
             int min = Head.Value;
             int indexOfMin = 0;
