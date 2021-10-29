@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace LinkedLists.Tests
 {
@@ -124,6 +125,22 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(100, 0, 2, "Index out of range list length")]
+        [TestCase(1, 10, 2, "Index out of range list length")]
+        public void AddAtNegativeTest(int ID, int idx, int value,
+            string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForAddAtTest(ID);
+            
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException), 
+                () =>toTest.AddAt(idx, value));
+            
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
+
         [TestCase(0, 0)]
         [TestCase(1, 0)]
         [TestCase(2, 0)]
@@ -143,9 +160,24 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected.ToArray(), actual);
         }
 
+        [TestCase(100, 0, "Index out of range list length")]
+        [TestCase(1, 10, "Index out of range list length")]
+        public void AddAtListNegativeTest(int ID, int idx,
+            string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForAddAtTest(ID);
+            LinkList add = TestDataLinkList.GetAddListForAddAtTest(ID);
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.AddAt(idx, add));
+
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
+
         [TestCase(0, 2, 0)]
         [TestCase(1, 0, 4)]
-        [TestCase(2, 2, 0)]
         public void SetTest(int ID, int idx, int val)
         {
             //arrange
@@ -157,6 +189,22 @@ namespace LinkedLists.Tests
 
             //assert
             Assert.AreEqual(expected.ToArray(), actual);
+        }
+
+        [TestCase(1, 10, 2, "Index out of range list length")]
+        [TestCase(22, 0, 2, "Index out of range list length")]
+        public void SetNegativeTest(int ID, int idx, int value,
+            string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForSetTest(ID);
+            
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.Set(idx,value));
+
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
         }
 
         [TestCase(0)]
@@ -211,6 +259,22 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected.ToArray(), actual);
         }
 
+        [TestCase(1, 10, "Index out of range list length")]
+        [TestCase(22, 0, "Index out of range list length")]
+        public void RemoveAtNegativeTest(int ID, int idx,
+            string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForRemoveFirstLastAtTest(ID);
+
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.RemoveAt(idx));
+
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
+
         [TestCase(0, 3)]
         [TestCase(1, 4)]
         [TestCase(2, 4)]
@@ -262,7 +326,22 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected.ToArray(), actual);
         }
 
-        
+        [TestCase(1, 10, 2, "Index out of range list length")]
+        [TestCase(22, 0, 2, "Index out of range list length")]
+        public void RemoveAtMultipleNegativeTest(int ID, int idx, int n,
+            string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForRemoveFirstLastAtMultipleTest(ID);
+
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.RemoveAtMultiple(idx, n));
+
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
+
         [TestCase(0, 8, 2)]
         [TestCase(1, 8, 0)]
         [TestCase(2, 8, 0)]
@@ -353,7 +432,20 @@ namespace LinkedLists.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        
+        [TestCase(22, "List is empty")]
+        public void GetFirstNegativeTest(int ID, string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFirstGetLastGetTest(ID);
 
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.GetFirst());
+
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
         [TestCase(2, 4)]
         [TestCase(3, 5)]
         [TestCase(0, 10)]
@@ -371,6 +463,20 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(22, "List is empty")]
+        public void GetLastNegativeTest(int ID, string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFirstGetLastGetTest(ID);
+
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.GetLast());
+
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
+
         [TestCase(2, 0, 4)]
         [TestCase(3, 2, 5)]
         [TestCase(0, 2, -9)]
@@ -383,6 +489,21 @@ namespace LinkedLists.Tests
             int actual = toTest.Get(idx);
             //assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(22, 1, "List is empty")]
+        [TestCase(1, 4, "Entry index out of range length list")]
+        public void GetNegativeTest(int ID, int idx, string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForGetFirstGetLastGetTest(ID);
+
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.Get(idx));
+
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
         }
 
         [TestCase(2)]
@@ -417,6 +538,22 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expectedIndex, actualIndex);
         }
 
+        [TestCase(22, "List is empty")]
+        public void MaxAndIndexMaxNegativeTest(int ID, string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForMaxMinAndThisIndexesTest(ID);
+
+            //act
+            Exception exMax = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.Max());
+            Exception exIndexMax = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.IndexOfMax());
+
+            //assert
+            Assert.AreEqual(expectedMessage, exMax.Message, exIndexMax.Message);
+        }
+
         [TestCase(2, 4, 0)]
         [TestCase(3, 5, 0)]
         [TestCase(0, -9, 2)]
@@ -431,6 +568,22 @@ namespace LinkedLists.Tests
             //assert
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expectedIndex, actualIndex);
+        }
+
+        [TestCase(22, "List is empty")]
+        public void MinAndIndexMinNegativeTest(int ID, string expectedMessage)
+        {
+            //arrange
+            LinkList toTest = TestDataLinkList.GetListForMaxMinAndThisIndexesTest(ID);
+
+            //act
+            Exception exMin = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.Min());
+            Exception exIndexMin = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => toTest.IndexOfMin());
+
+            //assert
+            Assert.AreEqual(expectedMessage, exMin.Message, exIndexMin.Message);
         }
 
         [TestCase(0)]
