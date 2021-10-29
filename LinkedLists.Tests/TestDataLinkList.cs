@@ -15,6 +15,7 @@ namespace LinkedLists.Tests
                 0 => new LinkList(new LinkList(1)),
                 1 => new LinkList( 4 ),
                 2 => new LinkList(new int[] { 1, 2, 3, 4 }),
+                3 => new LinkList(new LinkList(new LinkList (new int[] { 1, 3, -9, 12, 22}))),
                 _ => new LinkList(),
             };
         }
@@ -26,6 +27,7 @@ namespace LinkedLists.Tests
                 0 => new int[] { 1 },
                 1 => new int[] { 4 },
                 2 => new int[] { 1, 2, 3, 4 },
+                3 => new int[] {1, 3, -9, 12, 22},
                 _ => new int[] { },
             };
         }
@@ -261,7 +263,7 @@ namespace LinkedLists.Tests
             {
                 0 => new LinkList(new int[] { 1, 2, 3, 4 }),//3
                 1 => new LinkList(new int[] { }),//4
-                2 => new LinkList(new int[] { -1, -2 }),//4
+                2 => new LinkList(new int[] { -1, -2 }),//2
                 _ => new LinkList(),//1
             };
         }

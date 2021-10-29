@@ -33,13 +33,14 @@ namespace LinkedLists
             if (list.Head == null)
             {
                 Head = null;
+                Tail = Head;
                 return;
             }
             Head = new Node
             {
                 Value = list.Head.Value,
             };
-            Node tempUS = Head;
+            Node nodeNewLink = Head;
             //LengthList = 1; 
             
             Node temp = list.Head;
@@ -47,11 +48,11 @@ namespace LinkedLists
             {
                 temp = temp.Next;
                 Node current = new Node { Value = temp.Value };
-                tempUS.Next = current;
-                tempUS = tempUS.Next;
+                nodeNewLink.Next = current;
+                nodeNewLink = nodeNewLink.Next;
                 //LengthList++;
             }
-            Tail = tempUS;//new Node { Value = list.Tail.Value, Next = null };
+            Tail = nodeNewLink;//new Node { Value = list.Tail.Value, Next = null };
         }
 
         public LinkList(int[] arr)
@@ -59,6 +60,7 @@ namespace LinkedLists
             if (arr.Length == 0)
             {
                 Head = null;
+                Tail = Head;
                 return;
             }
             Head = new Node
@@ -123,7 +125,7 @@ namespace LinkedLists
             {
                 return;
             }
-           // LengthList += list.LengthList;
+           
             LinkList temp = new LinkList(list);
             
             if (Head != null)
@@ -136,7 +138,7 @@ namespace LinkedLists
                 Head = temp.Head;
                 Tail = temp.Tail;
             }
-            //list = temp;
+           
         }
        
         public void AddFirst(int val)
