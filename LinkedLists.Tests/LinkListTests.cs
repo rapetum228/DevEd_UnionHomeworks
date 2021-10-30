@@ -134,7 +134,7 @@ namespace LinkedLists.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(100, 0, 2, "Index out of range list length")]
+        [TestCase(100, 1, 2, "Index out of range list length")]
         [TestCase(1, 10, 2, "Index out of range list length")]
         public void AddAtNegativeTest(int ID, int idx, int value,
             string expectedMessage)

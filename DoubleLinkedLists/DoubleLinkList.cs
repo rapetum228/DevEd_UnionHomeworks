@@ -109,22 +109,25 @@ namespace DoubleLinkedLists
             {
                 return;
             }
-
-            DNode tempHead = list.Head;
-            DNode tempTail = list.Tail;
-
-            if (Head != null)
+            DNode temp, tempHead;
+            if (Head == null)
             {
-                Tail.Next = tempHead;
-                Tail.Next.Previous = Tail;
-                Tail = tempTail;
+                temp = new DNode { Value = list.Head.Value };
+                tempHead = list.Head.Next;
             }
             else
             {
-                Head = tempHead;
-                Tail = tempTail;
+                tempHead = list.Head;
+                temp = Tail;
             }
-
+            
+            while (tempHead != null)
+            {
+                temp.Next = new DNode{ Value = tempHead.Value, Previous = temp };
+                tempHead = tempHead.Next;
+                temp = temp.Next;
+            }
+            Tail = temp;
         }
 
         public void AddFirst(int val)
@@ -140,11 +143,220 @@ namespace DoubleLinkedLists
             {
                 return;
             }
-            // LengthList += list.LengthList;
-            DoubleLinkList temp = new DoubleLinkList(list);
-            temp.Tail.Next = Head;
-            Head = temp.Head;
-            //list = temp;
+
+            DNode temp, tempTail;
+            if (Head == null)
+            {
+                temp = new DNode { Value = list.Tail.Value };
+                tempTail = list.Tail.Previous;
+            }
+            else
+            {
+                tempTail = list.Tail;
+                temp = Head;
+            }
+            while (tempTail != null)
+            {
+                temp.Previous = new DNode { Value = tempTail.Value, Next = temp };
+                tempTail = tempTail.Previous;
+                temp = temp.Previous;
+            }
+            Head = temp;
+        }
+
+        public void AddAt(int idx, int val)
+        {
+            if (idx < 0 || Head == null)
+            {
+                throw new IndexOutOfRangeException("Index out of range list length");
+            }
+            
+            DNode temp = Head;
+            for (int i = 0; i < idx - 1; i++)
+            {
+                if (temp == null && idx != 0)
+                {
+                    throw new IndexOutOfRangeException("Index out of range list length");
+                }
+                temp = temp.Next;
+            }
+
+            //if (Head.Next == null)
+            //{
+            //    current.Next = Head;
+            //    Head = current;
+            //    return;
+            //}
+            DNode current = new DNode
+            {
+                Value = val,
+                Next = (idx == 0) ? temp : temp.Next,
+                Previous = (idx == 0) ? null : temp,
+            };
+            if (idx == 0)
+            {
+                Head = current;
+            }
+            else
+            {
+                temp.Next = current;
+                temp.Next.Next.Previous = current;
+            }
+
+        }
+
+        public void AddAt(int idx, DoubleLinkList list)
+        {
+            if (list.Head == null)
+            {
+                return;
+            }
+
+            DNode temp = Head;
+
+            for (int i = 0; i < idx - 1; i++)
+            {
+                if (temp == null && idx != 0)
+                {
+                    throw new IndexOutOfRangeException("Index out of range list length");
+                }
+                temp = temp.Next;
+            }
+
+            DNode tempList = list.Head;
+            DNode current = new DNode
+            {
+                Value = tempList.Value,
+                Previous = temp,
+            };
+            DNode saveLink = temp.Next;
+            temp.Next = current;
+            while (tempList.Next != null)
+            {
+                tempList = tempList.Next;
+                current.Next = new DNode
+                {
+                    Value = tempList.Value,
+                    Previous = current,
+                };
+                current = current.Next;
+            }
+            current.Next = saveLink;
+            saveLink.Previous = current;
+        }
+
+        public void Set(int idx, int val)
+        {
+            if (idx >= this.GetLength() || Head == null)
+            {
+                throw new IndexOutOfRangeException("Index out of range list length");
+            }
+
+            DNode temp = Head;
+            for (int i = 0; i < idx; i++)
+                temp = temp.Next;
+
+            temp.Value = val;
+        }
+
+        public void RemoveFirst()
+        {
+            if (Head == null)
+            {
+                return;
+            }
+            Head = Head.Next;
+            Head.Previous = null;
+        }
+
+        public void RemoveLast()
+        {
+            if (Head == null || Head.Next == null)
+            {
+                Head = null;
+                return;
+            }
+            Tail = Tail.Previous;
+            Tail.Next = null;
+        }
+
+        public void RemoveAt(int idx)
+        {
+            if (Head == null || idx >= this.GetLength())
+            {
+                throw new IndexOutOfRangeException("Index out of range list length");
+            }
+            if (idx == 0 && Head.Next == null)
+            {
+                Head = null;
+                return;
+            }
+            if (idx == 0)
+            {
+                this.RemoveFirst();
+                return;
+            }
+            else if (idx == this.GetLength() - 1)
+            {
+                this.RemoveLast();
+                return;
+            }
+            DNode temp = Head;
+            for (int i = 0; i < idx - 1; i++)
+                temp = temp.Next;
+
+            temp.Next = temp.Next.Next;
+            temp.Next.Previous = temp;
+        }
+
+        public void RemoveFirstMultiple(int n)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                Head = Head.Next;
+                if (Head == null)
+                {
+                    Head = null;
+                    Tail = Head;
+                    return;
+                }
+            }
+            Head.Previous = null;
+        }
+
+        public void RemoveLastMultiple(int n)
+        {
+            DNode temp = Tail;
+            for (int i = 0; i < n; i++)
+            {
+                temp = temp.Previous;
+            }
+            Tail = temp;
+            temp.Next = null;
+        }
+
+        public void RemoveAtMultiple(int idx, int n)
+        {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("Index out of range list length");
+            }
+            if (idx == 0)
+            {
+                this.RemoveFirstMultiple(n);
+                return;
+            }
+
+            DNode temp = Head;
+            for (int i = 0; i < idx - 1; i++)
+                temp = temp.Next;
+
+            DNode current = temp;
+
+            for (int i = 0; i < n + 1; i++)
+                temp = temp.Next;
+            current.Next = temp;
+            current.Next.Previous = current;
         }
     }
 }

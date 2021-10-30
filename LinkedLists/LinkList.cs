@@ -164,7 +164,7 @@ namespace LinkedLists
 
         public void AddAt(int idx, int val)
         {
-            if (idx >= this.GetLength())
+            if (idx < 0 || Head == null)
             {
                 throw new IndexOutOfRangeException("Index out of range list length");
             }
@@ -177,7 +177,13 @@ namespace LinkedLists
             Node current = new Node { Value = val };
             Node temp = Head;
             for (int i = 0; i < idx-1; i++)
+            {
+                if (temp == null && idx != 0)
+                {
+                    throw new IndexOutOfRangeException("Index out of range list length");
+                }
                 temp = temp.Next;
+            }
             if (Head.Next == null)
             {
                 current.Next = Head;
