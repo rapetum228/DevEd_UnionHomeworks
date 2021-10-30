@@ -1,5 +1,6 @@
 using ArrayListLibrary;
 using NUnit.Framework;
+using System;
 
 namespace ArrayList.Tests
 {
@@ -52,6 +53,7 @@ namespace ArrayList.Tests
             int[] actual = arrToTest.ToArray();
             //assert
             Assert.AreEqual(expected, actual);
+     
         }
 
         [TestCase(0, new int[] {1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5 }, 5)]
@@ -120,6 +122,21 @@ namespace ArrayList.Tests
             Assert.AreEqual(expectedLength, arrToTest.GetLength());
         }
 
+        [TestCase(0, 6, "Entry index out of range array list")]
+        [TestCase(1, -1, "Entry index out of range array list")]
+        [TestCase(12, 0, "Entry index out of range array list")]
+        public void AddAtArrNegativeTest(int arrayID, int idx, string expectedMessage)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
+            int[] addArr = TestDataArrList.GetAddArrListForAddAtTest(arrayID);
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => arrToTest.AddAt(idx, addArr));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
+
         [TestCase(0, 1, 7, 4)]
         [TestCase(1, 0, 11, 2)]
         [TestCase(2, 2, 5, 5)]
@@ -136,6 +153,20 @@ namespace ArrayList.Tests
             //assert
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expectedLength, arrToTest.GetLength());
+        }
+
+        [TestCase(0, 6, 4, "Entry index out of range array list")]
+        [TestCase(1, -1, 4, "Entry index out of range array list")]
+        [TestCase(12, 0, 4, "Entry index out of range array list")]
+        public void AddAtNegativeTest(int arrayID, int idx, int val, string expectedMessage)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => arrToTest.AddAt(idx, val));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
         }
 
         [TestCase(0, 1, 7, 3)]
@@ -155,6 +186,20 @@ namespace ArrayList.Tests
             //assert
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expectedLength, arrToTest.GetLength());
+        }
+
+        [TestCase(0, 3, 4, "Entry index out of range array list")]
+        [TestCase(1, -1, 4, "Entry index out of range array list")]
+        [TestCase(12, 0, 4, "Entry index out of range array list")]
+        public void SetNegativeTest(int arrayID, int idx, int val, string expectedMessage)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForSetTest(arrayID);
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => arrToTest.Set(idx, val));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
         }
 
         [TestCase(0, 2)]
@@ -214,6 +259,20 @@ namespace ArrayList.Tests
             Assert.AreEqual(expectedLength, arrToTest.GetLength());
         }
 
+        [TestCase(0, 3, "Entry index out of range array list")]
+        [TestCase(1, -1, "Entry index out of range array list")]
+        [TestCase(12, 0, "Entry index out of range array list")]
+        public void RemoveAtNegativeTest(int arrayID, int idx, string expectedMessage)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => arrToTest.RemoveAt(idx));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
+        }
+
         [TestCase(0, 3, 4)]
         [TestCase(1, 1, 0)]
         [TestCase(2, 6, 0)]
@@ -266,6 +325,20 @@ namespace ArrayList.Tests
             //assert
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expectedLength, arrToTest.GetLength());
+        }
+
+        [TestCase(0, 10, 4, "Entry index out of range array list")]
+        [TestCase(1, -1, 4, "Entry index out of range array list")]
+        [TestCase(12, 0, 4, "Entry index out of range array list")]
+        public void RemoveAtMultipleNegativeTest(int arrayID, int idx, int n, string expectedMessage)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtMultipleTest(arrayID);
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => arrToTest.RemoveAtMultiple(idx, n));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
         }
 
         [TestCase(0, 98, 6)]
@@ -382,6 +455,20 @@ namespace ArrayList.Tests
 
             //assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, 10, "Entry index out of range array list")]
+        [TestCase(1, -1, "Entry index out of range array list")]
+        [TestCase(12, 0, "Entry index out of range array list")]
+        public void GetNegativeTest(int arrayID, int idx,string expectedMessage)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
+            //act
+            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                () => arrToTest.Get(idx));
+            //assert
+            Assert.AreEqual(expectedMessage, ex.Message);
         }
 
         [TestCase(0)]
