@@ -165,6 +165,10 @@ namespace ArrayListLibrary
 
         public void AddAt(int idx, int val)
         {
+            if (idx > _lengthArr - 1 || idx < 0)
+            {
+                throw new IndexOutOfRangeException("Entry index out of range array list");
+            }
             _lengthArr++;
             if (_lengthArr >= _arr.Length)
             {
@@ -347,9 +351,9 @@ namespace ArrayListLibrary
 
         public void RemoveAtMultiple(int idx, int n)
         {
-            if (idx > _lengthArr - 1)
+            if (idx > _lengthArr - 1 || idx < 0)
             {
-                return;
+                throw new IndexOutOfRangeException("Entry index out of range array list");
             }
 
             if (idx + n > _lengthArr)
@@ -504,9 +508,9 @@ namespace ArrayListLibrary
 
         public int Get(int idx)
         {
-            if (idx > _lengthArr - 1)
+            if (idx > _lengthArr - 1 || idx < 0)
             {
-                throw new IndexOutOfRangeException("Вышли за пределы массива");
+                throw new IndexOutOfRangeException("Entry index out of range array list");
             }
             return _arr[idx];
         }
