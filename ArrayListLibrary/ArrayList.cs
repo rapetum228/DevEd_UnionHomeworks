@@ -28,6 +28,14 @@ namespace ArrayListLibrary
                 _arr[i] = inputArray[i];
         }
 
+        public ArrList(ArrList inputArrList)
+        {
+            _lengthArr = inputArrList.GetLength();
+            _arr = new int[10];
+            for (int i = 0; i < _lengthArr; i++)
+                _arr[i] = inputArrList.Get(i);
+        }
+
         public int GetLength()
         {
             return _lengthArr;
@@ -49,7 +57,10 @@ namespace ArrayListLibrary
 
             if (_lengthArr >= _arr.Length) 
             {
-                int[] newArr = new int[(_arr.Length * 3) / 2];
+                int newArrLength = (_arr.Length * 3) / 2;
+                while (_lengthArr >= newArrLength)
+                    newArrLength = (newArrLength * 3) / 2;
+                int[] newArr = new int[newArrLength];
                 for (int i = 0; i < _lengthArr - 1; i++)
                     newArr[_lengthArr - i - 1] = _arr[_lengthArr - i - 2];
 
@@ -107,7 +118,10 @@ namespace ArrayListLibrary
             _lengthArr++;
             if (_lengthArr >= _arr.Length)
             {
-                int[] newArr = new int[(_arr.Length * 3) / 2];
+                int newArrLength = (_arr.Length * 3) / 2;
+                while (_lengthArr >= newArrLength)
+                    newArrLength = (newArrLength * 3) / 2;
+                int[] newArr = new int[newArrLength];
                 for (int i = 0; i < _arr.Length; i++)
                     newArr[i] = _arr[i];
                 newArr[_lengthArr-1] = val;
@@ -154,8 +168,11 @@ namespace ArrayListLibrary
             _lengthArr++;
             if (_lengthArr >= _arr.Length)
             {
-                int[] newArr = new int[(_arr.Length * 3) / 2];
-                
+                int newArrLength = (_arr.Length * 3) / 2;
+                while (_lengthArr >= newArrLength)
+                    newArrLength = (newArrLength * 3) / 2;
+                int[] newArr = new int[newArrLength];
+
                 for (int i = _lengthArr; i > idx; i--)
                     newArr[i] = _arr[i-1];
                 for (int i = 0; i < idx; i++)
@@ -173,9 +190,9 @@ namespace ArrayListLibrary
 
         public void AddAt(int idx, int[] arr)
         {
-            if (idx > _lengthArr)
+            if (idx > _lengthArr - 1 || idx < 0)
             {
-                return;
+                throw new IndexOutOfRangeException("Entry index out of range array list");
             }
             _lengthArr += arr.Length;
             if (_lengthArr >= _arr.Length)
@@ -211,10 +228,11 @@ namespace ArrayListLibrary
 
         public void Set(int idx, int val)
         {
-            if (idx > _lengthArr - 1)
+            if (idx > _lengthArr - 1 || idx < 0)
             {
-                return;
+                throw new IndexOutOfRangeException("Entry index out of range array list");
             }
+            
             _arr[idx] = val;
         }
 
@@ -253,9 +271,9 @@ namespace ArrayListLibrary
 
         public void RemoveAt(int idx)
         {
-            if (idx > _lengthArr - 1)
+            if (idx > _lengthArr - 1 || idx < 0)
             {
-                return;
+                throw new IndexOutOfRangeException("Entry index out of range array list");
             }
             _lengthArr--;
             if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)

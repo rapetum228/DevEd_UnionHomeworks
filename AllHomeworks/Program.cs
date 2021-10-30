@@ -1,4 +1,5 @@
 ﻿using ArrayListLibrary;
+using DoubleLinkedLists;
 using Homework1;
 using Homework2;
 using Homework3;
@@ -22,7 +23,7 @@ namespace AllHomeworks
             aList.AddLast(aList1);
             Console.ReadLine();
             */
-
+            /*
             LinkList lList = new LinkList(1);
             lList.AddLast(2);
             lList.AddLast(3);
@@ -58,7 +59,15 @@ namespace AllHomeworks
             int[] arr = lList.ToArray();
 
             LinkList lList12 = new LinkList(new int[] { 1, 2, 3, 4, 5 });
+            */
 
+            DoubleLinkList dLList = new DoubleLinkList(new int[] { 1, 2, 3 });
+
+            DoubleLinkList dLList1 = new DoubleLinkList(dLList);
+
+            dLList.AddLast(4);
+            dLList.AddLast(new DoubleLinkList(new int[] {5, 6 }));
+            dLList.AddFirst(0);
         }
     }
 }
