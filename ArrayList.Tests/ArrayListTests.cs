@@ -172,7 +172,7 @@ namespace ArrayList.Tests
         [TestCase(0, 1, 7, 3)]
         [TestCase(1, 0, 11, 1)]
         [TestCase(2, 2, 5, 4)]
-        [TestCase(3, 2, 11, 2)]
+        [TestCase(3, 0, 11, 2)]
         public void SetTest(int arrayID, int idx, int val, int expectedLength)
         {
             //arrange
@@ -240,7 +240,7 @@ namespace ArrayList.Tests
             Assert.AreEqual(expectedLength, arrToTest.GetLength());
         }
 
-        [TestCase(0, 3, 3)]
+        [TestCase(0, 0, 2)]
         [TestCase(1, 0, 0)]
         [TestCase(2, 2, 3)]
         [TestCase(3, 1, 1)]
@@ -310,7 +310,7 @@ namespace ArrayList.Tests
         }
 
         [TestCase(0, 2, 3, 4)]
-        [TestCase(1, 3, 1, 1)]
+        [TestCase(1, 0, 5, 0)]
         [TestCase(2, 3, 5, 3)]
         public void RemoveAtMultipleTest(int arrayID, int idx, int n, int expectedLength)
         {

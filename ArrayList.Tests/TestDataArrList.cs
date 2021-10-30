@@ -171,7 +171,7 @@ namespace ArrayList.Tests
                 0 => new int[] { 5, 7, 3 },
                 1 => new int[] { 11 },
                 2 => new int[] { 1, 2, 5, 4 },
-                3 => new int[] { 8, 9 },
+                3 => new int[] { 11, 9 },
                 _ => new int[] { },
             };
         }
@@ -240,7 +240,7 @@ namespace ArrayList.Tests
         {
             return arrayID switch
             {
-                0 => new int[] { 5, 6, 3 },
+                0 => new int[] { 6, 3 },
                 1 => new int[] { },
                 2 => new int[] { 1, 2, 4 },
                 3 => new int[] { 8 },
@@ -308,7 +308,7 @@ namespace ArrayList.Tests
             return arrayID switch
             {
                 0 => new int[] { 5, 6, 100, 15 },
-                1 => new int[] { 4 },
+                1 => new int[] { },
                 2 => new int[] { 1, 2, 3},
                 _ => new int[] { },
             };
