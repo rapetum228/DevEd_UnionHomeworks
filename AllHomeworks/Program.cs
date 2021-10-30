@@ -63,11 +63,21 @@ namespace AllHomeworks
 
             DoubleLinkList dLList = new DoubleLinkList(new int[] { 1, 2, 3 });
 
-            DoubleLinkList dLList1 = new DoubleLinkList(dLList);
+            DoubleLinkList dLList1 = new DoubleLinkList(new int[] { -3, -2, -1, 0});
 
             dLList.AddLast(4);
-            dLList.AddLast(new DoubleLinkList(new int[] {5, 6 }));
+            dLList.AddLast(dLList1);
             dLList.AddFirst(0);
+            dLList.AddFirst(dLList1);
+            dLList.AddAt(3, 228);
+            dLList.AddAt(5, dLList1);
+            dLList.RemoveAt(5);
+            dLList.RemoveFirst();
+            dLList.RemoveFirstMultiple(3);
+            dLList.RemoveLast();
+            dLList.RemoveLastMultiple(3);
+            dLList.RemoveAtMultiple(3 , 2); //заебись
+
         }
     }
 }
