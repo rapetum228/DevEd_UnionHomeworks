@@ -488,24 +488,6 @@ namespace DoubleLinkedLists
             return temp.Value;
         }
 
-        public void Reverse()//хуйня наверное
-        {
-            if (Head == null)
-            {
-                return;
-            }
-            
-            DNode temp = new DNode { Value = Tail.Value };
-            Head = temp;
-            while (Tail.Previous != null)
-            {
-                Tail = Tail.Previous;
-                temp.Next = new DNode { Value = Tail.Value, Previous = temp };
-                temp = temp.Next;
-            }
-            Tail = temp;
-        }
-
         public void Sort()
         {
             if (Head == null)
@@ -529,6 +511,28 @@ namespace DoubleLinkedLists
                 }
                 temp = temp.Next;   
             }
+        }
+
+        public void Reverse()
+        {
+            if (Head == null)
+            {
+                return;
+            }
+            DNode tempHead = Head;
+            DNode tempTail = Tail;
+            while (tempHead != tempTail)
+            {
+                int copyTempHead = tempHead.Value;
+                tempHead.Value = tempTail.Value;
+                tempTail.Value = copyTempHead;
+                if (tempHead.Next == tempTail)
+                    break;
+                
+                tempHead = tempHead.Next;
+                tempTail = tempTail.Previous;
+            }
+
         }
     }
 }
