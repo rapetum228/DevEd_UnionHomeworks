@@ -92,6 +92,7 @@ namespace AllHomeworks
             dLList.Sort();
 
             LinkList lList12 = new LinkList(new int[] { 0, -2, -1, -4, 0, 2, 3, 4, -3});
+            lList12.RemoveLastMultiple(3);
             lList12.Reverse();
             lList12.SortDesc();
             lList12.Sort();
