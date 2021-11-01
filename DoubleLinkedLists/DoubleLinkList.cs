@@ -488,6 +488,91 @@ namespace DoubleLinkedLists
             return temp.Value;
         }
 
+        public int Max()
+        {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
+
+            DNode temp = Head;
+            int max = Head.Value;
+            while (temp.Next != null)
+            {
+                temp = temp.Next;
+                if (max < temp.Value)
+                {
+                    max = temp.Value;
+                }
+            }
+            return max;
+        }
+
+        public int Min()
+        {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
+            DNode temp = Head;
+            int min = Head.Value;
+            while (temp.Next != null)
+            {
+                temp = temp.Next;
+                if (min > temp.Value)
+                {
+                    min = temp.Value;
+                }
+            }
+            return min;
+        }
+
+        public int IndexOfMax()
+        {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
+            DNode temp = Head;
+            int max = Head.Value;
+            int indexOfMax = 0;
+            int index = 0;
+            while (temp.Next != null)
+            {
+                index++;
+                temp = temp.Next;
+                if (max < temp.Value)
+                {
+                    indexOfMax = index;
+                    max = temp.Value;
+                }
+            }
+            return indexOfMax;
+        }
+
+        public int IndexOfMin()
+        {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
+            DNode temp = Head;
+            int min = Head.Value;
+            int indexOfMin = 0;
+            int index = 0;
+            while (temp.Next != null)
+            {
+                index++;
+                temp = temp.Next;
+                if (min > temp.Value)
+                {
+                    indexOfMin = index;
+                    min = temp.Value;
+                }
+            }
+            return indexOfMin;
+        }
+
         public void Sort()
         {
             if (Head == null)
