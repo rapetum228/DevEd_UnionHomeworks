@@ -318,10 +318,10 @@ namespace LinkedLists.Tests
             CollectionAssert.AreEqual(expectedArray, actual);
         }
 
-
+        [TestCase(2, 2, 5)]
         [TestCase(0, 2, 3)]
         [TestCase(1, 0, 4)]
-        [TestCase(2, 2, 5)]
+
         public void RemoveAtMultipleTest(int ID, int idx, int n)
         {
             //arrange

@@ -154,7 +154,6 @@ namespace LinkedLists
             LinkList temp = new LinkList(list);
             temp.Tail.Next = Head;
             Head = temp.Head;
-            //list = temp;
         }
 
         public void AddAt(int idx, int val)
@@ -168,7 +167,6 @@ namespace LinkedLists
                 this.AddFirst(val);
                 return;
             }
-            //LengthList++;
             Node current = new Node { Value = val };
             Node temp = Head;
             for (int i = 0; i < idx-1; i++)
@@ -179,22 +177,14 @@ namespace LinkedLists
                 }
                 temp = temp.Next;
             }
-            if (Head.Next == null)
-            {
-                current.Next = Head;
-                Head = current;
-                return;
-            }
             current.Next = temp.Next;
             temp.Next = current;
-            //temp.Next = new Node { Value = 228 };
-            //temp.Next = new Node { Value = 229 };
-            //temp.Next = current;
+
         }
 
         public void AddAt(int idx, LinkList list)
         {
-            if (idx >= this.GetLength() || Head == null)
+            if (idx < 0 || Head == null)
             {
                 throw new IndexOutOfRangeException("Index out of range list length");
             }
@@ -204,15 +194,15 @@ namespace LinkedLists
                 return;
             }
             LinkList newList = new LinkList(list);
-            //LengthList += list.LengthList;
+
             Node temp = Head;
             for (int i = 0; i < idx - 1; i++)
-                temp = temp.Next;
-            if (Head.Next == null)
             {
-                newList.Tail.Next = Head;
-                Head = newList.Head; ;
-                return;
+                if (temp == null)
+                {
+                    throw new IndexOutOfRangeException("Index out of range list length");
+                }
+                temp = temp.Next;
             }
             newList.Tail.Next = temp.Next;
             temp.Next = newList.Head;
@@ -220,14 +210,17 @@ namespace LinkedLists
 
         public void Set(int idx, int val)
         {
-            if (idx >= this.GetLength() || Head == null)
-            {
+            if (idx < 0 || Head == null)
                 throw new IndexOutOfRangeException("Index out of range list length");
-            }
 
             Node temp = Head;
             for (int i = 0; i < idx; i++)
+            {
+                if (temp == null)
+                    throw new IndexOutOfRangeException("Index out of range list length");
+                
                 temp = temp.Next;
+            }
 
             temp.Value = val;
         }
@@ -259,31 +252,25 @@ namespace LinkedLists
 
         public void RemoveAt(int idx)
         {
-            if (Head == null || idx >= this.GetLength())
+            if (idx < 0 || Head == null )
             {
                 throw new IndexOutOfRangeException("Index out of range list length");
-            }
-            if (idx == 0 && Head.Next == null)
-            {
-                Head = null;
-                return;
             }
             if (idx == 0)
             {
                 this.RemoveFirst();
                 return;
             }
-            else if (idx == this.GetLength() - 1)
-            {
-                this.RemoveLast();
-                return;
-            }
             
-            //LengthList--;
             Node temp = Head;
             for (int i = 0; i < idx - 1; i++)
+            {
+                if (temp == null)
+                {
+                    throw new IndexOutOfRangeException("Index out of range list length");
+                }
                 temp = temp.Next;
-
+            }
             temp.Next = temp.Next.Next;
         }
 
@@ -333,7 +320,7 @@ namespace LinkedLists
 
         public void RemoveAtMultiple(int idx, int n)
         {
-            if (idx >= this.GetLength() || this.Head == null)
+            if (idx < 0 || Head == null)
             {
                 throw new IndexOutOfRangeException("Index out of range list length");
             }
@@ -342,25 +329,26 @@ namespace LinkedLists
                 this.RemoveFirstMultiple(n);
                 return;
             }
-            else if (idx == this.GetLength() - 1)
-            {
-                this.RemoveLastMultiple(n);
-                return;
-            }
-            if (n + idx >= this.GetLength())
-            {
-                n = this.GetLength() - idx;
-            }
 
             Node temp = Head;
             for (int i = 0; i < idx-1 ; i++)
+            {
+                if (temp == null)
+                {
+                    throw new IndexOutOfRangeException("Index out of range list length");
+                }
                 temp = temp.Next;
-            
-            Node current = temp;
+            }
+
+            Node fromIndex = temp;
 
             for (int i = 0; i < n+1; i++)
+            {
+                if (temp == null)
+                    break;
                 temp = temp.Next;
-            current.Next = temp;
+            }
+            fromIndex.Next = temp;
         }
 
         public int RemoveFirst(int val)
@@ -420,8 +408,7 @@ namespace LinkedLists
         {
             if (Head == null)
                 return false;
-            else if (Head.Value == val)
-                return true;
+            
             Node temp = Head;
 
             while (temp.Value != val)
@@ -473,7 +460,7 @@ namespace LinkedLists
 
         public int Get(int idx)
         {
-            if (Head == null)
+            if (idx < 0 || Head == null)
             {
                 throw new IndexOutOfRangeException("List is empty");
             }
