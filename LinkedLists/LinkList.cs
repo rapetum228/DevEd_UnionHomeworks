@@ -289,7 +289,7 @@ namespace LinkedLists
 
         public void RemoveFirstMultiple(int n)
         {
-            if (n >= this.GetLength() || this.Head == null)
+            if (Head == null)
             {
                 Head = null;
                 Tail = Head;
@@ -297,26 +297,38 @@ namespace LinkedLists
             }
 
             for (int i = 0; i < n; i++)
+            {
                 Head = Head.Next;
+                if (Head == null)
+                    return;
+            }
         }
 
         public void RemoveLastMultiple(int n)
         {
-            if (n >= this.GetLength() || this.Head == null)
+            Node temp = Head;
+            Node toLastN = Head;
+
+            for (int i = 0; i < n; i++)
             {
-                Head = null;
-                Tail = Head;
-                return;
+                if (toLastN == null)
+                {
+                    Head = null;
+                    Tail = Head;
+                    return;
+                }
+                toLastN = toLastN.Next;
             }
 
-            Node temp = Head;
-            for (int i = 0; i < this.GetLength()-1-n; i++)
+            while (toLastN != Tail)
             {
+                toLastN = toLastN.Next;
                 temp = temp.Next;
             }
+
             Tail = temp;
             temp.Next = null;
-
+            
         }
 
         public void RemoveAtMultiple(int idx, int n)
@@ -465,13 +477,16 @@ namespace LinkedLists
             {
                 throw new IndexOutOfRangeException("List is empty");
             }
-            if (idx >= this.GetLength())
-            {
-                throw new IndexOutOfRangeException("Entry index out of range length list");
-            }
+            
             Node temp = Head;
             for (int i = 0; i < idx; i++)
+            {
                 temp = temp.Next;
+                if (temp == null)
+                {
+                    throw new IndexOutOfRangeException("Entry index out of range length list");
+                }
+            }
             return temp.Value;
         }
 
