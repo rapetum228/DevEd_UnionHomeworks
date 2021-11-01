@@ -63,8 +63,8 @@ namespace AllHomeworks
 
             DoubleLinkList dLList = new DoubleLinkList(new int[] { 1, 2, 3 });
 
-            DoubleLinkList dLList1 = new DoubleLinkList(new int[] { -3, -2, -1, 0});
-
+            DoubleLinkList dLList1 = new DoubleLinkList(new int[] { -3, -2, -1, 0, -4});
+            //-3 0 -1 -2 
             dLList.AddLast(4);
             dLList.AddLast(dLList1);
             dLList.AddFirst(0);
@@ -77,6 +77,21 @@ namespace AllHomeworks
             dLList.RemoveLast();
             dLList.RemoveLastMultiple(3);
             dLList.RemoveAtMultiple(3 , 2); //заебись
+            dLList.RemoveFirst(1);
+            dLList.AddAt(2, 228);
+            dLList.AddAt(4, 228);
+            dLList.RemoveAll(228);
+            dLList.Contains(4);
+            dLList.IndexOf(4);
+            dLList.GetFirst();
+            dLList.GetLast();
+            dLList.Get(2);
+            dLList.Reverse();
+
+
+            dLList1.Reverse();
+            dLList1.Sort();
+            dLList.Sort();
 
         }
     }
