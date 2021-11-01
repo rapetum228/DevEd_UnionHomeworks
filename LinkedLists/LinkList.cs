@@ -10,17 +10,15 @@ namespace LinkedLists
     {
         public Node Head { get; private set; }
         public Node Tail { get; private set; }
-        //public int LengthList { get; private set; }
 
         public LinkList()
         {
-            //LengthList = 0;
             Head = null;
             Tail = Head;
         }
         public LinkList(int value)
         {
-           // LengthList = 1;
+
             Head = new Node
             {
                 Value = value
@@ -41,7 +39,6 @@ namespace LinkedLists
                 Value = list.Head.Value,
             };
             Node nodeNewLink = Head;
-            //LengthList = 1; 
             
             Node temp = list.Head;
             while (temp.Next != null)
@@ -50,9 +47,8 @@ namespace LinkedLists
                 Node current = new Node { Value = temp.Value };
                 nodeNewLink.Next = current;
                 nodeNewLink = nodeNewLink.Next;
-                //LengthList++;
             }
-            Tail = nodeNewLink;//new Node { Value = list.Tail.Value, Next = null };
+            Tail = nodeNewLink;
         }
 
         public LinkList(int[] arr)
@@ -103,7 +99,7 @@ namespace LinkedLists
         }
         public void AddLast(int val)
         {
-            //LengthList++;
+
             Node current = new Node { Value = val};
             if (Head != null)
             {
@@ -143,7 +139,7 @@ namespace LinkedLists
        
         public void AddFirst(int val)
         {
-            //LengthList++;
+
             Node current = new Node { Value = val };
             current.Next = Head;
             Head = current;
@@ -155,7 +151,6 @@ namespace LinkedLists
             {
                 return;
             }
-           // LengthList += list.LengthList;
             LinkList temp = new LinkList(list);
             temp.Tail.Next = Head;
             Head = temp.Head;
@@ -406,7 +401,6 @@ namespace LinkedLists
                 else { temp = temp.Next; }
             }
             
-            //LengthList -= numbersOfRemoveElements;
             return numbersOfRemoveElements;
         }
 
@@ -599,19 +593,25 @@ namespace LinkedLists
             {
                 return;
             }
-            int lengthList = this.GetLength();
-            int min = this.Min();
-            LinkList sortList = new LinkList(min);
-            LinkList copyThis = new LinkList(this);
-            while(lengthList > 1)
+            Node temp = Head;
+            while (temp != null)
             {
-                copyThis.RemoveFirst(min);
-                min = copyThis.Min();
-                sortList.AddLast(min);
-                lengthList--;
+                Node copyHead = Head;
+                
+                while (copyHead != temp)
+                {
+                    if (temp.Value < copyHead.Value)
+                    {
+                        int tempValue = temp.Value;
+                        temp.Value = copyHead.Value;
+                        copyHead.Value = tempValue;
+                    }
+                    copyHead = copyHead.Next;
+
+                }
+                
+                temp = temp.Next;
             }
-            Head = sortList.Head;
-            Tail = sortList.Tail;
         }
 
         public void SortDesc()
@@ -620,19 +620,25 @@ namespace LinkedLists
             {
                 return;
             }
-            int lengthList = this.GetLength();
-            int max = this.Max();
-            LinkList sortList = new LinkList(max);
-            LinkList copyThis = new LinkList(this);
-            while (lengthList > 1)
+            Node temp = Head;
+            while (temp != null)
             {
-                copyThis.RemoveFirst(max);
-                max = copyThis.Max();
-                sortList.AddLast(max);
-                lengthList--;
+                Node copyHead = Head;
+
+                while (copyHead != temp)
+                {
+                    if (temp.Value > copyHead.Value)
+                    {
+                        int tempValue = temp.Value;
+                        temp.Value = copyHead.Value;
+                        copyHead.Value = tempValue;
+                    }
+                    copyHead = copyHead.Next;
+
+                }
+
+                temp = temp.Next;
             }
-            Head = sortList.Head;
-            Tail = sortList.Tail;
         }
 
         public override bool Equals(object obj)
