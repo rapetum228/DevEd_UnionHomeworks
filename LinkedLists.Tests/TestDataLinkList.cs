@@ -235,176 +235,177 @@ namespace LinkedLists.Tests
             };
         }
 
-        public static LinkList GetListForRemoveFirstLastAtMultipleTest(int ID)
+        public static int[] GetListForRemoveFirstLastAtMultipleTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 1, 2, 3, 4, 5, 6, 7 }),//удаляю просто
-                1 => new LinkList(new int[] { 5, 6, 7 }),//удаляю больше длины
-                2 => new LinkList(new int[] { -1, -2, 3, -4 }),//просто, но для At выход за индекс
-                _ => new LinkList(),//просто
+                0 => new int[] { 1, 2, 3, 4, 5, 6, 7 },//удаляю просто
+                1 => new int[] { 5, 6, 7 },//удаляю больше длины
+                2 => new int[] { -1, -2, 3, -4 },//в количестве как в листе
+                _ => new int[] {  },//просто
             };
         }
 
-        public static LinkList GetExpectedListForRemoveFirstMultipleTest(int ID)
+        public static int[] GetExpectedListForRemoveFirstMultipleTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 4, 5, 6, 7 }),//3
-                1 => new LinkList(new int[] { }),//4
-                2 => new LinkList(new int[] { }),//4
-                _ => new LinkList(),//1
+                0 => new int[] { 4, 5, 6, 7 },//3
+                1 => new int[] { },//4
+                2 => new int[] { },//4
+                _ => new int[] { },//1
             };
         }
 
-        public static LinkList GetExpectedListForRemoveLastMultipleTest(int ID)
+        public static int[] GetExpectedListForRemoveLastMultipleTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 1, 2, 3, 4 }),//3
-                1 => new LinkList(new int[] { }),//4
-                2 => new LinkList(new int[] { -1, -2 }),//2
-                _ => new LinkList(),//1
+                0 => new int[] { 1, 2, 3, 4 },//3
+                1 => new int[] { },//4
+                2 => new int[] { -1, -2 },//2
+                _ => new int[] { },//1
             };
         }
 
-        public static LinkList GetExpectedListForRemoveAtMultipleTest(int ID)
+        public static int[] GetExpectedListForRemoveAtMultipleTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 1, 2, 6, 7 }),
-                1 => new LinkList(new int[] {  }),
-                2 => new LinkList(new int[] { -1, -2 }),
-                _ => new LinkList(),//1
+                0 => new int[] { 1, 2, 6, 7 },
+                1 => new int[] { },
+                2 => new int[] { -1, -2 },
+                _ => new int[] { },//1
             };
         }
 
-        public static LinkList GetListForGetFiestGetLastGetTest(int ID)
+        public static int[] GetListForRemoveFirstValAndAllTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 12, -6, 8, -9, 4, 8, 8, 10, 8 }),
-                1 => new LinkList(new int[] { 8, 8, 2, 3, 4, 8 }),
-                2 => new LinkList(new int[] { 8, 8, 8 }),
-                3 => new LinkList(new int[] { 5, 2, 1, 0 }),
-                _ => new LinkList(),//1
+                0 => new int[] { 12, -6, 8, -9, 4, 8, 8, 10, 8 },
+                1 => new int[] { 8, 8, 2, 3, 4, 8 },
+                2 => new int[] { 8, 8, 8 },
+                3 => new int[] { 5, 2, 1, 0 },
+                _ => new int[] {  },//1
             };
         }
 
-        public static LinkList GetExpectedListForRemoveFirstValTest(int ID)
+        public static int[] GetExpectedListForRemoveFirstValTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 12, -6, -9, 4, 8, 8, 10, 8 }),
-                1 => new LinkList(new int[] { 8, 2, 3, 4, 8 }),
-                2 => new LinkList(new int[] { 8, 8 }),
-                3 => new LinkList(new int[] { 5, 2, 1, 0 }),
-                _ => new LinkList(),
+                0 => new int[] { 12, -6, -9, 4, 8, 8, 10, 8 },
+                1 => new int[] { 8, 2, 3, 4, 8 },
+                2 => new int[] { 8, 8 },
+                3 => new int[] { 5, 2, 1, 0 },
+                _ => new int[] {  },
             };
         }
 
-        public static LinkList GetExpectedListForRemoveAllTest(int ID)
+        public static int[] GetExpectedListForRemoveAllTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 12, -6, -9, 4, 10}),
-                1 => new LinkList(new int[] { 2, 3, 4 }),
-                2 => new LinkList(new int[] { }),
-                3 => new LinkList(new int[] { 5, 2, 1, 0 }),
-                _ => new LinkList(),
+                0 => new int[] { 12, -6, -9, 4, 10 },
+                1 => new int[] { 2, 3, 4 },
+                2 => new int[] { },
+                3 => new int[] { 5, 2, 1, 0 },
+                _ => new int[] {  },
             };
         }
 
-        public static LinkList GetListForGetFirstGetLastGetTest(int ID)
+        public static int[] GetListForGetFirstGetLastGetTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 12, -6, -9, 4, 10 }),
-                1 => new LinkList(new int[] { 2, 3, 4 }),
-                2 => new LinkList(new int[] { 4 }),
-                3 => new LinkList(new int[] { 5, 5, 5 }),
-                _ => new LinkList(),
+                0 => new int[] { 12, -6, -9, 4, 8, 8, 10, 8 },
+                1 => new int[] { 8, 2, 3, 4},
+                2 => new int[] { 8, 8 },
+                3 => new int[] { 5, 2, 1, 0 },
+                4 => new int[] { 228 },
+                _ => new int[] { },
             };
         }
 
-        public static LinkList GetListForReverseTest(int ID)
+        public static int[] GetListForReverseTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 12, -6, -9, 4, 10 }),
-                1 => new LinkList(new int[] { 2, 3, 4, 5 }),
-                2 => new LinkList(new int[] { 4 }),
-                3 => new LinkList(new int[] { 5, 5, 5 }),
-                _ => new LinkList(),
+                0 => new int[] { 12, -6, -9, 4, 10 },
+                1 => new int[] { 2, 3, 4, 5 },
+                2 => new int[] { 4 },
+                3 => new int[] { 5, 5, 5 },
+                _ => new int[] {  },
             };
         }
 
-        public static LinkList GetExpectedListForReverseTest(int ID)
+        public static int[] GetExpectedListForReverseTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 10, 4, -9, -6, 12 }),
-                1 => new LinkList(new int[] { 5, 4, 3, 2 }),
-                2 => new LinkList(new int[] { 4 }),
-                3 => new LinkList(new int[] { 5, 5, 5 }),
-                _ => new LinkList(),
+                0 => new int[] { 10, 4, -9, -6, 12 },
+                1 => new int[] { 5, 4, 3, 2 },
+                2 => new int[] { 4 },
+                3 => new int[] { 5, 5, 5 },
+                _ => new int[] {  },
             };
         }
 
-        public static LinkList GetListForMaxMinAndThisIndexesTest(int ID)
+        public static int[] GetListForMaxMinAndThisIndexesTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 10, -6, -9, 4, 12 }),
-                1 => new LinkList(new int[] { 2, 3, 4, 1 }),
-                2 => new LinkList(new int[] { 4 }),
-                3 => new LinkList(new int[] { 5, 5, 5 }),
-                _ => new LinkList(),
+                0 => new int[] { 10, -6, -9, 4, 12 },
+                1 => new int[] { 2, 3, 4, 1 },
+                2 => new int[] { 4 },
+                3 => new int[] { 5, 5, 5 },
+                _ => new int[] {  },
             };
         }
 
-        public static LinkList GetListForSortAndSortDescTest(int ID)
+        public static int[] GetListForSortAndSortDescTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 10, -6, -9, 4, 12 }),
-                1 => new LinkList(new int[] { 2, 3, 4, 1 }),
-                2 => new LinkList(new int[] { 4 }),
-                3 => new LinkList(new int[] { 5, 5, 5 }),
-                4 => new LinkList(new int[] { 1, 2, 3, 4, 5 }),
-                5 => new LinkList(new int[] { -1 , -2, -3, -4}),
-                6 => new LinkList(new int[] { -1,-3, -2, -3, -3, -4 }),
-                _ => new LinkList(),
+                0 => new int[] { 10, -6, -9, 4, 12 },
+                1 => new int[] { 2, 3, 4, 1 },
+                2 => new int[] { 4 },
+                3 => new int[] { 5, 5, 5 },
+                4 => new int[] { 1, 2, 3, 4, 5 },
+                5 => new int[] { -1, -2, -3, -4 },
+                6 => new int[] { -1, -3, -2, -3, -3, -4 },
+                _ => new int[] {  },
             };
         }
 
-        public static LinkList GetExpectedListForSortTest(int ID)
+        public static int[] GetExpectedListForSortTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { -9, -6, 4, 10, 12 }),
-                1 => new LinkList(new int[] { 1, 2, 3, 4}),
-                2 => new LinkList(new int[] { 4 }),
-                3 => new LinkList(new int[] { 5, 5, 5 }),
-                4 => new LinkList(new int[] { 1, 2, 3, 4, 5 }),
-                5 => new LinkList(new int[] { -4, -3, -2, -1 }),
-                6 => new LinkList(new int[] { -4, -3, -3, -3, -2, -1 }),
-                _ => new LinkList(),
+                0 => new int[] { -9, -6, 4, 10, 12 },
+                1 => new int[] { 1, 2, 3, 4 },
+                2 => new int[] { 4 },
+                3 => new int[] { 5, 5, 5 },
+                4 => new int[] { 1, 2, 3, 4, 5 },
+                5 => new int[] { -4, -3, -2, -1 },
+                6 => new int[] { -4, -3, -3, -3, -2, -1 },
+                _ => new int[] {  },
             };
         }
 
-        public static LinkList GetExpectedListForSortDescTest(int ID)
+        public static int[] GetExpectedListForSortDescTest(int ID)
         {
             return ID switch
             {
-                0 => new LinkList(new int[] { 12 , 10, 4, -6, -9}),
-                1 => new LinkList(new int[] { 4, 3, 2, 1}),
-                2 => new LinkList(new int[] { 4 }),
-                3 => new LinkList(new int[] { 5, 5, 5 }),
-                4 => new LinkList(new int[] { 5, 4, 3, 2, 1}),
-                5 => new LinkList(new int[] { -1, -2, -3, -4}),
-                6 => new LinkList(new int[] { -1, -2, -3, -3, -3, -4 }),
-                _ => new LinkList(),
+                0 => new int[] { 12, 10, 4, -6, -9 },
+                1 => new int[] { 4, 3, 2, 1 },
+                2 => new int[] { 4 },
+                3 => new int[] { 5, 5, 5 },
+                4 => new int[] { 5, 4, 3, 2, 1 },
+                5 => new int[] { -1, -2, -3, -4 },
+                6 => new int[] { -1, -2, -3, -3, -3, -4 },
+                _ => new int[] { },
             };
         }
     }
