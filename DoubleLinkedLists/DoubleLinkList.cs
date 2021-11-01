@@ -513,6 +513,31 @@ namespace DoubleLinkedLists
             }
         }
 
+        public void SortDesc()
+        {
+            if (Head == null)
+            {
+                return;
+            }
+            DNode temp = Head;//копирую голову, чтобы в цикле идти вперёд
+
+            while (temp != null)
+            {
+                DNode copy = temp;//копирую ссылку на temp для хода назад от неё 
+
+                while (copy.Previous != null && copy.Previous.Value < copy.Value)
+                //цикл выполняется пока копия temp не дойдёт обратным ходом до null и
+                //если значение предыдущего элемента копии больше значения в temp
+                {
+                    int copyValue = copy.Value;
+                    copy.Value = copy.Previous.Value;
+                    copy.Previous.Value = copyValue;
+                    copy = copy.Previous;
+                }
+                temp = temp.Next;
+            }
+        }
+
         public void Reverse()
         {
             if (Head == null)
