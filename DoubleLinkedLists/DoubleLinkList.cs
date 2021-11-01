@@ -519,51 +519,20 @@ namespace DoubleLinkedLists
                 DNode copy = temp;//копирую ссылку на temp для хода назад от неё 
                 DNode tempNext = temp.Next;//создаю копию ссылки на следующий за temp
 
-                while(copy.Previous != null )
+                while(copy.Previous != null && copy.Previous.Value > copy.Value)
                 //цикл выполняется пока копия temp не дойдёт обратным ходом до null и
                 //если значение предыдущего элемента копии больше значения в temp
                 {
-                    if (copy.Previous.Value < temp.Value)
+                    if (copy.Previous.Value > copy.Value)
                     {
-                        break;
+                        int copyValue = copy.Value;
+                        copy.Value = copy.Previous.Value;
+                        copy.Previous.Value = copyValue;
                     }
-                    copy = copy.Previous;//делаю ход назад
+                    copy = copy.Previous;
                 }
-                if (copy != temp && copy.Previous != null) //если предыдущий цикл выполнился (было движение назад), 
-                {
-                    
-                    //то я должен вырвать temp из текущей цепочки
-                    temp.Previous = copy.Previous; //зад temp ссылается теперь на предыдущий
-                    //элемент перед элементом, на котором остановился задний ход
-                    temp.Next = copy;
-                    copy.Previous.Next = temp;
-                    copy.Previous = temp;
-
-                    int x = 2;
-                    //допустим temp вырвал и вставил куда надо, но если сделаю temp.Next,
-                    //то он отошлёт меня уже не туда. Значит в игру вступает tempNext
-                    //Я ЗАБЫЛ ПРО ЦЕПЛЯНИЕ tempNext
-                   
-                    temp = tempNext;
-                    
-
-                }
-                else if(copy.Previous == null && copy != temp)
-                {
-                    //temp.Previous = null;
-                    
-                    //Head.Previous = temp;
-                    temp.Next = Head;
-                    Head = temp;
-                    temp = tempNext;
-                }
-                else if (copy == temp)
-                {
-                    temp = temp.Next;
-                    
-                }
-
-
+                temp = temp.Next;
+                
             }
             
 
