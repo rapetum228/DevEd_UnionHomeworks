@@ -87,11 +87,13 @@ namespace AllHomeworks
             dLList.GetLast();
             dLList.Get(2);
             dLList.Reverse();
-
+            dLList1.SortDesc();
             dLList1.Sort();
             dLList.Sort();
-            dLList1.Reverse2();
-            dLList.Reverse2();
+
+            LinkList lList12 = new LinkList(new int[] { 0, 1, 2, 3, 4, 5, 6});
+            lList12.Reverse2();
+
         }
     }
 }

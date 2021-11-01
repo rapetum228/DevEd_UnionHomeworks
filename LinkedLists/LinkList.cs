@@ -487,21 +487,25 @@ namespace LinkedLists
             {
                 return;
             }
-            int fakeLength = this.GetLength();
+            Node tempHead = Head;
             Node tempTail = Tail;
-            while (fakeLength > 1)
+            while (tempHead != tempTail)
             {
-                Node temp = Head;
-                for (int i = 0; i < fakeLength-2; i++)
+                int copyTempHead = tempHead.Value;
+                tempHead.Value = tempTail.Value;
+                tempTail.Value = copyTempHead;
+                if (tempHead.Next == tempTail)
                 {
-                    temp = temp.Next;
+                    break;
                 }
-                fakeLength--;
-                tempTail.Next = new Node {Value = temp.Value };
-                tempTail = tempTail.Next;
+                Node newTempTail = tempHead;
+                while (newTempTail.Next != tempTail)
+                {
+                    newTempTail = newTempTail.Next;
+                }
+                tempHead = tempHead.Next;
+                tempTail = newTempTail;
             }
-            Head = Tail;
-            Tail = new Node { Value = tempTail.Value };
         }
 
         public int Max()
