@@ -358,5 +358,235 @@ namespace DoubleLinkedLists
             current.Next = temp;
             current.Next.Previous = current;
         }
+
+        public int RemoveFirst(int val)
+        {
+            if (Head == null)
+                return -1;
+            else if (Head.Value == val)
+            {
+                Head = Head.Next;
+                Head.Previous = null;
+                return 0;
+            }
+
+            DNode temp = Head;
+            int index = 0;
+            while (temp.Next != null && temp.Next.Value != val)
+            {
+                index++;
+                temp = temp.Next;
+            }
+
+            if (temp.Next == null)
+            {
+                return -1;
+            }
+            temp.Next = temp.Next.Next;
+            temp.Next.Previous = temp;
+            return index + 1;
+        }
+
+        public int RemoveAll(int val)
+        {
+            int numbersOfRemoveElements = 0;
+            while (Head != null && Head.Value == val)
+            {
+                numbersOfRemoveElements++;
+                Head = Head.Next;
+                Head.Previous = null;
+            }
+            if (Head == null)
+            {
+                return numbersOfRemoveElements;
+            }
+            DNode temp = Head;
+
+            while (temp.Next != null)
+            {
+                if (temp.Next.Value == val)
+                {
+                    numbersOfRemoveElements++;
+                    temp.Next = temp.Next.Next;
+                    temp.Next.Previous = temp;
+                }
+                else { temp = temp.Next; }
+            }
+            return numbersOfRemoveElements;
+        }
+
+        public bool Contains(int val)
+        {
+            if (Head == null)
+                return false;
+            else if (Head.Value == val)
+                return true;
+            DNode temp = Head;
+
+            while (temp.Value != val)
+            {
+                if (temp.Next == null)
+                    return false;
+                temp = temp.Next;
+            }
+
+            return true;
+        }
+
+        public int IndexOf(int val)
+        {
+            if (Head == null)
+                return -1;
+            else if (Head.Value == val)
+                return 0;
+            DNode temp = Head;
+            int index = 0;
+            while (temp.Value != val)
+            {
+                if (temp.Next == null)
+                    return -1;
+                temp = temp.Next;
+                index++;
+            }
+            return index;
+        }
+
+        public int GetFirst()
+        {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
+            return Head.Value;
+        }
+
+        public int GetLast()
+        {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
+            return Tail.Value;
+        }
+
+        public int Get(int idx)
+        {
+            if (Head == null)
+            {
+                throw new IndexOutOfRangeException("List is empty");
+            }
+            DNode temp = Head;
+            for (int i = 0; i < idx; i++)
+            {
+                if (temp == null)
+                {
+                    throw new IndexOutOfRangeException("Entry index out of range length list");
+                }
+                temp = temp.Next;
+            }
+                
+            return temp.Value;
+        }
+
+        public void Reverse()//хуйня наверное
+        {
+            if (Head == null)
+            {
+                return;
+            }
+            
+            DNode temp = new DNode { Value = Tail.Value };
+            Head = temp;
+            while (Tail.Previous != null)
+            {
+                Tail = Tail.Previous;
+                temp.Next = new DNode { Value = Tail.Value, Previous = temp };
+                temp = temp.Next;
+            }
+            Tail = temp;
+        }
+
+        public void Sort()
+        {
+            if (Head == null)
+            {
+                return;
+            }
+            DNode temp = Head;//копирую голову, чтобы в цикле идти вперёд
+
+            while (temp != null)
+            {
+                DNode copy = temp;//копирую ссылку на temp для хода назад от неё 
+                DNode tempNext = temp.Next;//создаю копию ссылки на следующий за temp
+
+                while(copy.Previous != null )
+                //цикл выполняется пока копия temp не дойдёт обратным ходом до null и
+                //если значение предыдущего элемента копии больше значения в temp
+                {
+                    if (copy.Previous.Value < temp.Value)
+                    {
+                        break;
+                    }
+                    copy = copy.Previous;//делаю ход назад
+                }
+                if (copy != temp && copy.Previous != null) //если предыдущий цикл выполнился (было движение назад), 
+                {
+                    
+                    //то я должен вырвать temp из текущей цепочки
+                    temp.Previous = copy.Previous; //зад temp ссылается теперь на предыдущий
+                    //элемент перед элементом, на котором остановился задний ход
+                    temp.Next = copy;
+                    copy.Previous.Next = temp;
+                    copy.Previous = temp;
+
+                    int x = 2;
+                    //допустим temp вырвал и вставил куда надо, но если сделаю temp.Next,
+                    //то он отошлёт меня уже не туда. Значит в игру вступает tempNext
+                    //Я ЗАБЫЛ ПРО ЦЕПЛЯНИЕ tempNext
+                   
+                    temp = tempNext;
+                    
+
+                }
+                else if(copy.Previous == null && copy != temp)
+                {
+                    //temp.Previous = null;
+                    
+                    //Head.Previous = temp;
+                    temp.Next = Head;
+                    Head = temp;
+                    temp = tempNext;
+                }
+                else if (copy == temp)
+                {
+                    temp = temp.Next;
+                    
+                }
+
+
+            }
+            
+
+            //if (temp.Value < temp.Previous.Value)
+            //{
+            //    int copy = temp.Value;
+            //    temp.Value = temp.Previous.Value;
+            //    temp.Previous.Value = copy;
+            //}
+            //temp = temp.Previous;
+            //if (temp.Value < temp.Previous.Value)
+            //{
+            //    int copy = temp.Value;
+            //    temp.Value = temp.Previous.Value;
+            //    temp.Previous.Value = copy;
+            //}
+            //temp = temp.Previous;
+            //if (temp.Value < temp.Previous.Value)
+            //{
+            //    int copy = temp.Value;
+            //    temp.Value = temp.Previous.Value;
+            //    temp.Previous.Value = copy;
+            //}
+        }
     }
 }
