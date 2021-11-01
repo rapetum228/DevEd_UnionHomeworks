@@ -517,45 +517,18 @@ namespace DoubleLinkedLists
             while (temp != null)
             {
                 DNode copy = temp;//копирую ссылку на temp для хода назад от неё 
-                DNode tempNext = temp.Next;//создаю копию ссылки на следующий за temp
 
                 while(copy.Previous != null && copy.Previous.Value > copy.Value)
                 //цикл выполняется пока копия temp не дойдёт обратным ходом до null и
                 //если значение предыдущего элемента копии больше значения в temp
                 {
-                    if (copy.Previous.Value > copy.Value)
-                    {
-                        int copyValue = copy.Value;
-                        copy.Value = copy.Previous.Value;
-                        copy.Previous.Value = copyValue;
-                    }
+                    int copyValue = copy.Value;
+                    copy.Value = copy.Previous.Value;
+                    copy.Previous.Value = copyValue;
                     copy = copy.Previous;
                 }
-                temp = temp.Next;
-                
+                temp = temp.Next;   
             }
-            
-
-            //if (temp.Value < temp.Previous.Value)
-            //{
-            //    int copy = temp.Value;
-            //    temp.Value = temp.Previous.Value;
-            //    temp.Previous.Value = copy;
-            //}
-            //temp = temp.Previous;
-            //if (temp.Value < temp.Previous.Value)
-            //{
-            //    int copy = temp.Value;
-            //    temp.Value = temp.Previous.Value;
-            //    temp.Previous.Value = copy;
-            //}
-            //temp = temp.Previous;
-            //if (temp.Value < temp.Previous.Value)
-            //{
-            //    int copy = temp.Value;
-            //    temp.Value = temp.Previous.Value;
-            //    temp.Previous.Value = copy;
-            //}
         }
     }
 }
