@@ -63,7 +63,7 @@ namespace AllHomeworks
 
             DoubleLinkList dLList = new DoubleLinkList(new int[] { 1, 2, 3 });
 
-            DoubleLinkList dLList1 = new DoubleLinkList(new int[] { -3, -2, -1, 0, -4});
+            DoubleLinkList dLList1 = new DoubleLinkList(new int[] { -3, -2, -1, 0, -4, -5});
             //-3 0 -1 -2 
             dLList.AddLast(4);
             dLList.AddLast(dLList1);
@@ -88,11 +88,10 @@ namespace AllHomeworks
             dLList.Get(2);
             dLList.Reverse();
 
-
-            dLList1.Reverse();
             dLList1.Sort();
             dLList.Sort();
-
+            dLList1.Reverse2();
+            dLList.Reverse2();
         }
     }
 }
