@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkedLists.Tests
 {
-    class TestDataLinkList
+    class TestDataList
     {
         public static int[] GetArrayForToArrayAndGetLengthTest(int ID)
         {
@@ -127,6 +127,8 @@ namespace LinkedLists.Tests
                 2 => new int[] { 1, 2, 3, 4 },
                 3 => new int[] { 1, 2, 3, 4 },
                 4 => new int[] { 1, 2, 3, 4 },
+                5 => new int[] { 0, 1, 2, 3, 4 },
+                6 => new int[] { 0, 1, 2, 0, 0 },
                 _ => new int[] { },
             };
         }
@@ -140,6 +142,8 @@ namespace LinkedLists.Tests
                 2 => new int[] { 1, 2, 5, 3, 4 },
                 3 => new int[] { 1, 2, 3, 0, 4 },
                 4 => new int[] { 0, 1, 2, 3, 4 },
+                5 => new int[] { 0, 1, 100, 2, 3, 4 },
+                6 => new int[] { 0, 0, 1, 2, 0, 0 },
                 _ => new int[] { 228 },
             };
         }
@@ -153,6 +157,8 @@ namespace LinkedLists.Tests
                 2 => new int[] { 1 },
                 3 => new int[] { 11, 12 },
                 4 => new int[] { 4, 5, 6 },
+                5 => new int[] { 4, 5, 6 },
+                6 => new int[] { 24, 35, 46, 57 },
                 _ => new int[] { 4 },
             };
         }
@@ -165,6 +171,8 @@ namespace LinkedLists.Tests
                 2 => new int[] { 1, 1, 2, 3, 4 },
                 3 => new int[] { 1, 2, 11, 12, 3, 4 },
                 4 => new int[] { 4, 5, 6, 1, 2, 3, 4 },
+                5 => new int[] { 0, 1, 2, 3, 4, 5, 6, 4 },
+                6 => new int[] { 0, 1, 2, 24, 35, 46, 57, 0, 0 },
                 _ => new int[] { 4 },
             };
         }
@@ -242,6 +250,10 @@ namespace LinkedLists.Tests
                 0 => new int[] { 1, 2, 3, 4, 5, 6, 7 },//удаляю просто
                 1 => new int[] { 5, 6, 7 },//удаляю больше длины
                 2 => new int[] { -1, -2, 3, -4 },//в количестве как в листе
+                3 => new int[] { -1, 2, -3, 4, -5, 6, -7 },
+                4 => new int[] { -1, -2, -3, -4, -5, -6, -7 },
+                5 => new int[] { -1, -2, -3, -4, -5, -6, -7 },
+                6 => new int[] { -1, -2, -3, -4, -5, -6, -7 },
                 _ => new int[] {  },//просто
             };
         }
@@ -253,6 +265,10 @@ namespace LinkedLists.Tests
                 0 => new int[] { 4, 5, 6, 7 },//3
                 1 => new int[] { },//4
                 2 => new int[] { },//4
+                3 => new int[] { 2, -3, 4, -5, 6, -7 },
+                4 => new int[] { -1, -2, -3, -4, -5, -6, -7 },
+                5 => new int[] { -7 },
+                6 => new int[] { -3, -4, -5, -6, -7 },
                 _ => new int[] { },//1
             };
         }
@@ -264,6 +280,10 @@ namespace LinkedLists.Tests
                 0 => new int[] { 1, 2, 3, 4 },//3
                 1 => new int[] { },//4
                 2 => new int[] { -1, -2 },//2
+                3 => new int[] { -1, 2, -3, 4, -5, 6 },
+                4 => new int[] { -1, -2, -3, -4, -5, -6, -7 },
+                5 => new int[] { -1 },
+                6 => new int[] { -1, -2, -3, -4, -5 },
                 _ => new int[] { },//1
             };
         }
@@ -275,6 +295,10 @@ namespace LinkedLists.Tests
                 0 => new int[] { 1, 2, 6, 7 },
                 1 => new int[] { },
                 2 => new int[] { -1, -2 },
+                3 => new int[] { -1, 2, -3, 4, -5, 6, -7 },
+                4 => new int[] { -1, -2, -3, -4, -5, -7 },
+                5 => new int[] { -4, -5, -6, -7 },
+                6 => new int[] { -1, -2, -3, -4 },
                 _ => new int[] { },//1
             };
         }

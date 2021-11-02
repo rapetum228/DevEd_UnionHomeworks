@@ -26,6 +26,12 @@ namespace DoubleLinkedLists
 
         public DoubleLinkList(int[] arr)
         {
+            if (arr.Length == 0)
+            {
+                Head = null;
+                Tail = Head;
+                return;
+            }
             Head = new DNode
             {
                 Value = arr[0],
@@ -43,6 +49,12 @@ namespace DoubleLinkedLists
 
         public DoubleLinkList(DoubleLinkList list)
         {
+            if (list.Head == null)
+            {
+                Head = null;
+                Tail = Head;
+                return;
+            }
             Head = new DNode
             {
                 Value = list.Head.Value,
@@ -74,6 +86,10 @@ namespace DoubleLinkedLists
 
         public int[] ToArray()
         {
+            if (Head == null)
+            {
+                return new int[] { };
+            }
             int[] arr = new int[this.GetLength()];
             DNode temp = Head;
             int indexArray = 0;
@@ -109,32 +125,26 @@ namespace DoubleLinkedLists
             {
                 return;
             }
-            DNode temp, tempHead;
+            DoubleLinkList temp = new DoubleLinkList(list);
             if (Head == null)
             {
-                temp = new DNode { Value = list.Head.Value };
-                tempHead = list.Head.Next;
+                Head = temp.Head;
+                Tail = temp.Tail;
             }
             else
             {
-                tempHead = list.Head;
-                temp = Tail;
+                Tail.Next = temp.Head;
+                Tail = temp.Tail;
             }
-            
-            while (tempHead != null)
-            {
-                temp.Next = new DNode{ Value = tempHead.Value, Previous = temp };
-                tempHead = tempHead.Next;
-                temp = temp.Next;
-            }
-            Tail = temp;
         }
 
         public void AddFirst(int val)
         {
             DNode current = new DNode { Value = val, Next = Head };
+            current.Next = Head;
+            if(Head != null)
+                Head.Previous = current;
             Head = current;
-            Head.Next.Previous = current;
         }
 
         public void AddFirst(DoubleLinkList list)
@@ -207,10 +217,8 @@ namespace DoubleLinkedLists
 
         public void AddAt(int idx, DoubleLinkList list)
         {
-            if (list.Head == null)
-            {
-                return;
-            }
+            if (Head == null)
+                throw new IndexOutOfRangeException("Index out of range list length");
 
             DNode temp = Head;
 
@@ -222,27 +230,23 @@ namespace DoubleLinkedLists
                 }
                 temp = temp.Next;
             }
+            if (list.Head == null)
+                return;
 
-            DNode tempList = list.Head;
-            DNode current = new DNode
+            DoubleLinkList newList = new DoubleLinkList(list);
+            if (idx == 0)
             {
-                Value = tempList.Value,
-                Previous = temp,
-            };
-            DNode saveLink = temp.Next;
-            temp.Next = current;
-            while (tempList.Next != null)
-            {
-                tempList = tempList.Next;
-                current.Next = new DNode
-                {
-                    Value = tempList.Value,
-                    Previous = current,
-                };
-                current = current.Next;
+                newList.Tail.Next = Head;
+                Head.Previous = newList.Tail;
+                Head = newList.Head;
+                return;
             }
-            current.Next = saveLink;
-            saveLink.Previous = current;
+            temp.Previous = null;
+            newList.Head.Previous = temp;
+            newList.Tail.Next = temp.Next;
+            if (temp.Next != null)
+                temp.Next.Previous = newList.Tail;
+            temp.Next = newList.Head;
         }
 
         public void Set(int idx, int val)
@@ -265,8 +269,10 @@ namespace DoubleLinkedLists
             {
                 return;
             }
+            
             Head = Head.Next;
-            Head.Previous = null;
+            if (Head != null)
+                Head.Previous = null;
         }
 
         public void RemoveLast()
@@ -311,6 +317,11 @@ namespace DoubleLinkedLists
 
         public void RemoveFirstMultiple(int n)
         {
+
+            if (Head == null)
+            {
+                throw new Exception("List is empty");
+            }
             for (int i = 0; i < n; i++)
             {
                 Head = Head.Next;
@@ -326,9 +337,19 @@ namespace DoubleLinkedLists
 
         public void RemoveLastMultiple(int n)
         {
+            if (Head == null)
+            {
+                throw new Exception("List is empty");
+            }
             DNode temp = Tail;
             for (int i = 0; i < n; i++)
             {
+                if (temp == null)
+                {
+                    Head = temp;
+                    Tail = temp;
+                    return;
+                }
                 temp = temp.Previous;
             }
             Tail = temp;
@@ -339,7 +360,7 @@ namespace DoubleLinkedLists
         {
             if (Head == null)
             {
-                throw new IndexOutOfRangeException("Index out of range list length");
+                throw new Exception("List is empty");
             }
             if (idx == 0)
             {
@@ -349,14 +370,37 @@ namespace DoubleLinkedLists
 
             DNode temp = Head;
             for (int i = 0; i < idx - 1; i++)
+            {
+                if(temp == null) 
+                    throw new Exception("Index out of range list length");
                 temp = temp.Next;
+            }
 
             DNode current = temp;
-
-            for (int i = 0; i < n + 1; i++)
+            while (n > 0)
+            {
+                
+                if (temp.Next == null)
+                {
+                    this.RemoveLastMultiple(n-1);
+                    return;
+                }
+                n--;
                 temp = temp.Next;
-            current.Next = temp;
-            current.Next.Previous = current;
+            }
+            //for (int i = 0; i < n + 1; i++)
+            //{
+            //    if (temp.Next == null)
+            //    {
+            //        this.RemoveLastMultiple(n);
+            //        return;
+            //    }
+            //    temp = temp.Next;
+            //}
+                
+            current.Next = temp.Next;
+            if (temp.Next != null)
+                temp.Next.Previous = current;
         }
 
         public int RemoveFirst(int val)
@@ -394,7 +438,8 @@ namespace DoubleLinkedLists
             {
                 numbersOfRemoveElements++;
                 Head = Head.Next;
-                Head.Previous = null;
+                if(Head != null) 
+                    Head.Previous = null;
             }
             if (Head == null)
             {
@@ -402,15 +447,17 @@ namespace DoubleLinkedLists
             }
             DNode temp = Head;
 
-            while (temp.Next != null)
+            while (temp != null)
             {
-                if (temp.Next.Value == val)
+                while (temp.Next != null && temp.Next.Value == val)
                 {
                     numbersOfRemoveElements++;
                     temp.Next = temp.Next.Next;
-                    temp.Next.Previous = temp;
+                    if(temp.Next != null)
+                        temp.Next.Previous = temp;
+                    //temp = temp.Next;
                 }
-                else { temp = temp.Next; }
+                 temp = temp.Next; 
             }
             return numbersOfRemoveElements;
         }
@@ -644,5 +691,7 @@ namespace DoubleLinkedLists
             }
 
         }
+
+
     }
 }

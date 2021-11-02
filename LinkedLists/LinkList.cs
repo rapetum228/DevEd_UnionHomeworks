@@ -139,7 +139,6 @@ namespace LinkedLists
        
         public void AddFirst(int val)
         {
-
             Node current = new Node { Value = val };
             current.Next = Head;
             Head = current;
