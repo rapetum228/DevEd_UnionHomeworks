@@ -360,11 +360,11 @@ namespace ArrayList.Tests
         }
 
         
-        [TestCase(4, 3, 5)]
         [TestCase(0, 98, 5)]
         [TestCase(1, 3, 1)]
         [TestCase(2, 4, 3)]
         [TestCase(3, 5, 0)]
+        [TestCase(4, 3, 5)]
         [TestCase(5, 3, 5)]
         public void RemoveAllTest(int arrayID, int val, int expectedLength)
         {

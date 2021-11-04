@@ -344,7 +344,7 @@ namespace ArrayList.Tests
                 1 => new ArrList(4),
                 2 => new ArrList(new int[] { 1, 2, 3, 4 }),
                 3 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                4 => new ArrList(new int[] { 3, 3, 1, 2, 3, 4 , 5, 3, 8, 3 }),
+                4 => new ArrList(new int[] { 3, 3, 1, 2, 3, 4, 5, 3, 8, 3 }),
                 5 => new ArrList(new int[] { 3, 1, 2, 3, 3, 4, 5, 3, 3, 3, 8, 3 }),
                 _ => new ArrList(),
             };
