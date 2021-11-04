@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DoubleLinkedLists
 {
-    public class DNode
+    public class DoublyNode
     {
         public int Value { get; set; }
-        public DNode Next { get; set; }
-        public DNode Previous { get; set; }
+        public DoublyNode Next { get; set; }
+        public DoublyNode Previous { get; set; }
     }
 }
