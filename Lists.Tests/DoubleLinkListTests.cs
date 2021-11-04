@@ -20,7 +20,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTest = TestDataList.GetArrayForToArrayAndGetLengthTest(ID);
-            DoubleLinkList toTestList = new DoubleLinkList(toTest);
+            DoublyLinkedList toTestList = new DoublyLinkedList(toTest);
             int[] expected = TestDataList.GetExpectedArrayForToArrayTest(ID);
             //act
             int[] actual = toTestList.ToArray();
@@ -37,7 +37,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTest = TestDataList.GetArrayForToArrayAndGetLengthTest(ID);
-            DoubleLinkList toTestList = new DoubleLinkList(toTest);
+            DoublyLinkedList toTestList = new DoublyLinkedList(toTest);
             //act
             int actual = toTestList.GetLength();
             //assert
@@ -52,7 +52,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTest = TestDataList.GetListForAddLastTest(ID);
-            DoubleLinkList toTestList = new DoubleLinkList(toTest);
+            DoublyLinkedList toTestList = new DoublyLinkedList(toTest);
             int[] expected = TestDataList.GetExpectedArrayForAddLastTest(ID);
             //act
             toTestList.AddLast(value);
@@ -71,9 +71,9 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTest = TestDataList.GetListForAddLastTest(ID);
-            DoubleLinkList toTestList = new DoubleLinkList(toTest);
+            DoublyLinkedList toTestList = new DoublyLinkedList(toTest);
             int[] addArray = TestDataList.GetAddListForAddLastTest(ID);
-            DoubleLinkList add = new DoubleLinkList(addArray);
+            DoublyLinkedList add = new DoublyLinkedList(addArray);
             int[] expected = TestDataList.GetExpectedListForAddLastTest(ID);
             //act
             toTestList.AddLast(add);
@@ -94,7 +94,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForAddFirstTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             int[] expected = TestDataList.GetExpectedArrayForAddFirstTest(ID);
             //act
             toTest.AddFirst(value);
@@ -112,9 +112,9 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForAddFirstTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             int[] addArray = TestDataList.GetAddListForAddFirstTest(ID);
-            DoubleLinkList add = new DoubleLinkList(addArray);
+            DoublyLinkedList add = new DoublyLinkedList(addArray);
             int[] expected = TestDataList.GetExpectedListForAddFirstTest(ID);
 
             //act
@@ -137,7 +137,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForAddAtTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             int[] expected = TestDataList.GetExpectedArrayForAddAtTest(ID);
             //act
             toTest.AddAt(idx, value);
@@ -153,7 +153,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForAddAtTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
 
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException), 
@@ -175,9 +175,9 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForAddAtTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             int[] addArray = TestDataList.GetAddListForAddAtTest(ID);
-            DoubleLinkList add = new DoubleLinkList(addArray);
+            DoublyLinkedList add = new DoublyLinkedList(addArray);
             int[] expected = TestDataList.GetExpectedListForAddAtTest(ID);
             //act
             toTest.AddAt(idx, add);
@@ -194,9 +194,9 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForAddAtTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             int[] addArray = TestDataList.GetAddListForAddAtTest(ID);
-            DoubleLinkList add = new DoubleLinkList(addArray);
+            DoublyLinkedList add = new DoublyLinkedList(addArray);
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
                 () => toTest.AddAt(idx, add));
@@ -211,7 +211,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForSetTest(ID);
-            DoubleLinkList toTest = new(toTestArray);
+            DoublyLinkedList toTest = new(toTestArray);
             int[] expected = TestDataList.GetExpectedListForSetTest(ID);
             //act
             toTest.Set(idx, val);
@@ -228,7 +228,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForSetTest(ID);
-            DoubleLinkList toTest = new(toTestArray);
+            DoublyLinkedList toTest = new(toTestArray);
 
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
@@ -246,7 +246,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtTest(ID);
-            DoubleLinkList toTest = new(toTestArray);
+            DoublyLinkedList toTest = new(toTestArray);
             int[] expected = TestDataList.GetExpectedListForRemoveFirstTest(ID);
             //act
             toTest.RemoveFirst();
@@ -264,7 +264,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtTest(ID);
-            DoubleLinkList toTest = new(toTestArray);
+            DoublyLinkedList toTest = new(toTestArray);
             int[] expected = TestDataList.GetExpectedListForRemoveLastTest(ID);
             //act
             toTest.RemoveLast();
@@ -282,7 +282,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtTest(ID);
-            DoubleLinkList toTest = new(toTestArray);
+            DoublyLinkedList toTest = new(toTestArray);
             int[] expected = TestDataList.GetExpectedListForRemoveAtTest(ID);
             //act
             toTest.RemoveAt(idx);
@@ -299,7 +299,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtTest(ID);
-            DoubleLinkList toTest = new(toTestArray);
+            DoublyLinkedList toTest = new(toTestArray);
 
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
@@ -320,7 +320,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtMultipleTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             int[] expected = TestDataList.GetExpectedListForRemoveFirstMultipleTest(ID);
             //act
             toTest.RemoveFirstMultiple(n);
@@ -335,7 +335,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtMultipleTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             Exception ex = Assert.Throws(typeof(Exception),
                 () => toTest.RemoveFirstMultiple(n));
             //act
@@ -357,7 +357,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtMultipleTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             int[] expected = TestDataList.GetExpectedListForRemoveLastMultipleTest(ID);
             //act
             toTest.RemoveLastMultiple(n);
@@ -372,7 +372,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtMultipleTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             Exception ex = Assert.Throws(typeof(Exception),
                 () => toTest.RemoveLastMultiple(n));
             //act
@@ -393,7 +393,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtMultipleTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
             int[] expected = TestDataList.GetExpectedListForRemoveAtMultipleTest(ID);
             //act
             toTest.RemoveAtMultiple(idx, n);
@@ -410,7 +410,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtMultipleTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(toTestArray);
+            DoublyLinkedList toTest = new DoublyLinkedList(toTestArray);
 
             //act
             Exception ex = Assert.Throws(typeof(Exception),
@@ -429,7 +429,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrayToTest = TestDataList.GetListForRemoveFirstValAndAllTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrayToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrayToTest);
             int[] expected = TestDataList.GetExpectedListForRemoveFirstValTest(ID);
             //act
             int actualIndex = toTest.RemoveFirst(val);
@@ -450,7 +450,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrayToTest = TestDataList.GetListForRemoveFirstValAndAllTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrayToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrayToTest);
             int[] expected = TestDataList.GetExpectedListForRemoveAllTest(ID);
             //act
             int actualRemoveNumbers = toTest.RemoveAll(val);
@@ -471,7 +471,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForGetFirstGetLastGetTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
             //act
             bool actual = toTest.Contains(val);
 
@@ -490,7 +490,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForGetFirstGetLastGetTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
 
             //act
             int actual = toTest.IndexOf(val);
@@ -510,7 +510,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForGetFirstGetLastGetTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
 
             //act
             int actual = toTest.GetFirst();
@@ -525,7 +525,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForGetFirstGetLastGetTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
 
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
@@ -544,7 +544,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForGetFirstGetLastGetTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
 
             //act
             int actual = toTest.GetLast();
@@ -559,7 +559,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForGetFirstGetLastGetTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
 
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
@@ -579,7 +579,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForGetFirstGetLastGetTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
             //act
             int actual = toTest.Get(idx);
             //assert
@@ -593,7 +593,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForGetFirstGetLastGetTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
 
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
@@ -613,7 +613,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForReverseTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
             int[] expected = TestDataList.GetExpectedListForReverseTest(ID);
             //act
             toTest.Reverse();
@@ -630,7 +630,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForMaxMinAndThisIndexesTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
             //act
             int actual = toTest.Max();
             int actualIndex = toTest.IndexOfMax();
@@ -644,7 +644,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForMaxMinAndThisIndexesTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
 
             //act
             Exception exMax = Assert.Throws(typeof(IndexOutOfRangeException),
@@ -665,7 +665,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForMaxMinAndThisIndexesTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
             //act
             int actual = toTest.Min();
             int actualIndex = toTest.IndexOfMin();
@@ -679,7 +679,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForMaxMinAndThisIndexesTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
 
             //act
             Exception exMin = Assert.Throws(typeof(IndexOutOfRangeException),
@@ -703,7 +703,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForSortAndSortDescTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
             int[] expected = TestDataList.GetExpectedListForSortTest(ID);
             //act
             toTest.Sort();
@@ -723,7 +723,7 @@ namespace LinkedLists.Tests
         {
             //arrange
             int[] arrToTest = TestDataList.GetListForSortAndSortDescTest(ID);
-            DoubleLinkList toTest = new DoubleLinkList(arrToTest);
+            DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
             int[] expected = TestDataList.GetExpectedListForSortDescTest(ID);
             //act
             toTest.SortDesc();

@@ -14,17 +14,26 @@ namespace AllHomeworks
     {
         static void Main(string[] args)
         {
+
             /*
-            ArrList aList = new ArrList();
             ArrList aList1 = new ArrList(new int[] { 1, 2, 3 });
-            aList.AddFirst(aList1);
-            aList.AddAt(2, new int[] { 7, 9, 8 });
-            aList.RemoveAll(8);
-            aList.AddLast(aList1);
-            Console.ReadLine();
-            */
+            aList1.AddFirst(228);
+            aList1.AddFirst(228);
+            aList1.AddFirst(228);
+            aList1.AddFirst(228);
+            aList1.AddFirst(new int[] { 1, 2, 3, 4, 5 });
+            aList1.AddLast(-228);
+            aList1.AddLast(-228);
+            aList1.AddLast(-228);
+            aList1.AddLast(-228);*/
+            ArrList aList = new ArrList(new int[] { 1, 2, 3, 4, 5, 1, 2, 3, 3, 4, 1, 2, 3, 4, 5});
+            //{ 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2}
+
+            int[] indexes = aList.IndexesOf(3);
+            //aList.RemoveAll(3);
+
             /*
-            LinkList lList = new LinkList(1);
+            LinkedList lList = new LinkedList(1);
             lList.AddLast(2);
             lList.AddLast(3);
             lList.AddLast(4);
@@ -59,11 +68,11 @@ namespace AllHomeworks
             int[] arr = lList.ToArray();
 
             LinkList lList12 = new LinkList(new int[] { 1, 2, 3, 4, 5 });
+            
             */
-
-            DoubleLinkList dLList = new DoubleLinkList(new int[] { 1, 2, 3 });
-
-            DoubleLinkList dLList1 = new DoubleLinkList(new int[] { -3, -2, -1, 0, -4, -5});
+            DoublyLinkedList dLList = new DoublyLinkedList(new int[] { 1, 2, 3 });
+            DoublyLinkedList clone = dLList.Clone();
+            DoublyLinkedList dLList1 = new DoublyLinkedList(new int[] { -3, -2, -1, 0, -4, -5});
             //-3 0 -1 -2 
             dLList.AddLast(4);
             dLList.AddLast(dLList1);
@@ -73,30 +82,15 @@ namespace AllHomeworks
             dLList.AddAt(5, dLList1);
             dLList.RemoveAt(5);
             dLList.RemoveFirst();
-            dLList.RemoveFirstMultiple(3);
-            dLList.RemoveLast();
-            dLList.RemoveLastMultiple(3);
-            dLList.RemoveAtMultiple(3 , 2); //заебись
-            dLList.RemoveFirst(1);
-            dLList.AddAt(2, 228);
-            dLList.AddAt(4, 228);
-            dLList.RemoveAll(228);
-            dLList.Contains(4);
-            dLList.IndexOf(4);
-            dLList.GetFirst();
-            dLList.GetLast();
-            dLList.Get(2);
-            dLList.Reverse();
-            dLList1.SortDesc();
-            dLList1.Sort();
-            dLList.Sort();
-
-            LinkList lList12 = new LinkList(new int[] { 0, -2, -1, -4, 0, 2, 3, 4, -3});
-            lList12.RemoveLastMultiple(3);
-            lList12.Reverse();
-            lList12.SortDesc();
-            lList12.Sort();
-
+     /*
+            LinkedList lList12 = new LinkedList(new int[] { 1, -2, 5, 3, -1, -4,  0, 2});
+            //lList12.RemoveLastMultiple(3);
+            //lList12.Reverse();
+            //lList12.SortDesc();
+            lList12.SortCocktail();
+            LinkedList ll = lList12.Clone();
+            ll.AddLast(6);*/
+            
         }
     }
 }
