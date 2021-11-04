@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,41 +7,63 @@ using System.Threading.Tasks;
 
 namespace LinkedLists
 {
-    public class LinkList
+    public class LinkedList
     {
-        public Node Head { get; private set; }
-        public Node Tail { get; private set; }
+        private Node _head; //{ get; private set; }
+        private Node _tail; //{ get; private set; }
 
-        public LinkList()
+        public LinkedList()
         {
-            Head = null;
-            Tail = Head;
+            _head = null;
+            _tail = _head;
         }
-        public LinkList(int value)
+        public LinkedList(int value)
         {
 
-            Head = new Node
+            _head = new Node
             {
                 Value = value
             };
-            Tail = Head;
+            _tail = _head;
         }
 
-        public LinkList(LinkList list)
+        public LinkedList(int[] arr)
         {
-            if (list.Head == null)
+            if (arr.Length == 0)
             {
-                Head = null;
-                Tail = Head;
+                _head = null;
+                _tail = _head;
                 return;
             }
-            Head = new Node
+            _head = new Node
             {
-                Value = list.Head.Value,
+                Value = arr[0],
             };
-            Node nodeNewLink = Head;
+            Node temp = _head;
+            for (int i = 1; i < arr.Length; i++)
+            {
+                temp.Next = new Node { Value = arr[i] };
+                temp = temp.Next;
+            }
+            _tail = temp;
             
-            Node temp = list.Head;
+        }
+
+        public LinkedList(LinkedList list)
+        {
+            if (list._head == null)
+            {
+                _head = null;
+                _tail = _head;
+                return;
+            }
+            _head = new Node
+            {
+                Value = list._head.Value,
+            };
+            Node nodeNewLink = _head;
+            
+            Node temp = list._head;
             while (temp.Next != null)
             {
                 temp = temp.Next;
@@ -48,35 +71,35 @@ namespace LinkedLists
                 nodeNewLink.Next = current;
                 nodeNewLink = nodeNewLink.Next;
             }
-            Tail = nodeNewLink;
+            _tail = nodeNewLink;
         }
 
-        public LinkList(int[] arr)
+        public LinkedList Clone()
         {
-            if (arr.Length == 0)
+            if (_head == null)
             {
-                Head = null;
-                Tail = Head;
-                return;
+                return new LinkedList();
             }
-            Head = new Node
+            LinkedList copyInputList = new LinkedList(_head.Value);
+
+            Node nodeNewList = copyInputList._head;
+            Node temp = _head;
+
+            while (temp.Next != null)
             {
-                Value = arr[0],
-            };
-            Node temp = Head;
-            for (int i = 1; i < arr.Length; i++)
-            {
-                temp.Next = new Node { Value = arr[i] };
                 temp = temp.Next;
+                nodeNewList.Next = new Node { Value = temp.Value };
+                nodeNewList = nodeNewList.Next;
             }
-            Tail = temp;
-            
+            copyInputList._tail = nodeNewList;
+
+            return copyInputList;
         }
 
         public int GetLength()
         {
             int lengthList = 0;
-            Node temp = Head;
+            Node temp = _head;
             while (temp != null)
             {
                 lengthList++;
@@ -88,7 +111,7 @@ namespace LinkedLists
         public int[] ToArray()
         {
             int[] arr = new int[this.GetLength()];
-            Node temp = Head;
+            Node temp = _head;
             for (int i = 0; i < this.GetLength(); i++)
             {
                 arr[i] = temp.Value;
@@ -101,38 +124,38 @@ namespace LinkedLists
         {
 
             Node current = new Node { Value = val};
-            if (Head != null)
+            if (_head != null)
             {
-                Tail.Next = current;
-                Tail = current;
+                _tail.Next = current;
+                _tail = current;
             }
             else
             {
-                Head = current;
-                Tail = current;
+                _head = current;
+                _tail = current;
             }
             
             
         }
         
-        public void AddLast(LinkList list)
+        public void AddLast(LinkedList list)
         {
-            if (list.Head == null)
+            if (list._head == null)
             {
                 return;
             }
            
-            LinkList temp = new LinkList(list);
+            LinkedList temp = list.Clone();
             
-            if (Head != null)
+            if (_head != null)
             {
-                Tail.Next = temp.Head;
-                Tail = temp.Tail;
+                _tail.Next = temp._head;
+                _tail = temp._tail;
             }
             else
             {
-                Head = temp.Head;
-                Tail = temp.Tail;
+                _head = temp._head;
+                _tail = temp._tail;
             }
            
         }
@@ -140,24 +163,24 @@ namespace LinkedLists
         public void AddFirst(int val)
         {
             Node current = new Node { Value = val };
-            current.Next = Head;
-            Head = current;
+            current.Next = _head;
+            _head = current;
         }
 
-        public void AddFirst(LinkList list)
+        public void AddFirst(LinkedList list)
         {
-            if (list.Head == null)
+            if (list._head == null)
             {
                 return;
             }
-            LinkList temp = new LinkList(list);
-            temp.Tail.Next = Head;
-            Head = temp.Head;
+            LinkedList temp = list.Clone();
+            temp._tail.Next = _head;
+            _head = temp._head;
         }
 
         public void AddAt(int idx, int val)
         {
-            if (idx < 0 || Head == null)
+            if (idx < 0 || _head == null)
             {
                 throw new IndexOutOfRangeException("Index out of range list length");
             }
@@ -167,7 +190,7 @@ namespace LinkedLists
                 return;
             }
             Node current = new Node { Value = val };
-            Node temp = Head;
+            Node temp = _head;
             for (int i = 0; i < idx-1; i++)
             {
                 if (temp == null && idx != 0)
@@ -181,9 +204,9 @@ namespace LinkedLists
 
         }
 
-        public void AddAt(int idx, LinkList list)
+        public void AddAt(int idx, LinkedList list)
         {
-            if (idx < 0 || Head == null)
+            if (idx < 0 || _head == null)
             {
                 throw new IndexOutOfRangeException("Index out of range list length");
             }
@@ -192,9 +215,9 @@ namespace LinkedLists
                 this.AddFirst(list);
                 return;
             }
-            LinkList newList = new LinkList(list);
+            LinkedList newList = list.Clone();
 
-            Node temp = Head;
+            Node temp = _head;
             for (int i = 0; i < idx - 1; i++)
             {
                 if (temp == null)
@@ -203,16 +226,16 @@ namespace LinkedLists
                 }
                 temp = temp.Next;
             }
-            newList.Tail.Next = temp.Next;
-            temp.Next = newList.Head;
+            newList._tail.Next = temp.Next;
+            temp.Next = newList._head;
         }
 
         public void Set(int idx, int val)
         {
-            if (idx < 0 || Head == null)
+            if (idx < 0 || _head == null)
                 throw new IndexOutOfRangeException("Index out of range list length");
 
-            Node temp = Head;
+            Node temp = _head;
             for (int i = 0; i < idx; i++)
             {
                 if (temp == null)
@@ -226,32 +249,32 @@ namespace LinkedLists
 
         public void RemoveFirst()
         {
-            if (Head == null)
+            if (_head == null)
             {
                 return;
             }
            // LengthList--;
-            Head = Head.Next;
+            _head = _head.Next;
         }
         public void RemoveLast()
         {
-            if (Head == null || Head.Next == null)
+            if (_head == null || _head.Next == null)
             {
-                Head = null;
+                _head = null;
                 return;
             }
             //LengthList--;
-            Node temp = Head;
+            Node temp = _head;
             while (temp.Next.Next != null)
                 temp = temp.Next;
 
             temp.Next = null;
-            Tail = temp;
+            _tail = temp;
         }
 
         public void RemoveAt(int idx)
         {
-            if (idx < 0 || Head == null )
+            if (idx < 0 || _head == null )
             {
                 throw new IndexOutOfRangeException("Index out of range list length");
             }
@@ -261,7 +284,7 @@ namespace LinkedLists
                 return;
             }
             
-            Node temp = Head;
+            Node temp = _head;
             for (int i = 0; i < idx - 1; i++)
             {
                 if (temp == null)
@@ -275,51 +298,51 @@ namespace LinkedLists
 
         public void RemoveFirstMultiple(int n)
         {
-            if (Head == null)
+            if (_head == null)
             {
-                Head = null;
-                Tail = Head;
+                _head = null;
+                _tail = _head;
                 return;
             }
 
             for (int i = 0; i < n; i++)
             {
-                Head = Head.Next;
-                if (Head == null)
+                _head = _head.Next;
+                if (_head == null)
                     return;
             }
         }
 
         public void RemoveLastMultiple(int n)
         {
-            Node temp = Head;
-            Node toLastN = Head;
+            Node temp = _head;
+            Node toLastN = _head;
 
             for (int i = 0; i < n; i++)
             {
                 if (toLastN == null)
                 {
-                    Head = null;
-                    Tail = Head;
+                    _head = null;
+                    _tail = _head;
                     return;
                 }
                 toLastN = toLastN.Next;
             }
 
-            while (toLastN != Tail)
+            while (toLastN != _tail)
             {
                 toLastN = toLastN.Next;
                 temp = temp.Next;
             }
 
-            Tail = temp;
+            _tail = temp;
             temp.Next = null;
             
         }
 
         public void RemoveAtMultiple(int idx, int n)
         {
-            if (idx < 0 || Head == null)
+            if (idx < 0 || _head == null)
             {
                 throw new IndexOutOfRangeException("Index out of range list length");
             }
@@ -329,7 +352,7 @@ namespace LinkedLists
                 return;
             }
 
-            Node temp = Head;
+            Node temp = _head;
             for (int i = 0; i < idx-1 ; i++)
             {
                 if (temp == null)
@@ -352,15 +375,15 @@ namespace LinkedLists
 
         public int RemoveFirst(int val)
         {
-            if (Head == null)
+            if (_head == null)
                 return -1;
-            else if (Head.Value == val)
+            else if (_head.Value == val)
             {
-                Head = Head.Next;
+                _head = _head.Next;
                 return 0;
             }
 
-            Node temp = Head;
+            Node temp = _head;
             int index = 0;
             while (temp.Next != null && temp.Next.Value != val)
             {
@@ -379,16 +402,16 @@ namespace LinkedLists
         public int RemoveAll(int val)
         {
             int numbersOfRemoveElements = 0;
-            while (Head != null &&  Head.Value == val  )
+            while (_head != null &&  _head.Value == val  )
             {
                 numbersOfRemoveElements++;
-                Head = Head.Next;
+                _head = _head.Next;
             }
-            if (Head == null)
+            if (_head == null)
             {
                 return numbersOfRemoveElements;
             }
-            Node temp = Head;
+            Node temp = _head;
 
             while (temp.Next != null)
             {
@@ -405,10 +428,10 @@ namespace LinkedLists
 
         public bool Contains(int val)
         {
-            if (Head == null)
+            if (_head == null)
                 return false;
             
-            Node temp = Head;
+            Node temp = _head;
 
             while (temp.Value != val)
             {
@@ -422,11 +445,11 @@ namespace LinkedLists
 
         public int IndexOf(int val)
         {
-            if (Head == null)
+            if (_head == null)
                 return -1;
-            else if (Head.Value == val)
+            else if (_head.Value == val)
                 return 0;
-            Node temp = Head;
+            Node temp = _head;
             int index = 0;
             while (temp.Value != val)
             {
@@ -441,30 +464,30 @@ namespace LinkedLists
 
         public int GetFirst()
         {
-            if (Head == null)
+            if (_head == null)
             {
                 throw new IndexOutOfRangeException("List is empty");
             }
-            return Head.Value;
+            return _head.Value;
         }
 
         public int GetLast()
         {
-            if (Head == null)
+            if (_head == null)
             {
                 throw new IndexOutOfRangeException("List is empty");
             }
-            return Tail.Value;
+            return _tail.Value;
         }
 
         public int Get(int idx)
         {
-            if (idx < 0 || Head == null)
+            if (idx < 0 || _head == null)
             {
                 throw new IndexOutOfRangeException("List is empty");
             }
             
-            Node temp = Head;
+            Node temp = _head;
             for (int i = 0; i < idx; i++)
             {
                 temp = temp.Next;
@@ -478,12 +501,12 @@ namespace LinkedLists
 
         public void Reverse()//кажись всё..
         {
-            if (Head == null)
+            if (_head == null)
             {
                 return;
             }
-            Node tempHead = Head;
-            Node tempTail = Tail;
+            Node tempHead = _head;
+            Node tempTail = _tail;
             while (tempHead != tempTail)
             {
                 int copyTempHead = tempHead.Value;
@@ -505,13 +528,13 @@ namespace LinkedLists
 
         public int Max()
         {
-            if (Head == null)
+            if (_head == null)
             {
                 throw new IndexOutOfRangeException("List is empty");
             }
 
-            Node temp = Head;
-            int max = Head.Value;
+            Node temp = _head;
+            int max = _head.Value;
             while (temp.Next != null)
             {
                 temp = temp.Next;
@@ -525,12 +548,12 @@ namespace LinkedLists
 
         public int Min()
         {
-            if (Head == null)
+            if (_head == null)
             {
                 throw new IndexOutOfRangeException("List is empty");
             }
-            Node temp = Head;
-            int min = Head.Value;
+            Node temp = _head;
+            int min = _head.Value;
             while (temp.Next != null)
             {
                 temp = temp.Next;
@@ -544,12 +567,12 @@ namespace LinkedLists
 
         public int IndexOfMax()
         {
-            if (Head == null)
+            if (_head == null)
             {
                 throw new IndexOutOfRangeException("List is empty");
             }
-            Node temp = Head;
-            int max = Head.Value;
+            Node temp = _head;
+            int max = _head.Value;
             int indexOfMax = 0;
             int index = 0;
             while (temp.Next != null)
@@ -567,12 +590,12 @@ namespace LinkedLists
 
         public int IndexOfMin()
         {
-            if (Head == null)
+            if (_head == null)
             {
                 throw new IndexOutOfRangeException("List is empty");
             }
-            Node temp = Head;
-            int min = Head.Value;
+            Node temp = _head;
+            int min = _head.Value;
             int indexOfMin = 0;
             int index = 0;
             while (temp.Next != null)
@@ -590,14 +613,14 @@ namespace LinkedLists
 
         public void Sort()
         {
-            if (Head == null)
+            if (_head == null)
             {
                 return;
             }
-            Node temp = Head;
+            Node temp = _head;
             while (temp != null)
             {
-                Node copyHead = Head;
+                Node copyHead = _head;
                 
                 while (copyHead != temp)
                 {
@@ -617,14 +640,14 @@ namespace LinkedLists
 
         public void SortDesc()
         {
-            if (Head == null)
+            if (_head == null)
             {
                 return;
             }
-            Node temp = Head;
+            Node temp = _head;
             while (temp != null)
             {
-                Node copyHead = Head;
+                Node copyHead = _head;
 
                 while (copyHead != temp)
                 {
@@ -642,12 +665,42 @@ namespace LinkedLists
             }
         }
 
-        public override bool Equals(object obj)
+        public void SortCocktail()
         {
-            return obj is LinkList list &&
-                   EqualityComparer<Node>.Default.Equals(Head, list.Head) &&
-                   EqualityComparer<Node>.Default.Equals(Tail, list.Tail);// &&
-                   //LengthList == list.LengthList;
+            if (_head == null)
+            {
+                return;
+            }
+            Node temp = _head;
+
+            Node fakeTail = null;
+            bool flagSort = true;
+            while (flagSort)
+            {
+                Node copyHead = temp;
+                flagSort = false;
+                while (copyHead.Next != fakeTail)
+                {
+                    if (copyHead.Next.Value < temp.Value)
+                    {
+                        int copyTempValue = temp.Value;
+                        temp.Value = copyHead.Next.Value;
+                        copyHead.Next.Value = copyTempValue;
+                    }
+                    if (copyHead.Value > copyHead.Next.Value)
+                    {
+                        flagSort = true;
+                        int copyTempValue = copyHead.Value;
+                        copyHead.Value = copyHead.Next.Value;
+                        copyHead.Next.Value = copyTempValue;
+                    }
+                    
+                    copyHead = copyHead.Next;
+
+                }
+                fakeTail = copyHead;
+                temp = temp.Next;
+            }
         }
     }
 }
