@@ -30,7 +30,7 @@ namespace AllHomeworks
             //{ 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2}
 
             int[] indexes = aList.IndexesOf(3);
-            //aList.RemoveAll(3);
+            aList.RemoveAll(3);
 
             /*
             LinkedList lList = new LinkedList(1);

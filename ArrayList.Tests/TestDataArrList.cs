@@ -344,6 +344,8 @@ namespace ArrayList.Tests
                 1 => new ArrList(4),
                 2 => new ArrList(new int[] { 1, 2, 3, 4 }),
                 3 => new ArrList(new int[] { 5, 5, 5, 5 }),
+                4 => new ArrList(new int[] { 3, 3, 1, 2, 3, 4 , 5, 3, 8, 3 }),
+                5 => new ArrList(new int[] { 3, 1, 2, 3, 3, 4, 5, 3, 3, 3, 8, 3 }),
                 _ => new ArrList(),
             };
         }
@@ -356,6 +358,8 @@ namespace ArrayList.Tests
                 1 => new int[] { 4 },
                 2 => new int[] { 1, 2, 3 },
                 3 => new int[] { },
+                4 => new int[] { 1, 2, 4, 5, 8 },
+                5 => new int[] { 1, 2, 4, 5, 8 },
                 _ => new int[] { },
             };
         }

@@ -277,13 +277,28 @@ namespace ArrayListLibrary
 
         public int RemoveAll(int val)
         {
-            int numberOfRemoveElements = 0;
             
             int iterator = this.IndexOf(val);
-            int j = 1;
+            if (iterator == -1)
+                return 0;
+
+            int j = 1; 
+            int numberOfRemoveElements = 1;
+            while (_arr[iterator+1] == val)
+            {
+                j++;
+                iterator++;
+                numberOfRemoveElements++;
+            }
+            for (int i = iterator-j+1; i < iterator; i++)
+            {
+                _arr[i] = _arr[i + j];
+            }
+           
+
             while (iterator != -1)
             {
-                for (int i = iterator; i+j <= _lengthArr; i++)
+                for (int i = iterator; i+j < _lengthArr; i++)
                 {
                     iterator++;
                     _arr[i] = _arr[i + j];
@@ -297,15 +312,15 @@ namespace ArrayListLibrary
                         break;
                     }
                 }
-                if (iterator + j > _lengthArr)
+                if (iterator + j>= _lengthArr)
                 {
-                    _lengthArr = _lengthArr - numberOfRemoveElements -1;
-                    for (int i = _lengthArr; i < _lengthArr+numberOfRemoveElements+1; i++)
+                    _lengthArr = _lengthArr - numberOfRemoveElements ;
+                    for (int i = _lengthArr; i < _lengthArr+numberOfRemoveElements; i++)
                         _arr[i] = 0;
                     break;
                 }
             }
-            return numberOfRemoveElements+1;
+            return numberOfRemoveElements;
         }
 
         public bool Contains(int val)
