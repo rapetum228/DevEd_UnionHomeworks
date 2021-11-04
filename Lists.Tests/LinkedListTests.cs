@@ -304,7 +304,10 @@ namespace LinkedLists.Tests
         [TestCase(0, 3)]
         [TestCase(1, 4)]
         [TestCase(2, 4)]
-        [TestCase(23, 1)]
+        [TestCase(3, 1)]
+        [TestCase(4, 0)]
+        [TestCase(5, 6)]
+        [TestCase(6, 2)]
         public void RemoveFirstMultipleTest(int ID, int n)
         {
             //arrange
@@ -318,12 +321,32 @@ namespace LinkedLists.Tests
             //assert
             Assert.AreEqual(expected, actual);
         }
+        [TestCase(23, 1, "List is empty")]
+        public void RemoveFirstMultipleNegativeTest(int ID, int n,
+            string expectedMessage)
+        {
+            //arrange
+            int[] toTestArray = TestDataList.GetListForRemoveFirstLastAtMultipleTest(ID);
+            LinkedList toTest = new(toTestArray);
 
-        
+            //act
+            Exception exRemoveFirstMultiple = Assert.Throws(typeof(Exception),
+                () => toTest.RemoveFirstMultiple(n));
+            Exception exRemoveLastMultiple = Assert.Throws(typeof(Exception),
+                () => toTest.RemoveLastMultiple(n));
+
+            //assert
+            Assert.AreEqual(expectedMessage, exRemoveFirstMultiple.Message);
+            Assert.AreEqual(expectedMessage, exRemoveLastMultiple.Message);
+        }
+
         [TestCase(0, 3)]
         [TestCase(1, 4)]
         [TestCase(2, 2)]
-        [TestCase(23, 1)]
+        [TestCase(3, 1)]
+        [TestCase(4, 0)]
+        [TestCase(5, 6)]
+        [TestCase(6, 2)]
         public void RemoveLastMultipleTest(int ID, int n)
         {
             //arrange
@@ -342,6 +365,10 @@ namespace LinkedLists.Tests
         [TestCase(0, 2, 3)]
         [TestCase(1, 0, 4)]
         [TestCase(2, 2, 5)]
+        [TestCase(3, 2, 0)]
+        [TestCase(4, 5, 1)]
+        [TestCase(5, 0, 3)]
+        [TestCase(6, 4, 3)]
         public void RemoveAtMultipleTest(int ID, int idx, int n)
         {
             //arrange

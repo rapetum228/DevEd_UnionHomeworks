@@ -253,7 +253,7 @@ namespace LinkedLists
             {
                 return;
             }
-           // LengthList--;
+
             _head = _head.Next;
         }
         public void RemoveLast()
@@ -300,9 +300,7 @@ namespace LinkedLists
         {
             if (_head == null)
             {
-                _head = null;
-                _tail = _head;
-                return;
+                throw new Exception("List is empty");
             }
 
             for (int i = 0; i < n; i++)
@@ -315,6 +313,11 @@ namespace LinkedLists
 
         public void RemoveLastMultiple(int n)
         {
+            if (_head == null)
+            {
+                throw new Exception("List is empty");
+            }
+
             Node temp = _head;
             Node toLastN = _head;
 
