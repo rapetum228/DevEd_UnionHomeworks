@@ -22,20 +22,31 @@ namespace ArrayListLibrary
 
         public ArrList(int[] inputArray)
         {
+            int arrLength = 10;
             _lengthArr = inputArray.Length;
-            _arr = new int[10];
+            while (_lengthArr > arrLength)
+            {
+                arrLength = (arrLength * 3) / 2;
+            }
+            _arr = new int[arrLength];
             for (int i = 0; i < _lengthArr; i++)
                 _arr[i] = inputArray[i];
         }
 
         public ArrList(ArrList inputArrList)
         {
+            int arrLength = 10;
             _lengthArr = inputArrList.GetLength();
-            _arr = new int[10];
+            while (_lengthArr > arrLength)
+            {
+                arrLength = (arrLength * 3) / 2;
+            }
+            _arr = new int[arrLength];
             for (int i = 0; i < _lengthArr; i++)
                 _arr[i] = inputArrList.Get(i);
         }
 
+        
         public int GetLength()
         {
             return _lengthArr;
@@ -51,29 +62,45 @@ namespace ArrayListLibrary
             return newArr;
         }
 
+        private bool ChangeLengthInserArray( )
+        {
+            if (_lengthArr >= _arr.Length)
+            {
+                int newArrLength = (_arr.Length * 3) / 2;
+                while (_lengthArr > newArrLength)
+                    newArrLength = (newArrLength * 3) / 2;
+                int[] newArr = new int[newArrLength];
+                for (int i = 0; i < _arr.Length; i++)
+                {
+                    newArr[i] = _arr[i];
+                }
+                _arr = newArr;
+                return true;
+            }
+            else if(_lengthArr <= (_arr.Length * 2) / 3 && _arr.Length > 10)
+            {
+                int newArrLength = (_arr.Length * 2) / 3;
+                while (_lengthArr < newArrLength)
+                    newArrLength = (newArrLength * 2) / 3;
+                int[] newArr = new int[newArrLength];
+                for (int i = 0; i < _arr.Length; i++)
+                {
+                    newArr[i] = _arr[i];
+                }
+                _arr = newArr;
+                return true;
+            }
+            return false;
+        }
+
         public void AddFirst(int val)
         {
             _lengthArr++;
-
-            if (_lengthArr >= _arr.Length) 
-            {
-                int newArrLength = (_arr.Length * 3) / 2;
-                while (_lengthArr >= newArrLength)
-                    newArrLength = (newArrLength * 3) / 2;
-                int[] newArr = new int[newArrLength];
-                for (int i = 0; i < _lengthArr - 1; i++)
-                    newArr[_lengthArr - i - 1] = _arr[_lengthArr - i - 2];
-
-                newArr[0] = val;
-                _arr = newArr;
-            }
-            else
-            {
-                for (int i = 0; i < _lengthArr - 1; i++)
-                    _arr[_lengthArr - i - 1] = _arr[_lengthArr - i - 2];
-
-                _arr[0] = val;
-            } 
+            this.ChangeLengthInserArray();
+ 
+            for (int i = _lengthArr-1; i > 0 ; i--)
+                _arr[i] = _arr[i - 1];
+            _arr[0] = val;
 
         }
 
@@ -81,31 +108,12 @@ namespace ArrayListLibrary
         public void AddFirst(int[] arr)
         {
             _lengthArr += arr.Length;
-            
-            if (_lengthArr >= _arr.Length)
-            {
-                int newArrLength = (_arr.Length * 3) / 2;
-                while (_lengthArr >= newArrLength)
-                    newArrLength = (newArrLength * 3) / 2;
-                
-                int[] newArr = new int[newArrLength];
+            this.ChangeLengthInserArray();
+            for (int i = _lengthArr - 1; i > arr.Length - 1; i--)
+                _arr[i] = _arr[i - arr.Length];
 
-                for (int i = _lengthArr - 1; i > arr.Length - 1; i--)
-                    newArr[i] = _arr[i - arr.Length];
-
-                for (int i = 0; i < arr.Length; i++)
-                    newArr[i] = arr[i];
-
-                _arr = newArr;
-            }
-            else
-            {
-                for (int i = _lengthArr-1; i > arr.Length-1; i--)
-                    _arr[i] = _arr[i - arr.Length];
-
-                for (int i = 0; i < arr.Length; i++)
-                    _arr[i] = arr[i];
-            }
+            for (int i = 0; i < arr.Length; i++)
+                _arr[i] = arr[i];
         }
 
         public void AddFirst(ArrList list)
@@ -116,46 +124,16 @@ namespace ArrayListLibrary
         public void AddLast(int val)
         {
             _lengthArr++;
-            if (_lengthArr >= _arr.Length)
-            {
-                int newArrLength = (_arr.Length * 3) / 2;
-                while (_lengthArr >= newArrLength)
-                    newArrLength = (newArrLength * 3) / 2;
-                int[] newArr = new int[newArrLength];
-                for (int i = 0; i < _arr.Length; i++)
-                    newArr[i] = _arr[i];
-                newArr[_lengthArr-1] = val;
-                _arr = newArr;
-            }                
-            else
-                _arr[_lengthArr - 1] = val;
+            this.ChangeLengthInserArray();
+            _arr[_lengthArr - 1] = val;
         }
 
         public void AddLast(int[] arr)
         {
             _lengthArr += arr.Length;
-
-            if (_lengthArr >= _arr.Length)
-            {
-                int newArrLength = (_arr.Length * 3) / 2;
-                while (_lengthArr >= newArrLength)
-                    newArrLength = (newArrLength * 3) / 2;
-
-                int[] newArr = new int[newArrLength];
-
-                for (int i = _lengthArr - arr.Length; i < _lengthArr; i++)
-                    newArr[i] = arr[i - (_lengthArr - arr.Length)];
-
-                for (int i = 0; i < _lengthArr - arr.Length; i++)
-                    newArr[i] = _arr[i];
-
-                _arr = newArr;
-            }
-            else
-            {
-                for (int i = _lengthArr - arr.Length; i < _lengthArr; i++)
-                    _arr[i] = arr[i - (_lengthArr - arr.Length)];
-            }
+            this.ChangeLengthInserArray();
+            for (int i = _lengthArr - arr.Length; i < _lengthArr; i++)
+                _arr[i] = arr[i - (_lengthArr - arr.Length)];
         }
 
         public void AddLast(ArrList list)
@@ -170,26 +148,10 @@ namespace ArrayListLibrary
                 throw new IndexOutOfRangeException("Entry index out of range array list");
             }
             _lengthArr++;
-            if (_lengthArr >= _arr.Length)
-            {
-                int newArrLength = (_arr.Length * 3) / 2;
-                while (_lengthArr >= newArrLength)
-                    newArrLength = (newArrLength * 3) / 2;
-                int[] newArr = new int[newArrLength];
-
-                for (int i = _lengthArr; i > idx; i--)
-                    newArr[i] = _arr[i-1];
-                for (int i = 0; i < idx; i++)
-                    newArr[i] = _arr[i];
-                newArr[idx] = val;
-                _arr = newArr;
-            }
-            else
-            {
-                for (int i = _lengthArr; i > idx; i--)
-                    _arr[i] = _arr[i - 1];
-                _arr[idx] = val;
-            } 
+            this.ChangeLengthInserArray();
+            for (int i = _lengthArr; i > idx; i--)
+                _arr[i] = _arr[i - 1];
+            _arr[idx] = val;
         }
 
         public void AddAt(int idx, int[] arr)
@@ -199,30 +161,11 @@ namespace ArrayListLibrary
                 throw new IndexOutOfRangeException("Entry index out of range array list");
             }
             _lengthArr += arr.Length;
-            if (_lengthArr >= _arr.Length)
-            {
-                int newArrLength = (_arr.Length * 3) / 2;
-                while (_lengthArr >= newArrLength)
-                    newArrLength = (newArrLength * 3) / 2;
-
-                int[] newArr = new int[newArrLength];
-                for (int i = 0; i < idx; i++)
-                    newArr[i] = _arr[i];
-
-                for (int i = _lengthArr - 1; i >= idx + arr.Length; i--)
-                    newArr[i] = _arr[i - arr.Length];
-
-                for (int i = idx; i < idx + arr.Length; i++)
-                    newArr[i] = arr[i - idx];
-                _arr = newArr;
-            }
-            else
-            {
-                for (int i = _lengthArr-1; i >= idx + arr.Length; i--)
-                    _arr[i] = _arr[i - arr.Length ];
-                for (int i = idx; i < idx + arr.Length; i++)
-                    _arr[i] = arr[i - idx];
-            }
+            this.ChangeLengthInserArray();
+            for (int i = _lengthArr - 1; i >= idx + arr.Length; i--)
+                _arr[i] = _arr[i - arr.Length];
+            for (int i = idx; i < idx + arr.Length; i++)
+                _arr[i] = arr[i - idx];
         }
 
         public void AddAt(int idx, ArrList list)
@@ -243,34 +186,17 @@ namespace ArrayListLibrary
         public void RemoveFirst()
         {
             _lengthArr--;
-            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
-            {
-                int[] newArr = new int[(_arr.Length * 2) / 3];
-                for (int i = 0; i < _lengthArr; i++)
-                    newArr[i] = _arr[i + 1];
-                newArr[_lengthArr] = 0;
-                _arr = newArr;
-            }
-            else
-            {
-                for (int i = 0; i < _lengthArr; i++)
-                    _arr[i] = _arr[i + 1];
-                _arr[_lengthArr] = 0;
-            }
+            this.ChangeLengthInserArray();
+            for (int i = 0; i < _lengthArr; i++)
+                _arr[i] = _arr[i + 1];
+            _arr[_lengthArr] = 0;
         }
 
         public void RemoveLast()
         {
             _lengthArr--;
-            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
-            {
-                int[] newArr = new int[(_arr.Length * 2) / 3];
-                for (int i = 0; i < _lengthArr; i++)
-                    newArr[i] = _arr[i];
-                _arr = newArr;
-            }
-            else
-                _arr[_lengthArr] = 0;
+            this.ChangeLengthInserArray();
+            _arr[_lengthArr] = 0;
         }
 
         public void RemoveAt(int idx)
@@ -280,22 +206,11 @@ namespace ArrayListLibrary
                 throw new IndexOutOfRangeException("Entry index out of range array list");
             }
             _lengthArr--;
-            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
-            {
-                int[] newArr = new int[(_arr.Length * 2) / 3];
-                for (int i = 0; i < idx; i++)
-                    newArr[i] = _arr[i];
-                for (int i = idx; i < _lengthArr; i++)
-                    newArr[i] = _arr[i+1];
-                _arr = newArr;
-            }
-            else 
-            {
-                for (int i = idx; i < _lengthArr; i++)
-                    _arr[i] = _arr[i + 1];
-                _arr[_lengthArr] = 0;
-            }
-                
+            this.ChangeLengthInserArray();
+            for (int i = idx; i < _lengthArr; i++)
+                _arr[i] = _arr[i + 1];
+            _arr[_lengthArr] = 0;
+
         }
 
         public void RemoveFirstMultiple(int n)
@@ -308,19 +223,9 @@ namespace ArrayListLibrary
                 return;
             }
             _lengthArr -= n;
-
-            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10) 
-            {
-                int[] newArr = new int[(_arr.Length * 2) / 3];
-                for (int i = 0; i < _lengthArr; i++)
-                    newArr[i] = _arr[i + n];
-                _arr = newArr;
-            }
-            else
-            {
-                for (int i = 0; i < _lengthArr; i++)
-                    _arr[i] = _arr[i+n];
-            }
+            this.ChangeLengthInserArray();
+            for (int i = 0; i < _lengthArr; i++)
+                _arr[i] = _arr[i + n];
         }
 
         public void RemoveLastMultiple(int n)
@@ -334,19 +239,9 @@ namespace ArrayListLibrary
             }
 
             _lengthArr -= n;
-
-            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
-            {
-                int[] newArr = new int[(_arr.Length * 2) / 3];
-                for (int i = 0; i < _lengthArr; i++)
-                    newArr[i] = _arr[i];
-                _arr = newArr;
-            }
-            else
-            {
-                for (int i = _lengthArr; i < _lengthArr + n; i++)
-                    _arr[i] = 0;
-            }
+            this.ChangeLengthInserArray();
+            for (int i = _lengthArr; i < _lengthArr + n; i++)
+                _arr[i] = 0;
         }
 
         public void RemoveAtMultiple(int idx, int n)
@@ -362,110 +257,55 @@ namespace ArrayListLibrary
             }
 
             _lengthArr -= n;
+            this.ChangeLengthInserArray();
 
-            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
+            for (int i = idx; i < _lengthArr; i++)
             {
-                int[] newArr = new int[(_arr.Length * 2) / 3];
-
-                for (int i = 0; i < idx; i++)
-                    newArr[i] = _arr[i];
-                
-                for (int i = idx; i < _lengthArr; i++)
-                    newArr[i] = _arr[i + n];
-                
-                _arr = newArr;
-            }
-            else
-            {
-                for (int i = idx; i < _lengthArr; i++)
-                {
-                    _arr[i] = _arr[i + n];
-                    _arr[i + n] = 0;
-                }
+                _arr[i] = _arr[i + n];
+                _arr[i + n] = 0;
             }
 
         }
 
         public void RemoveFirst(int val)
         {
-            /*
-            if (_lengthArr < (_arr.Length * 2) / 3)
-            {
-                int[] newArr = new int[(_arr.Length * 2) / 3];
-                for (int i = 0; i < _lengthArr; i++)
-                {
-                    newArr[i] = _arr[i];
-                    if (_arr[i] == val)
-                    {
-                        for (int j = i; j < _lengthArr; j++)
-                            newArr[j] = _arr[j + 1];
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < _lengthArr; i++)
-                {
-                    if (_arr[i] == val)
-                    {
-                        for (int j = i; j < _lengthArr; j++)
-                            _arr[j] = _arr[j + 1];
-                        break;
-                    }
-                }
-                _arr[_lengthArr] = 0;
-            }*/
+            int indexRemoveElemnt = this.IndexOf(val);
+            this.RemoveAt(indexRemoveElemnt);
 
-            for (int i = 0; i < _lengthArr; i++)
-            {
-                if (_arr[i] == val)
-                {
-                    _lengthArr--;
-                    for (int j = i; j < _lengthArr; j++)
-                        _arr[j] = _arr[j + 1];
-                    break;
-                }
-            }
-
-            _arr[_lengthArr + 1] = 0;
-
-            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
-            {
-                int[] newArr = new int[(_arr.Length * 2) / 3];
-                for (int i = 0; i < _lengthArr; i++)
-                    newArr[i] = _arr[i];
-                _arr = newArr;
-            }
         }
 
 
         public int RemoveAll(int val)
         {
             int numberOfRemoveElements = 0;
-
-            for (int i = 0; i < _lengthArr; i++)
+            
+            int iterator = this.IndexOf(val);
+            int j = 1;
+            while (iterator != -1)
             {
-                if (_arr[i] == val)
+                for (int i = iterator; i+j <= _lengthArr; i++)
                 {
-                    numberOfRemoveElements ++;
-                    _lengthArr--;
-                    for (int j = i; j < _lengthArr; j++)
-                        _arr[j] = _arr[j + 1];
-                    i--;
+                    iterator++;
+                    _arr[i] = _arr[i + j];
+                    if (i + j + 1 <= _arr.Length-1 && _arr[i+j+1] == val)
+                    {
+                        while (i + j + 1 <= _lengthArr - 1 && _arr[i + j + 1] == val)
+                        {
+                            j++; numberOfRemoveElements++;
+                        }
+                        iterator = i+1;
+                        break;
+                    }
+                }
+                if (iterator + j > _lengthArr)
+                {
+                    _lengthArr = _lengthArr - numberOfRemoveElements -1;
+                    for (int i = _lengthArr; i < _lengthArr+numberOfRemoveElements+1; i++)
+                        _arr[i] = 0;
+                    break;
                 }
             }
-            for (int i = _lengthArr; i < _lengthArr + numberOfRemoveElements; i++)
-                _arr[i] = 0;
-
-            if (_lengthArr < (_arr.Length * 2) / 3 && (_arr.Length * 2) / 3 >= 10)
-            {
-                int[] newArr = new int[(_arr.Length * 2) / 3];
-                for (int i = 0; i < _lengthArr; i++)
-                    newArr[i] = _arr[i];
-                _arr = newArr;
-            }
-            return numberOfRemoveElements;
+            return numberOfRemoveElements+1;
         }
 
         public bool Contains(int val)
@@ -494,6 +334,21 @@ namespace ArrayListLibrary
                 }
             }
             return index;
+        }
+
+        public int[] IndexesOf(int val)
+        {
+            int[] arrayIndexes = new int[_lengthArr];
+            int lengthOfArrayIndexes = 0;
+            for (int i = 0; i < _lengthArr; i++)
+            {
+                if (_arr[i] == val)
+                {
+                    arrayIndexes[lengthOfArrayIndexes] = i;
+                    lengthOfArrayIndexes++;
+                }
+            }
+            return arrayIndexes;
         }
 
         public int GetFirst()
@@ -614,5 +469,7 @@ namespace ArrayListLibrary
                 }
             }
         }
+
+        
     }
 }
