@@ -261,16 +261,27 @@ namespace ArrayList.Tests
 
         [TestCase(0, 3, "Entry index out of range array list")]
         [TestCase(1, -1, "Entry index out of range array list")]
-        [TestCase(12, 0, "Entry index out of range array list")]
+        [TestCase(12, 0, "Array list is empty")]
         public void RemoveAtNegativeTest(int arrayID, int idx, string expectedMessage)
         {
             //arrange
             ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
-            //act
-            Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
-                () => arrToTest.RemoveAt(idx));
-            //assert
-            Assert.AreEqual(expectedMessage, ex.Message);
+            if (arrayID < 2)
+            {
+                //act
+                Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
+                    () => arrToTest.RemoveAt(idx));
+                //assert
+                Assert.AreEqual(expectedMessage, ex.Message);
+            }
+            else
+            {
+                //act
+                Exception ex = Assert.Throws(typeof(Exception),
+                    () => arrToTest.RemoveAt(idx));
+                //assert
+                Assert.AreEqual(expectedMessage, ex.Message);
+            }
         }
 
         [TestCase(0, 3, 4)]

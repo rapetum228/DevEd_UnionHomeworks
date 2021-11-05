@@ -199,10 +199,11 @@ namespace DoubleLinkedLists
 
         public void AddAt(int idx, int val)
         {
-            if (idx < 0 || _head == null)
-            {
+            if (_head == null)
+                throw new Exception("List is empty");
+
+            if (idx < 0)
                 throw new IndexOutOfRangeException("Index out of range list length");
-            }
             
             DoublyNode temp = _head;
             for (int i = 0; i < idx - 1; i++)
@@ -241,16 +242,17 @@ namespace DoubleLinkedLists
         public void AddAt(int idx, DoublyLinkedList list)
         {
             if (_head == null)
+                throw new Exception("List is empty");
+            if (idx < 0)
                 throw new IndexOutOfRangeException("Index out of range list length");
-
+            
             DoublyNode temp = _head;
 
             for (int i = 0; i < idx - 1; i++)
             {
                 if (temp == null && idx != 0)
-                {
                     throw new IndexOutOfRangeException("Index out of range list length");
-                }
+                
                 temp = temp.Next;
             }
             if (list._head == null)
@@ -274,14 +276,21 @@ namespace DoubleLinkedLists
 
         public void Set(int idx, int val)
         {
-            if (idx >= this.GetLength() || _head == null)
-            {
+            if (_head == null)
+                throw new Exception("List is empty");
+
+            if (idx < 0)
                 throw new IndexOutOfRangeException("Index out of range list length");
-            }
 
             DoublyNode temp = _head;
             for (int i = 0; i < idx; i++)
+            {
+                if (temp == null)
+                    throw new IndexOutOfRangeException("Index out of range list length");
+                
                 temp = temp.Next;
+            }
+                
 
             temp.Value = val;
         }
@@ -289,10 +298,8 @@ namespace DoubleLinkedLists
         public void RemoveFirst()
         {
             if (_head == null)
-            {
-                return;
-            }
-            
+                throw new Exception("List is empty");
+
             _head = _head.Next;
             if (_head != null)
                 _head.Previous = null;
@@ -300,7 +307,10 @@ namespace DoubleLinkedLists
 
         public void RemoveLast()
         {
-            if (_head == null || _head.Next == null)
+            if (_head == null)
+                throw new Exception("List is empty");
+
+            if (_head.Next == null)
             {
                 _head = null;
                 return;
@@ -311,31 +321,30 @@ namespace DoubleLinkedLists
 
         public void RemoveAt(int idx)
         {
-            if (_head == null || idx >= this.GetLength())
-            {
+            if (_head == null)
+                throw new Exception("List is empty");
+
+            if (idx < 0)
                 throw new IndexOutOfRangeException("Index out of range list length");
-            }
-            if (idx == 0 && _head.Next == null)
-            {
-                _head = null;
-                return;
-            }
+           
             if (idx == 0)
             {
                 this.RemoveFirst();
                 return;
             }
-            else if (idx == this.GetLength() - 1)
-            {
-                this.RemoveLast();
-                return;
-            }
+            
             DoublyNode temp = _head;
             for (int i = 0; i < idx - 1; i++)
+            {
+                if (temp == null)
+                    throw new IndexOutOfRangeException("Index out of range list length");
+                
                 temp = temp.Next;
-
+            }
+             
             temp.Next = temp.Next.Next;
-            temp.Next.Previous = temp;
+            if (temp.Next != null)
+                temp.Next.Previous = temp;
         }
 
         public void RemoveFirstMultiple(int n)
@@ -429,7 +438,9 @@ namespace DoubleLinkedLists
         public int RemoveFirst(int val)
         {
             if (_head == null)
-                return -1;
+                throw new Exception("List is empty");
+            
+            
             else if (_head.Value == val)
             {
                 _head = _head.Next;
@@ -456,6 +467,9 @@ namespace DoubleLinkedLists
 
         public int RemoveAll(int val)
         {
+            if (_head == null)
+                throw new Exception("List is empty");
+
             int numbersOfRemoveElements = 0;
             while (_head != null && _head.Value == val)
             {
@@ -488,6 +502,9 @@ namespace DoubleLinkedLists
         public bool Contains(int val)
         {
             if (_head == null)
+                throw new Exception("List is empty");
+
+            if (_head == null)
                 return false;
             else if (_head.Value == val)
                 return true;
@@ -506,7 +523,7 @@ namespace DoubleLinkedLists
         public int IndexOf(int val)
         {
             if (_head == null)
-                return -1;
+                throw new Exception("List is empty");
             else if (_head.Value == val)
                 return 0;
             DoublyNode temp = _head;
@@ -525,7 +542,7 @@ namespace DoubleLinkedLists
         {
             if (_head == null)
             {
-                throw new IndexOutOfRangeException("List is empty");
+                throw new Exception("List is empty");
             }
             return _head.Value;
         }
@@ -534,7 +551,7 @@ namespace DoubleLinkedLists
         {
             if (_head == null)
             {
-                throw new IndexOutOfRangeException("List is empty");
+                throw new Exception("List is empty");
             }
             return _tail.Value;
         }
@@ -543,7 +560,7 @@ namespace DoubleLinkedLists
         {
             if (_head == null)
             {
-                throw new IndexOutOfRangeException("List is empty");
+                throw new Exception("List is empty");
             }
             DoublyNode temp = _head;
             for (int i = 0; i < idx; i++)
@@ -562,7 +579,7 @@ namespace DoubleLinkedLists
         {
             if (_head == null)
             {
-                throw new IndexOutOfRangeException("List is empty");
+                throw new Exception("List is empty");
             }
 
             DoublyNode temp = _head;
@@ -582,7 +599,7 @@ namespace DoubleLinkedLists
         {
             if (_head == null)
             {
-                throw new IndexOutOfRangeException("List is empty");
+                throw new Exception("List is empty");
             }
             DoublyNode temp = _head;
             int min = _head.Value;
@@ -601,7 +618,7 @@ namespace DoubleLinkedLists
         {
             if (_head == null)
             {
-                throw new IndexOutOfRangeException("List is empty");
+                throw new Exception("List is empty");
             }
             DoublyNode temp = _head;
             int max = _head.Value;
@@ -624,7 +641,7 @@ namespace DoubleLinkedLists
         {
             if (_head == null)
             {
-                throw new IndexOutOfRangeException("List is empty");
+                throw new Exception("List is empty");
             }
             DoublyNode temp = _head;
             int min = _head.Value;
