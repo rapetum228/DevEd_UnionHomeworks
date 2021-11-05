@@ -329,7 +329,6 @@ namespace ArrayList.Tests
 
         [TestCase(0, 10, 4, "Entry index out of range array list")]
         [TestCase(1, -1, 4, "Entry index out of range array list")]
-        [TestCase(12, 0, 4, "Entry index out of range array list")]
         public void RemoveAtMultipleNegativeTest(int arrayID, int idx, int n, string expectedMessage)
         {
             //arrange
@@ -344,6 +343,7 @@ namespace ArrayList.Tests
         [TestCase(0, 98, 6)]
         [TestCase(1, 3, 1)]
         [TestCase(2, 4, 3)]
+        
         public void RemoveFirstOnValTest(int arrayID, int val, int expectedLength)
         {
             //arrange
@@ -358,8 +358,50 @@ namespace ArrayList.Tests
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expectedLength, arrToTest.GetLength());
         }
+        [TestCase(4, 4, "Array list is empty")]
+        public void RemoveFirstAndRemoveLastAndRemoveAtNegativeTest(int arrayID, int val, string expectedMessage)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
+            //act
+            Exception exRemoveFirstVal = Assert.Throws(typeof(Exception),
+                () => arrToTest.RemoveFirst(val));
+            Exception exRemoveFirst = Assert.Throws(typeof(Exception),
+                () => arrToTest.RemoveFirst());
+            Exception exRemoveLast = Assert.Throws(typeof(Exception),
+                () => arrToTest.RemoveLast());
+            Exception exRemoveAt = Assert.Throws(typeof(Exception),
+                () => arrToTest.RemoveAt(2));
+            //assert
+            Assert.AreEqual(expectedMessage, exRemoveFirstVal.Message);
+            Assert.AreEqual(expectedMessage, exRemoveFirst.Message);
+            Assert.AreEqual(expectedMessage, exRemoveLast.Message);
+            Assert.AreEqual(expectedMessage, exRemoveAt.Message);
+        }
 
-        
+        [TestCase(4, 4, "Array list is empty")]
+        public void IndexOfContainsRemoveMultipleNegativeTest(int arrayID, int val, string expectedMessage)
+        {
+            //arrange
+            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
+            //act
+            Exception exIndexOf = Assert.Throws(typeof(Exception),
+                () => arrToTest.IndexOf(val));
+            Exception exContains = Assert.Throws(typeof(Exception),
+                () => arrToTest.Contains(val));
+            Exception exRemoveLastMultiple = Assert.Throws(typeof(Exception),
+                () => arrToTest.RemoveLastMultiple(5));
+            Exception exRemoveAtMultiple = Assert.Throws(typeof(Exception),
+                () => arrToTest.RemoveAtMultiple(0, 5));
+            Exception exRemoveFirsttMultiple = Assert.Throws(typeof(Exception),
+                () => arrToTest.RemoveFirstMultiple(5));
+            //assert
+            Assert.AreEqual(expectedMessage, exIndexOf.Message);
+            Assert.AreEqual(expectedMessage, exContains.Message);
+            Assert.AreEqual(expectedMessage, exRemoveLastMultiple.Message);
+            Assert.AreEqual(expectedMessage, exRemoveAtMultiple.Message);
+            Assert.AreEqual(expectedMessage, exRemoveFirsttMultiple.Message);
+        }
         [TestCase(0, 98, 5)]
         [TestCase(1, 3, 1)]
         [TestCase(2, 4, 3)]

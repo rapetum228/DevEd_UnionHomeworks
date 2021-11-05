@@ -185,6 +185,10 @@ namespace ArrayListLibrary
 
         public void RemoveFirst()
         {
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
             _lengthArr--;
             this.ChangeLengthInserArray();
             for (int i = 0; i < _lengthArr; i++)
@@ -194,6 +198,10 @@ namespace ArrayListLibrary
 
         public void RemoveLast()
         {
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
             _lengthArr--;
             this.ChangeLengthInserArray();
             _arr[_lengthArr] = 0;
@@ -201,10 +209,15 @@ namespace ArrayListLibrary
 
         public void RemoveAt(int idx)
         {
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
             if (idx > _lengthArr - 1 || idx < 0)
             {
                 throw new IndexOutOfRangeException("Entry index out of range array list");
             }
+            
             _lengthArr--;
             this.ChangeLengthInserArray();
             for (int i = idx; i < _lengthArr; i++)
@@ -215,6 +228,10 @@ namespace ArrayListLibrary
 
         public void RemoveFirstMultiple(int n)
         {
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
             if (n > _lengthArr)
             {
                 int[] newArr = new int[10];
@@ -230,6 +247,10 @@ namespace ArrayListLibrary
 
         public void RemoveLastMultiple(int n)
         {
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
             if (n >= _lengthArr)
             {
                 int[] newArr = new int[10];
@@ -246,11 +267,15 @@ namespace ArrayListLibrary
 
         public void RemoveAtMultiple(int idx, int n)
         {
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
             if (idx > _lengthArr - 1 || idx < 0)
             {
                 throw new IndexOutOfRangeException("Entry index out of range array list");
             }
-
+            
             if (idx + n > _lengthArr)
             {
                 n = _lengthArr - idx;
@@ -269,15 +294,27 @@ namespace ArrayListLibrary
 
         public void RemoveFirst(int val)
         {
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
             int indexRemoveElemnt = this.IndexOf(val);
-            this.RemoveAt(indexRemoveElemnt);
+            if (indexRemoveElemnt != -1)
+            {
+                this.RemoveAt(indexRemoveElemnt);
+            }
+            
 
         }
 
 
         public int RemoveAll(int val)
         {
-            
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
+
             int iterator = this.IndexOf(val);
             if (iterator == -1)
                 return 0;
@@ -325,6 +362,10 @@ namespace ArrayListLibrary
 
         public bool Contains(int val)
         {
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
             bool flag = false;
             for (int i = 0; i < _lengthArr; i++)
             {
@@ -339,6 +380,10 @@ namespace ArrayListLibrary
 
         public int IndexOf(int val)
         {
+            if (_lengthArr == 0)
+            {
+                throw new Exception("Array list is empty");
+            }
             int index = -1;
             for (int i = 0; i < _lengthArr; i++)
             {
