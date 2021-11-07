@@ -25,13 +25,13 @@ namespace AllHomeworks
             aList1.AddLast(-228);
             aList1.AddLast(-228);
             aList1.AddLast(-228);
-            aList1.AddLast(-228);*/
+            aList1.AddLast(-228);
             ArrList aList = new ArrList(new int[] { 1, 2, 3, 4, 5, 1, 2, 3, 3, 4, 1, 2, 3, 4, 5});
             //{ 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2}
 
             int[] indexes = aList.IndexesOf(3);
             aList.RemoveAll(3);
-
+            */
             /*
             LinkedList lList = new LinkedList(1);
             lList.AddLast(2);
@@ -68,9 +68,11 @@ namespace AllHomeworks
             int[] arr = lList.ToArray();
 
             LinkList lList12 = new LinkList(new int[] { 1, 2, 3, 4, 5 });
-            
             */
-            DoublyLinkedList dLList = new DoublyLinkedList(new int[] { 1, 2, 3 });
+            
+            DoublyLinkedList dLList = new DoublyLinkedList(new int[] { 1, 2, 4, 5, 3, 6, 0, 5});
+            dLList.SortFromFather();
+            /*
             DoublyLinkedList clone = dLList.Clone();
             DoublyLinkedList dLList1 = new DoublyLinkedList(new int[] { -3, -2, -1, 0, -4, -5});
             //-3 0 -1 -2 
@@ -82,15 +84,16 @@ namespace AllHomeworks
             dLList.AddAt(5, dLList1);
             dLList.RemoveAt(5);
             dLList.RemoveFirst();
-     /*
-            LinkedList lList12 = new LinkedList(new int[] { 1, -2, 5, 3, -1, -4,  0, 2});
+
+            LinkedList lList12 = new LinkedList(new int[] { -1, -2, 4, 5, -3, 1, 6, 3, 0 });
             //lList12.RemoveLastMultiple(3);
             //lList12.Reverse();
             //lList12.SortDesc();
-            lList12.SortCocktail();
+            lList12.SortInHard();
             LinkedList ll = lList12.Clone();
             ll.AddLast(6);*/
-            
+
+
         }
     }
 }
