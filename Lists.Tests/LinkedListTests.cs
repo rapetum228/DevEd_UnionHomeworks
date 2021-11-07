@@ -596,7 +596,7 @@ namespace LinkedLists.Tests
             LinkedList toTest = new LinkedList(arrToTest);
             int[] expected = TestDataList.GetExpectedListForReverseTest(ID);
             //act
-            toTest.Reverse();
+            toTest.ReverseFromFather();
             //assert
             Assert.AreEqual(expected, toTest.ToArray());
         }
@@ -686,7 +686,7 @@ namespace LinkedLists.Tests
             LinkedList toTest = new LinkedList(arrToTest);
             int[] expected = TestDataList.GetExpectedListForSortTest(ID);
             //act
-            toTest.Sort();
+            toTest.SortInHard();
             //assert
             Assert.AreEqual(expected, toTest.ToArray());
         }

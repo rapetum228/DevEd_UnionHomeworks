@@ -529,6 +529,27 @@ namespace LinkedLists
             }
         }
 
+        public void ReverseFromFather()//кажись всё..
+        {
+            if (_head == null)
+            {
+                return;
+            }
+            Node tempHead = _head;
+            Node prev = null;
+            Node tempNext = tempHead;
+            while (tempNext.Next != null)
+            {
+                tempNext = tempNext.Next;
+                tempHead.Next = prev;
+                prev = tempHead;
+                tempHead = tempNext;
+            }
+            tempNext.Next = prev;
+            _tail = _head;
+            _head = tempNext;
+        }
+
         public int Max()
         {
             if (_head == null)
@@ -639,6 +660,48 @@ namespace LinkedLists
                 
                 temp = temp.Next;
             }
+        }
+
+        public void SortInHard()
+        {
+            if (_head == null)
+                return;
+
+            Node temp = _head;
+            Node tempPrevious = null;
+            Node tempNext = temp.Next;
+            while (temp != null)
+            {
+                Node copyHead = _head;
+
+                while (temp != copyHead)
+                {
+                    if  (temp.Value < _head.Value)
+                    {
+                        tempPrevious.Next = tempNext;
+                        temp.Next = _head;
+                        _head = temp;
+                        break;
+                    }
+                    else if (temp.Value < copyHead.Next.Value)
+                    { 
+                        tempPrevious.Next = tempNext;
+                        temp.Next = copyHead.Next;
+                        copyHead.Next = temp;
+                        break;
+                    }
+                    copyHead = copyHead.Next;
+   
+                }
+                if (temp.Next == tempNext)
+                    tempPrevious = temp;
+               
+                temp = tempNext;
+                if (temp != null) 
+                    tempNext = tempNext.Next;
+                
+            }
+            _tail = tempPrevious;
         }
 
         public void SortDesc()
