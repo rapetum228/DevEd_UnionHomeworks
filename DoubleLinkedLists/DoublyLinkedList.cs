@@ -713,25 +713,129 @@ namespace DoubleLinkedLists
         public void Reverse()
         {
             if (_head == null)
-            {
                 return;
-            }
-            DoublyNode tempHead = _head;
-            DoublyNode tempTail = _tail;
-            while (tempHead != tempTail)
+
+            DoublyNode temp = _head;
+            DoublyNode tempNext = temp.Next;
+            DoublyNode tempPrevious = temp.Previous;
+
+            while (tempNext != null)
             {
-                int copyTempHead = tempHead.Value;
-                tempHead.Value = tempTail.Value;
-                tempTail.Value = copyTempHead;
-                if (tempHead.Next == tempTail)
-                    break;
-                
-                tempHead = tempHead.Next;
-                tempTail = tempTail.Previous;
+                temp.Previous = tempNext;
+                temp.Next = tempPrevious;
+                tempPrevious = temp;
+                temp = temp.Previous; 
+                tempNext = tempNext.Next; 
             }
+            temp.Previous = tempNext;
+            temp.Next = tempPrevious;
+
+            _tail = _head;
+            _head = temp;
 
         }
 
+        public void SortFromFather()
+        {
+            if (_head == null)
+            {
+                return;
+            }
+            DoublyNode temp = _head;
+            DoublyNode tempNext = temp.Next;
 
+            while (temp != null)
+            {
+                DoublyNode copy = temp;
+                
+                bool flag = false;
+                while (copy.Previous != null && copy.Previous.Value > temp.Value)
+                {
+                    copy = copy.Previous;
+                    flag = true;
+                }
+
+                if (flag)
+                {
+                    temp.Previous.Next = temp.Next;
+                    if (tempNext != null)
+                        temp.Next.Previous = temp.Previous;
+
+                    temp.Next = copy;
+                    temp.Previous = copy.Previous;
+                    if (copy.Previous != null)
+                    {
+                        copy.Previous.Next = temp;
+                        copy.Previous = temp;
+                    }
+                        
+                    else
+                    {
+                        copy.Previous = temp;
+                        _head = temp;
+                    }
+                    
+
+                }
+
+                if (tempNext != null && tempNext.Next == null)
+                    _tail = tempNext;
+                
+                temp = tempNext;
+                tempNext = (tempNext != null)?tempNext.Next:null;
+            }
+            _tail = (_tail.Next != null)?_tail.Next:_tail;
+        }
+
+        public void SortFromFatherDesc()
+        {
+            if (_head == null)
+            {
+                return;
+            }
+            DoublyNode temp = _head;
+            DoublyNode tempNext = temp.Next;
+
+            while (temp != null)
+            {
+                DoublyNode copy = temp;
+
+                bool flag = false;
+                while (copy.Previous != null && copy.Previous.Value < temp.Value)
+                {
+                    copy = copy.Previous;
+                    flag = true;
+                }
+
+                if (flag)
+                {
+                    temp.Previous.Next = temp.Next;
+                    if (tempNext != null)
+                        temp.Next.Previous = temp.Previous;
+
+                    temp.Next = copy;
+                    temp.Previous = copy.Previous;
+                    if (copy.Previous != null)
+                    {
+                        copy.Previous.Next = temp;
+                        copy.Previous = temp;
+                    }
+
+                    else
+                    {
+                        copy.Previous = temp;
+                        _head = temp;
+                    }
+
+                }
+
+                if (tempNext != null && tempNext.Next == null)
+                    _tail = tempNext;
+
+                temp = tempNext;
+                tempNext = (tempNext != null) ? tempNext.Next : null;
+            }
+            _tail = (_tail.Next != null) ? _tail.Next : _tail;
+        }
     }
 }

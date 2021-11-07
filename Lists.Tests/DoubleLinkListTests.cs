@@ -779,7 +779,7 @@ namespace LinkedLists.Tests
             DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
             int[] expected = TestDataList.GetExpectedListForSortTest(ID);
             //act
-            toTest.Sort();
+            toTest.SortFromFather();
             //assert
             Assert.AreEqual(expected, toTest.ToArray());
         }
@@ -799,7 +799,7 @@ namespace LinkedLists.Tests
             DoublyLinkedList toTest = new DoublyLinkedList(arrToTest);
             int[] expected = TestDataList.GetExpectedListForSortDescTest(ID);
             //act
-            toTest.SortDesc();
+            toTest.SortFromFatherDesc();
             //assert
             Assert.AreEqual(expected, toTest.ToArray());
         }
