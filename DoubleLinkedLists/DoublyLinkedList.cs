@@ -660,56 +660,6 @@ namespace DoubleLinkedLists
             return indexOfMin;
         }
 
-        public void Sort()
-        {
-            if (_head == null)
-            {
-                return;
-            }
-            DoublyNode temp = _head;//копирую голову, чтобы в цикле идти вперёд
-
-            while (temp != null)
-            {
-                DoublyNode copy = temp;//копирую ссылку на temp для хода назад от неё 
-
-                while(copy.Previous != null && copy.Previous.Value > copy.Value)
-                //цикл выполняется пока копия temp не дойдёт обратным ходом до null и
-                //если значение предыдущего элемента копии больше значения в temp
-                {
-                    int copyValue = copy.Value;
-                    copy.Value = copy.Previous.Value;
-                    copy.Previous.Value = copyValue;
-                    copy = copy.Previous;
-                }
-                temp = temp.Next;   
-            }
-        }
-
-        public void SortDesc()
-        {
-            if (_head == null)
-            {
-                return;
-            }
-            DoublyNode temp = _head;//копирую голову, чтобы в цикле идти вперёд
-
-            while (temp != null)
-            {
-                DoublyNode copy = temp;//копирую ссылку на temp для хода назад от неё 
-
-                while (copy.Previous != null && copy.Previous.Value < copy.Value)
-                //цикл выполняется пока копия temp не дойдёт обратным ходом до null и
-                //если значение предыдущего элемента копии больше значения в temp
-                {
-                    int copyValue = copy.Value;
-                    copy.Value = copy.Previous.Value;
-                    copy.Previous.Value = copyValue;
-                    copy = copy.Previous;
-                }
-                temp = temp.Next;
-            }
-        }
-
         public void Reverse()
         {
             if (_head == null)
@@ -735,7 +685,7 @@ namespace DoubleLinkedLists
 
         }
 
-        public void SortFromFather()
+        public void Sort()
         {
             if (_head == null)
             {
@@ -774,8 +724,6 @@ namespace DoubleLinkedLists
                         copy.Previous = temp;
                         _head = temp;
                     }
-                    
-
                 }
 
                 if (tempNext != null && tempNext.Next == null)
@@ -787,7 +735,7 @@ namespace DoubleLinkedLists
             _tail = (_tail.Next != null)?_tail.Next:_tail;
         }
 
-        public void SortFromFatherDesc()
+        public void SortDesc()
         {
             if (_head == null)
             {

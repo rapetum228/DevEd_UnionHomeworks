@@ -502,34 +502,7 @@ namespace LinkedLists
             return temp.Value;
         }
 
-        public void Reverse()//кажись всё..
-        {
-            if (_head == null)
-            {
-                return;
-            }
-            Node tempHead = _head;
-            Node tempTail = _tail;
-            while (tempHead != tempTail)
-            {
-                int copyTempHead = tempHead.Value;
-                tempHead.Value = tempTail.Value;
-                tempTail.Value = copyTempHead;
-                if (tempHead.Next == tempTail)
-                {
-                    break;
-                }
-                Node newTempTail = tempHead;
-                while (newTempTail.Next != tempTail)
-                {
-                    newTempTail = newTempTail.Next;
-                }
-                tempHead = tempHead.Next;
-                tempTail = newTempTail;
-            }
-        }
-
-        public void ReverseFromFather()//кажись всё..
+        public void Reverse()
         {
             if (_head == null)
             {
@@ -638,33 +611,6 @@ namespace LinkedLists
         public void Sort()
         {
             if (_head == null)
-            {
-                return;
-            }
-            Node temp = _head;
-            while (temp != null)
-            {
-                Node copyHead = _head;
-                
-                while (copyHead != temp)
-                {
-                    if (temp.Value < copyHead.Value)
-                    {
-                        int tempValue = temp.Value;
-                        temp.Value = copyHead.Value;
-                        copyHead.Value = tempValue;
-                    }
-                    copyHead = copyHead.Next;
-
-                }
-                
-                temp = temp.Next;
-            }
-        }
-
-        public void SortInHard()
-        {
-            if (_head == null)
                 return;
 
             Node temp = _head;
@@ -707,28 +653,43 @@ namespace LinkedLists
         public void SortDesc()
         {
             if (_head == null)
-            {
                 return;
-            }
+
             Node temp = _head;
+            Node tempPrevious = null;
+            Node tempNext = temp.Next;
             while (temp != null)
             {
                 Node copyHead = _head;
 
-                while (copyHead != temp)
+                while (temp != copyHead)
                 {
-                    if (temp.Value > copyHead.Value)
+                    if (temp.Value > _head.Value)
                     {
-                        int tempValue = temp.Value;
-                        temp.Value = copyHead.Value;
-                        copyHead.Value = tempValue;
+                        tempPrevious.Next = tempNext;
+                        temp.Next = _head;
+                        _head = temp;
+                        break;
+                    }
+                    else if (temp.Value > copyHead.Next.Value)
+                    {
+                        tempPrevious.Next = tempNext;
+                        temp.Next = copyHead.Next;
+                        copyHead.Next = temp;
+                        break;
                     }
                     copyHead = copyHead.Next;
 
                 }
+                if (temp.Next == tempNext)
+                    tempPrevious = temp;
 
-                temp = temp.Next;
+                temp = tempNext;
+                if (temp != null)
+                    tempNext = tempNext.Next;
+
             }
+            _tail = tempPrevious;
         }
 
         public void SortCocktail()
