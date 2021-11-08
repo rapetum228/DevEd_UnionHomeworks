@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ArrayListLibrary
+namespace Lists
 {
-    public class ArrList
+    public class ArrList: ILists
     {
         private int[] _arr;
         private int _lengthArr;
@@ -292,7 +292,7 @@ namespace ArrayListLibrary
 
         }
 
-        public void RemoveFirst(int val)
+        public int RemoveFirst(int val)
         {
             if (_lengthArr == 0)
             {
@@ -303,8 +303,8 @@ namespace ArrayListLibrary
             {
                 this.RemoveAt(indexRemoveElemnt);
             }
-            
 
+            return indexRemoveElemnt;
         }
 
 

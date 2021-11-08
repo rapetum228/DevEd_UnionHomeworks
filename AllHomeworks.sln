@@ -27,13 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework4.Tests", "Homework
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homework5.Tests", "Homework5.Tests\Homework5.Tests.csproj", "{929D0F68-3091-456A-B01F-7EB6301BA1E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrayListLibrary", "ArrayListLibrary\ArrayListLibrary.csproj", "{DE1208C4-5870-4A68-BDC3-A8A0B34B46E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lists", "ArrayListLibrary\Lists.csproj", "{DE1208C4-5870-4A68-BDC3-A8A0B34B46E9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrayList.Tests", "ArrayList.Tests\ArrayList.Tests.csproj", "{5D9EAA69-0866-4792-8779-171CED87A4BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedLists", "LinkedLists\LinkedLists.csproj", "{708DA4B7-945F-4C57-B634-A18665416B3E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoubleLinkedLists", "DoubleLinkedLists\DoubleLinkedLists.csproj", "{ABAD9F75-5E15-410B-92E7-255B8CC87759}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lists.Tests", "Lists.Tests\Lists.Tests.csproj", "{CA348BFE-70DD-4194-8AB8-88658D99BD7E}"
 EndProject
@@ -103,10 +101,6 @@ Global
 		{708DA4B7-945F-4C57-B634-A18665416B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{708DA4B7-945F-4C57-B634-A18665416B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{708DA4B7-945F-4C57-B634-A18665416B3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ABAD9F75-5E15-410B-92E7-255B8CC87759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABAD9F75-5E15-410B-92E7-255B8CC87759}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABAD9F75-5E15-410B-92E7-255B8CC87759}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABAD9F75-5E15-410B-92E7-255B8CC87759}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CA348BFE-70DD-4194-8AB8-88658D99BD7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CA348BFE-70DD-4194-8AB8-88658D99BD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA348BFE-70DD-4194-8AB8-88658D99BD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,4 +1,4 @@
-using ArrayListLibrary;
+using Lists;
 using NUnit.Framework;
 using System;
 
@@ -6,11 +6,11 @@ namespace ArrayList.Tests
 {
     public class ArrayListTests
     {
-        private ArrList _arrList; 
+        
         [SetUp]
         public void Setup()
         {
-            _arrList = new ArrList();
+            
         }
 
         [TestCase(0, 0)]

@@ -1,12 +1,4 @@
-﻿using ArrayListLibrary;
-using DoubleLinkedLists;
-using Homework1;
-using Homework2;
-using Homework3;
-using Homework4;
-using Homework5;
-using LinkedLists;
-using System;
+﻿using Lists;
 
 namespace AllHomeworks
 {
@@ -71,7 +63,7 @@ namespace AllHomeworks
             */
             
             DoublyLinkedList dLList = new DoublyLinkedList(new int[] { 1, 2, 4, 5, 3, 6, 0, 5});
-            dLList.SortFromFather();
+            dLList.Sort();
             /*
             DoublyLinkedList clone = dLList.Clone();
             DoublyLinkedList dLList1 = new DoublyLinkedList(new int[] { -3, -2, -1, 0, -4, -5});

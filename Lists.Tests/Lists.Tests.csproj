@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ArrayListLibrary\Lists.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\DoubleLinkedLists\DoubleLinkedLists.csproj" />
     <ProjectReference Include="..\LinkedLists\LinkedLists.csproj" />
   </ItemGroup>
 
