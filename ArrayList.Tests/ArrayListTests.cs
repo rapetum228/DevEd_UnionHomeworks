@@ -19,7 +19,7 @@ namespace ArrayList.Tests
         public void GetLengthTest(int arrayID, int expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForGetLengthTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForGetLengthTest(arrayID);
             //act
             int actual = arrToTest.GetLength();
 
@@ -46,7 +46,7 @@ namespace ArrayList.Tests
         public void AddFirstTest(int arrayID)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForAddFirstTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForAddFirstTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForAddFirstTest(arrayID);
             //act
             arrToTest.AddFirst(3);
@@ -63,7 +63,7 @@ namespace ArrayList.Tests
         public void AddFirstArrTest(int arrayID, int[] addFirstArr, int[] expected, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForAddFirstTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForAddFirstTest(arrayID);
             //act
             arrToTest.AddFirst(addFirstArr);
             int[] actual = arrToTest.ToArray();
@@ -79,7 +79,7 @@ namespace ArrayList.Tests
         public void AddLastArrTest(int arrayID, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForAddLastTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForAddLastTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForAddLastArrTest(arrayID);
             //act
             arrToTest.AddLast(TestDataArrList.GetAddArrListForAddLastTest(arrayID));
@@ -95,7 +95,7 @@ namespace ArrayList.Tests
         public void AddLastTest(int arrayID, int addLastElement, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForAddLastTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForAddLastTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForAddLastTest(arrayID);
             //act
             arrToTest.AddLast(addLastElement);
@@ -111,7 +111,7 @@ namespace ArrayList.Tests
         public void AddAtArrTest(int arrayID, int idx, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
             int[] addArr = TestDataArrList.GetAddArrListForAddAtTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForAddAtArrTest(arrayID);
             //act
@@ -128,7 +128,7 @@ namespace ArrayList.Tests
         public void AddAtArrNegativeTest(int arrayID, int idx, string expectedMessage)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
             int[] addArr = TestDataArrList.GetAddArrListForAddAtTest(arrayID);
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
@@ -143,7 +143,7 @@ namespace ArrayList.Tests
         public void AddAtTest(int arrayID, int idx, int val, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForAddAtTest(arrayID);
 
             //act
@@ -161,7 +161,7 @@ namespace ArrayList.Tests
         public void AddAtNegativeTest(int arrayID, int idx, int val, string expectedMessage)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForAddAtTest(arrayID);
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
                 () => arrToTest.AddAt(idx, val));
@@ -176,7 +176,7 @@ namespace ArrayList.Tests
         public void SetTest(int arrayID, int idx, int val, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForSetTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForSetTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForSetTest(arrayID);
 
             //act
@@ -194,7 +194,7 @@ namespace ArrayList.Tests
         public void SetNegativeTest(int arrayID, int idx, int val, string expectedMessage)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForSetTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForSetTest(arrayID);
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
                 () => arrToTest.Set(idx, val));
@@ -209,7 +209,7 @@ namespace ArrayList.Tests
         public void RemoveFirstTest(int arrayID, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveFirstTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveFirstTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForRemoveFirstTest(arrayID);
 
             //act
@@ -228,7 +228,7 @@ namespace ArrayList.Tests
         public void RemoveLastTest(int arrayID, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveLastTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveLastTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForRemoveLastTest(arrayID);
 
             //act
@@ -247,7 +247,7 @@ namespace ArrayList.Tests
         public void RemoveAtTest(int arrayID, int idx, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForRemoveAtTest(arrayID);
 
             //act
@@ -265,7 +265,7 @@ namespace ArrayList.Tests
         public void RemoveAtNegativeTest(int arrayID, int idx, string expectedMessage)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
             if (arrayID < 2)
             {
                 //act
@@ -290,7 +290,7 @@ namespace ArrayList.Tests
         public void RemoveFirstMultipleTest(int arrayID, int n, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveFirstMultipleTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveFirstMultipleTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForRemoveFirstMultipleTest(arrayID);
 
             //act
@@ -308,7 +308,7 @@ namespace ArrayList.Tests
         public void RemoveLastMultipleTest(int arrayID, int n, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveLastMultipleTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveLastMultipleTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForRemoveLastMultipleTest(arrayID);
 
             //act
@@ -326,7 +326,7 @@ namespace ArrayList.Tests
         public void RemoveAtMultipleTest(int arrayID, int idx, int n, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtMultipleTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveAtMultipleTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForRemoveAtMultipleTest(arrayID);
 
             //act
@@ -343,7 +343,7 @@ namespace ArrayList.Tests
         public void RemoveAtMultipleNegativeTest(int arrayID, int idx, int n, string expectedMessage)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtMultipleTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveAtMultipleTest(arrayID);
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
                 () => arrToTest.RemoveAtMultiple(idx, n));
@@ -358,7 +358,7 @@ namespace ArrayList.Tests
         public void RemoveFirstOnValTest(int arrayID, int val, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveFirstOnValTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveFirstOnValTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForRemoveFirstOnValTest(arrayID);
 
             //act
@@ -373,7 +373,7 @@ namespace ArrayList.Tests
         public void RemoveFirstAndRemoveLastAndRemoveAtNegativeTest(int arrayID, int val, string expectedMessage)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
             //act
             Exception exRemoveFirstVal = Assert.Throws(typeof(Exception),
                 () => arrToTest.RemoveFirst(val));
@@ -394,7 +394,7 @@ namespace ArrayList.Tests
         public void IndexOfContainsRemoveMultipleNegativeTest(int arrayID, int val, string expectedMessage)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveAtTest(arrayID);
             //act
             Exception exIndexOf = Assert.Throws(typeof(Exception),
                 () => arrToTest.IndexOf(val));
@@ -422,7 +422,7 @@ namespace ArrayList.Tests
         public void RemoveAllTest(int arrayID, int val, int expectedLength)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForRemoveAllTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForRemoveAllTest(arrayID);
             int[] expected = TestDataArrList.GetExpectedArrListForRemoveAllTest(arrayID);
 
             //act
@@ -441,7 +441,7 @@ namespace ArrayList.Tests
         public void ContainsTest(int arrayID, int val, bool expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForContainsTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForContainsTest(arrayID);
 
             //act
             bool actual = arrToTest.Contains(val);
@@ -457,7 +457,7 @@ namespace ArrayList.Tests
         public void IndexOfTest(int arrayID, int idx, int expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForIndexOfTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForIndexOfTest(arrayID);
 
             //act
             int actual = arrToTest.IndexOf(idx);
@@ -472,7 +472,7 @@ namespace ArrayList.Tests
         public void GetFirstTest(int arrayID,  int expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
 
             //act
             int actual = arrToTest.GetFirst();
@@ -488,7 +488,7 @@ namespace ArrayList.Tests
         public void GetLastTest(int arrayID, int expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
 
             //act
             int actual = arrToTest.GetLast();
@@ -504,7 +504,7 @@ namespace ArrayList.Tests
         public void GetTest(int arrayID, int idx, int expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
 
             //act
             int actual = arrToTest.Get(idx);
@@ -519,7 +519,7 @@ namespace ArrayList.Tests
         public void GetNegativeTest(int arrayID, int idx,string expectedMessage)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForGetFirstAndLastAndGetTest(arrayID);
             //act
             Exception ex = Assert.Throws(typeof(IndexOutOfRangeException),
                 () => arrToTest.Get(idx));
@@ -534,8 +534,8 @@ namespace ArrayList.Tests
         public void ReverseTest(int arrayID)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForReverseTest(arrayID);
-            ArrList expected = TestDataArrList.GetExpectedArrListForReverseTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForReverseTest(arrayID);
+            ArrList<int> expected = TestDataArrList.GetExpectedArrListForReverseTest(arrayID);
 
             //act
             arrToTest.Reverse();
@@ -551,7 +551,7 @@ namespace ArrayList.Tests
         public void MaxTest(int arrayID, int expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
 
             //act
             int actual = arrToTest.Max();
@@ -567,7 +567,7 @@ namespace ArrayList.Tests
         public void MinTest(int arrayID, int expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
 
             //act
             int actual = arrToTest.Min();
@@ -583,7 +583,7 @@ namespace ArrayList.Tests
         public void IndexOfMaxTest(int arrayID, int expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
 
             //act
             int actual = arrToTest.IndexOfMax();
@@ -599,7 +599,7 @@ namespace ArrayList.Tests
         public void IndexOfMinTest(int arrayID, int expected)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForMaxAndMinAndTheirIndexesTest(arrayID);
 
             //act
             int actual = arrToTest.IndexOfMin();
@@ -617,8 +617,8 @@ namespace ArrayList.Tests
         public void SortTest(int arrayID)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForSortAndSortDescTest(arrayID);
-            ArrList expected = TestDataArrList.GetExpectedArrListForSortTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForSortAndSortDescTest(arrayID);
+            ArrList<int> expected = TestDataArrList.GetExpectedArrListForSortTest(arrayID);
 
             //act
             arrToTest.Sort();
@@ -636,8 +636,8 @@ namespace ArrayList.Tests
         public void SortDescTest(int arrayID)
         {
             //arrange
-            ArrList arrToTest = TestDataArrList.GetArrListForSortAndSortDescTest(arrayID);
-            ArrList expected = TestDataArrList.GetExpectedArrListForSortDescTest(arrayID);
+            ArrList<int> arrToTest = TestDataArrList.GetArrListForSortAndSortDescTest(arrayID);
+            ArrList<int> expected = TestDataArrList.GetExpectedArrListForSortDescTest(arrayID);
 
             //act
             arrToTest.SortDesc();

@@ -9,14 +9,14 @@ namespace ArrayList.Tests
 {
     public class TestDataArrList
     {
-        public static ArrList GetArrListForGetLengthTest(int arrayID)
+        public static ArrList<int> GetArrListForGetLengthTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] {1, 2, 3, 4}),
-                _ => new ArrList(),
+                0 => new ArrList<int>(),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] {1, 2, 3, 4}),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -24,21 +24,21 @@ namespace ArrayList.Tests
         {
             return arrayID switch
             {
-                0 => new ArrList().ToArray(),
-                1 => new ArrList(4).ToArray(),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }).ToArray(),
-                _ => new ArrList().ToArray(),
+                0 => new ArrList<int>().ToArray(),
+                1 => new ArrList<int>(4).ToArray(),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }).ToArray(),
+                _ => new ArrList<int>().ToArray(),
             };
         }
 
-        public static ArrList GetArrListForAddFirstTest(int arrayID)
+        public static ArrList<int> GetArrListForAddFirstTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -46,10 +46,10 @@ namespace ArrayList.Tests
         {
             return arrayID switch
             {
-                0 => new ArrList(3).ToArray(),
-                1 => new ArrList(new int[] {3, 4}).ToArray(),
-                2 => new ArrList(new int[] {3, 1, 2, 3, 4 }).ToArray(),
-                _ => new ArrList(3).ToArray(),
+                0 => new ArrList<int>(3).ToArray(),
+                1 => new ArrList<int>(new int[] {3, 4}).ToArray(),
+                2 => new ArrList<int>(new int[] {3, 1, 2, 3, 4 }).ToArray(),
+                _ => new ArrList<int>(3).ToArray(),
             };
         }
 
@@ -57,21 +57,21 @@ namespace ArrayList.Tests
         {
             return arrayID switch
             {
-                0 => new ArrList(3).ToArray(),
-                1 => new ArrList(new int[] { 3, 4 }).ToArray(),
+                0 => new ArrList<int>(3).ToArray(),
+                1 => new ArrList<int>(new int[] { 3, 4 }).ToArray(),
                 2 => new int[] { 3, 1, 2, 3, 4 },
-                _ => new ArrList(3).ToArray(),
+                _ => new ArrList<int>(3).ToArray(),
             };
         }
 
-        public static ArrList GetArrListForAddLastTest(int arrayID)
+        public static ArrList<int> GetArrListForAddLastTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -108,14 +108,14 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForAddAtTest(int arrayID)
+        public static ArrList<int> GetArrListForAddAtTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 6, 3 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 6, 3 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -152,15 +152,15 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForSetTest(int arrayID)
+        public static ArrList<int> GetArrListForSetTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 6, 3 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] {8, 9}),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 6, 3 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] {8, 9}),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -176,15 +176,15 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForRemoveFirstTest(int arrayID)
+        public static ArrList<int> GetArrListForRemoveFirstTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 6, 3 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 8, 9 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 6, 3 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 8, 9 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -200,15 +200,15 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForRemoveLastTest(int arrayID)
+        public static ArrList<int> GetArrListForRemoveLastTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 6, 3 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 8, 9 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 6, 3 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 8, 9 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -224,15 +224,15 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForRemoveAtTest(int arrayID)
+        public static ArrList<int> GetArrListForRemoveAtTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 6, 3 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 8, 9 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 6, 3 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 8, 9 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -248,14 +248,14 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForRemoveFirstMultipleTest(int arrayID)
+        public static ArrList<int> GetArrListForRemoveFirstMultipleTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 6, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 6, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -270,14 +270,14 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForRemoveLastMultipleTest(int arrayID)
+        public static ArrList<int> GetArrListForRemoveLastMultipleTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 6, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 6, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -292,14 +292,14 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForRemoveAtMultipleTest(int arrayID)
+        public static ArrList<int> GetArrListForRemoveAtMultipleTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 6, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 6, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -314,14 +314,14 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForRemoveFirstOnValTest(int arrayID)
+        public static ArrList<int> GetArrListForRemoveFirstOnValTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -336,17 +336,17 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForRemoveAllTest(int arrayID)
+        public static ArrList<int> GetArrListForRemoveAllTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                4 => new ArrList(new int[] { 3, 3, 1, 2, 3, 4, 5, 3, 8, 3 }),
-                5 => new ArrList(new int[] { 3, 1, 2, 3, 3, 4, 5, 3, 3, 3, 8, 3 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                4 => new ArrList<int>(new int[] { 3, 3, 1, 2, 3, 4, 5, 3, 8, 3 }),
+                5 => new ArrList<int>(new int[] { 3, 1, 2, 3, 3, 4, 5, 3, 3, 3, 8, 3 }),
+                _ => new ArrList<int>(),
             };
         }
 
@@ -364,117 +364,117 @@ namespace ArrayList.Tests
             };
         }
 
-        public static ArrList GetArrListForContainsTest(int arrayID)
+        public static ArrList<int> GetArrListForContainsTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList<int>(),
             };
         }
 
-        public static ArrList GetArrListForIndexOfTest(int arrayID)
+        public static ArrList<int> GetArrListForIndexOfTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList<int>(),
             };
         }
 
-        public static ArrList GetArrListForGetFirstAndLastAndGetTest(int arrayID)
+        public static ArrList<int> GetArrListForGetFirstAndLastAndGetTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList<int>(),
             };
         }
 
-        public static ArrList GetArrListForReverseTest(int arrayID)
+        public static ArrList<int> GetArrListForReverseTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList<int>(),
             };
         }
 
-        public static ArrList GetExpectedArrListForReverseTest(int arrayID)
+        public static ArrList<int> GetExpectedArrListForReverseTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 15, 100, 0, 98, 3, 98, 5 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 4, 3, 2, 1 }),
-                3 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 15, 100, 0, 98, 3, 98, 5 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 4, 3, 2, 1 }),
+                3 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList<int>(),
             };
         }
 
-        public static ArrList GetArrListForMaxAndMinAndTheirIndexesTest(int arrayID)
+        public static ArrList<int> GetArrListForMaxAndMinAndTheirIndexesTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList<int>(),
             };
         }
 
-        public static ArrList GetArrListForSortAndSortDescTest(int arrayID)
+        public static ArrList<int> GetArrListForSortAndSortDescTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 4, 3, 2, 1 }),
-                4 => new ArrList(new int[] { -4, 3, 9, -2, 1 }),
-                5 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 5, 98, 3, 98, 0, 100, 15 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 4, 3, 2, 1 }),
+                4 => new ArrList<int>(new int[] { -4, 3, 9, -2, 1 }),
+                5 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList<int>(),
             };
         }
 
-        public static ArrList GetExpectedArrListForSortTest(int arrayID)
+        public static ArrList<int> GetExpectedArrListForSortTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 0, 3, 5, 15, 98, 98, 100 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                3 => new ArrList(new int[] { 1, 2, 3, 4 }),
-                4 => new ArrList(new int[] { -4, -2, 1, 3, 9 }),
-                5 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 0, 3, 5, 15, 98, 98, 100 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrList<int>(new int[] { 1, 2, 3, 4 }),
+                4 => new ArrList<int>(new int[] { -4, -2, 1, 3, 9 }),
+                5 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList<int>(),
             };
         }
 
-        public static ArrList GetExpectedArrListForSortDescTest(int arrayID)
+        public static ArrList<int> GetExpectedArrListForSortDescTest(int arrayID)
         {
             return arrayID switch
             {
-                0 => new ArrList(new int[] { 100, 98, 98, 15, 5, 3, 0 }),
-                1 => new ArrList(4),
-                2 => new ArrList(new int[] { 4, 3, 2, 1 }),
-                3 => new ArrList(new int[] { 4, 3, 2, 1 }),
-                4 => new ArrList(new int[] {9, 3, 1, -2, -4 }),
-                5 => new ArrList(new int[] { 5, 5, 5, 5 }),
-                _ => new ArrList(),
+                0 => new ArrList<int>(new int[] { 100, 98, 98, 15, 5, 3, 0 }),
+                1 => new ArrList<int>(4),
+                2 => new ArrList<int>(new int[] { 4, 3, 2, 1 }),
+                3 => new ArrList<int>(new int[] { 4, 3, 2, 1 }),
+                4 => new ArrList<int>(new int[] {9, 3, 1, -2, -4 }),
+                5 => new ArrList<int>(new int[] { 5, 5, 5, 5 }),
+                _ => new ArrList<int>(),
             };
         }
     }

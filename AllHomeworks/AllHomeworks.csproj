@@ -12,7 +12,6 @@
     <ProjectReference Include="..\Homework3\Homework3.csproj" />
     <ProjectReference Include="..\Homework4\Homework4.csproj" />
     <ProjectReference Include="..\Homework5\Homework5.csproj" />
-    <ProjectReference Include="..\LinkedLists\LinkedLists.csproj" />
   </ItemGroup>
 
 </Project>

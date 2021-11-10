@@ -432,5 +432,41 @@ namespace LinkedLists.Tests
                 _ => new int[] { },
             };
         }
+
+        public static string[] GetListForSortAndSortDescStringTest(int ID)
+        {
+            return ID switch
+            {
+                0 => new string[] { "a" },
+                1 => new string[] { "bbb", "df", "aaaq", "da", "awe"  },
+                2 => new string[] { "fff", "fff", "fff", "fff" },
+                3 => new string[] { "fff", "ffffff", "fff", "fff" },
+                _ => new string[] { },
+            };
+        }
+
+        public static string[] GetExpectedListForSortStringTest(int ID)
+        {
+            return ID switch
+            {
+                0 => new string[] { "a" },
+                1 => new string[] { "aaaq", "awe", "bbb", "da", "df" },
+                2 => new string[] { "fff", "fff", "fff", "fff" },
+                3 => new string[] { "fff", "fff", "fff", "ffffff" },
+                _ => new string[] { },
+            };
+        }
+
+        public static string[] GetExpectedListForSortDescStringTest(int ID)
+        {
+            return ID switch
+            {
+                0 => new string[] { "a" },
+                1 => new string[] { "df", "da", "bbb", "awe", "aaaq" },
+                2 => new string[] { "fff", "fff", "fff", "fff" },
+                3 => new string[] { "ffffff", "fff", "fff", "fff" },
+                _ => new string[] { },
+            };
+        }
     }
 }
