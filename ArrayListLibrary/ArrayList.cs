@@ -2,7 +2,7 @@
 
 namespace Lists
 {
-    public class ArrList: ILists
+    public class ArrList
     {
         private int[] _arr;
         private int _lengthArr;

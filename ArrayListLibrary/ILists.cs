@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace Lists
 {
-    interface ILists
+    interface ILists<T>
     {
         public int GetLength();
 
-        public int[] ToArray();
-        public void AddLast(int val);
+        public T[] ToArray();
+        public void AddLast(T val);
 
         //public void AddLast(LinkedList list);
         
 
-        public void AddFirst(int val);
+        public void AddFirst(T val);
 
         //public void AddFirst(LinkedList list);
 
-        public void AddAt(int idx, int val);
+        public void AddAt(int idx, T val);
 
         //public void AddAt(int idx, LinkedList list);
 
-        public void Set(int idx, int val);
+        public void Set(int idx, T val);
 
         public void RemoveFirst();
         public void RemoveLast();
@@ -35,24 +35,24 @@ namespace Lists
 
         public void RemoveAtMultiple(int idx, int n);
 
-        public int RemoveFirst(int val);
+        public int RemoveFirst(T val);
 
-        public int RemoveAll(int val);
+        public int RemoveAll(T val);
 
-        public bool Contains(int val);
-        public int IndexOf(int val);
+        public bool Contains(T val);
+        public int IndexOf(T val);
 
-        public int GetFirst();
+        public T GetFirst();
 
-        public int GetLast();
+        public T GetLast();
 
-        public int Get(int idx);
+        public T Get(int idx);
 
         public void Reverse();
 
-        public int Max();
+        public T Max();
 
-        public int Min();
+        public T Min();
 
         public int IndexOfMax();
 

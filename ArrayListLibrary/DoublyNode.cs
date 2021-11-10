@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Lists
 {
-    public class DoublyNode
+    public class DoublyNode<T>
     {
-        public int Value { get; set; }
-        public DoublyNode Next { get; set; }
-        public DoublyNode Previous { get; set; }
+        public T Value { get; set; }
+        public DoublyNode<T> Next { get; set; }
+        public DoublyNode<T> Previous { get; set; }
     }
 }

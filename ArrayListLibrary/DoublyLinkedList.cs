@@ -2,10 +2,10 @@
 
 namespace Lists
 {
-    public class DoublyLinkedList: ILists
+    public class DoublyLinkedList<T>: ILists<T> where T : IComparable<T>
     {
-        private DoublyNode _head;
-        private DoublyNode _tail;
+        private DoublyNode<T> _head;
+        private DoublyNode<T> _tail;
 
         public DoublyLinkedList()
         {
@@ -13,9 +13,9 @@ namespace Lists
             _tail = _head;
         }
 
-        public DoublyLinkedList(int val)
+        public DoublyLinkedList(T val)
         {
-            _head = new DoublyNode
+            _head = new DoublyNode<T>
             {
                 Value = val,
                 Previous = null,
@@ -24,7 +24,7 @@ namespace Lists
             _tail = _head;
         }
 
-        public DoublyLinkedList(int[] arr)
+        public DoublyLinkedList(T[] arr)
         {
             if (arr.Length == 0)
             {
@@ -32,22 +32,22 @@ namespace Lists
                 _tail = _head;
                 return;
             }
-            _head = new DoublyNode
+            _head = new DoublyNode<T>
             {
                 Value = arr[0],
                 Previous = null,
                 Next = null,
             };
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
             for (int i = 1; i < arr.Length; i++)
             {
-                temp.Next = new DoublyNode { Value = arr[i], Previous = temp };
+                temp.Next = new DoublyNode<T> { Value = arr[i], Previous = temp };
                 temp = temp.Next;
             }
             _tail = temp;
         }
 
-        public DoublyLinkedList(DoublyLinkedList list)
+        public DoublyLinkedList(DoublyLinkedList<T> list)
         {
             if (list._head == null)
             {
@@ -55,39 +55,39 @@ namespace Lists
                 _tail = _head;
                 return;
             }
-            _head = new DoublyNode
+            _head = new DoublyNode<T>
             {
                 Value = list._head.Value,
                 Previous = null,
                 Next = null,
             };
-            DoublyNode temp = _head;
-            DoublyNode tempList = list._head;
+            DoublyNode<T> temp = _head;
+            DoublyNode<T> tempList = list._head;
             while (tempList.Next != null)
             {
                 tempList = tempList.Next;
-                temp.Next = new DoublyNode { Value = tempList.Value, Previous = temp };
+                temp.Next = new DoublyNode<T> { Value = tempList.Value, Previous = temp };
                 temp = temp.Next;
             }
             _tail = temp;
         }
 
-        public DoublyLinkedList Clone()
+        public DoublyLinkedList<T> Clone()
         {
             if (_head == null)
             {
                 _head = null;
                 _tail = _head;
-                return new DoublyLinkedList();
+                return new DoublyLinkedList<T>();
             }
-            DoublyLinkedList copyInputList = new DoublyLinkedList(_head.Value);
+            DoublyLinkedList<T> copyInputList = new DoublyLinkedList<T>(_head.Value);
             
-            DoublyNode temp = _head;
-            DoublyNode tempList = copyInputList._head;
+            DoublyNode<T> temp = _head;
+            DoublyNode<T> tempList = copyInputList._head;
             while (temp.Next != null)
             {
                 temp = temp.Next;
-                tempList.Next = new DoublyNode { Value = temp.Value, Previous = tempList };
+                tempList.Next = new DoublyNode<T> { Value = temp.Value, Previous = tempList };
                 tempList = tempList.Next;
                 
             }
@@ -98,7 +98,7 @@ namespace Lists
         public int GetLength()
         {
             int lengthList = 0;
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
             while (temp != null)
             {
                 lengthList++;
@@ -107,14 +107,14 @@ namespace Lists
             return lengthList;
         }
 
-        public int[] ToArray()
+        public T[] ToArray()
         {
             if (_head == null)
             {
-                return new int[] { };
+                return new T[] { };
             }
-            int[] arr = new int[this.GetLength()];
-            DoublyNode temp = _head;
+            T[] arr = new T[this.GetLength()];
+            DoublyNode<T> temp = _head;
             int indexArray = 0;
             while (temp != null)
             {
@@ -126,10 +126,10 @@ namespace Lists
             return arr;
         }
 
-        public void AddLast(int val)
+        public void AddLast(T val)
         {
             //LengthList++;
-            DoublyNode current = new DoublyNode { Value = val, Previous = _tail };
+            DoublyNode<T> current = new DoublyNode<T> { Value = val, Previous = _tail };
             if (_head != null)
             {
                 _tail.Next = current;
@@ -142,13 +142,13 @@ namespace Lists
             }
         }
 
-        public void AddLast(DoublyLinkedList list)
+        public void AddLast(DoublyLinkedList<T> list)
         {
             if (list._head == null)
             {
                 return;
             }
-            DoublyLinkedList temp = list.Clone();
+            DoublyLinkedList<T> temp = list.Clone();
             if (_head == null)
             {
                 _head = temp._head;
@@ -161,26 +161,26 @@ namespace Lists
             }
         }
 
-        public void AddFirst(int val)
+        public void AddFirst(T val)
         {
-            DoublyNode current = new DoublyNode { Value = val, Next = _head };
+            DoublyNode<T> current = new DoublyNode<T> { Value = val, Next = _head };
             current.Next = _head;
             if(_head != null)
                 _head.Previous = current;
             _head = current;
         }
 
-        public void AddFirst(DoublyLinkedList list)
+        public void AddFirst(DoublyLinkedList<T> list)
         {
             if (list._head == null)
             {
                 return;
             }
 
-            DoublyNode temp, tempTail;
+            DoublyNode<T> temp, tempTail;
             if (_head == null)
             {
-                temp = new DoublyNode { Value = list._tail.Value };
+                temp = new DoublyNode<T> { Value = list._tail.Value };
                 tempTail = list._tail.Previous;
             }
             else
@@ -190,14 +190,14 @@ namespace Lists
             }
             while (tempTail != null)
             {
-                temp.Previous = new DoublyNode { Value = tempTail.Value, Next = temp };
+                temp.Previous = new DoublyNode<T> { Value = tempTail.Value, Next = temp };
                 tempTail = tempTail.Previous;
                 temp = temp.Previous;
             }
             _head = temp;
         }
 
-        public void AddAt(int idx, int val)
+        public void AddAt(int idx, T val)
         {
             if (_head == null)
                 throw new Exception("List is empty");
@@ -205,7 +205,7 @@ namespace Lists
             if (idx < 0)
                 throw new IndexOutOfRangeException("Index out of range list length");
             
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
             for (int i = 0; i < idx - 1; i++)
             {
                 if (temp == null && idx != 0)
@@ -221,7 +221,7 @@ namespace Lists
             //    Head = current;
             //    return;
             //}
-            DoublyNode current = new DoublyNode
+            DoublyNode<T> current = new DoublyNode<T>
             {
                 Value = val,
                 Next = (idx == 0) ? temp : temp.Next,
@@ -239,14 +239,14 @@ namespace Lists
 
         }
 
-        public void AddAt(int idx, DoublyLinkedList list)
+        public void AddAt(int idx, DoublyLinkedList<T> list)
         {
             if (_head == null)
                 throw new Exception("List is empty");
             if (idx < 0)
                 throw new IndexOutOfRangeException("Index out of range list length");
             
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
 
             for (int i = 0; i < idx - 1; i++)
             {
@@ -258,7 +258,7 @@ namespace Lists
             if (list._head == null)
                 return;
 
-            DoublyLinkedList newList = list.Clone() ;
+            DoublyLinkedList<T> newList = list.Clone() ;
             if (idx == 0)
             {
                 newList._tail.Next = _head;
@@ -274,7 +274,7 @@ namespace Lists
             temp.Next = newList._head;
         }
 
-        public void Set(int idx, int val)
+        public void Set(int idx, T val)
         {
             if (_head == null)
                 throw new Exception("List is empty");
@@ -282,7 +282,7 @@ namespace Lists
             if (idx < 0)
                 throw new IndexOutOfRangeException("Index out of range list length");
 
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
             for (int i = 0; i < idx; i++)
             {
                 if (temp == null)
@@ -333,7 +333,7 @@ namespace Lists
                 return;
             }
             
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
             for (int i = 0; i < idx - 1; i++)
             {
                 if (temp == null)
@@ -373,7 +373,7 @@ namespace Lists
             {
                 throw new Exception("List is empty");
             }
-            DoublyNode temp = _tail;
+            DoublyNode<T> temp = _tail;
             for (int i = 0; i < n; i++)
             {
                 if (temp == null)
@@ -400,7 +400,7 @@ namespace Lists
                 return;
             }
 
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
             for (int i = 0; i < idx - 1; i++)
             {
                 if(temp == null) 
@@ -408,7 +408,7 @@ namespace Lists
                 temp = temp.Next;
             }
 
-            DoublyNode current = temp;
+            DoublyNode<T> current = temp;
             while (n > 0)
             {
                 
@@ -435,22 +435,22 @@ namespace Lists
                 temp.Next.Previous = current;
         }
 
-        public int RemoveFirst(int val)
+        public int RemoveFirst(T val)
         {
             if (_head == null)
                 throw new Exception("List is empty");
             
             
-            else if (_head.Value == val)
+            else if (_head.Value.CompareTo(val) == 0)
             {
                 _head = _head.Next;
                 _head.Previous = null;
                 return 0;
             }
 
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
             int index = 0;
-            while (temp.Next != null && temp.Next.Value != val)
+            while (temp.Next != null && temp.Next.Value.CompareTo(val) != 0)
             {
                 index++;
                 temp = temp.Next;
@@ -465,13 +465,13 @@ namespace Lists
             return index + 1;
         }
 
-        public int RemoveAll(int val)
+        public int RemoveAll(T val)
         {
             if (_head == null)
                 throw new Exception("List is empty");
 
             int numbersOfRemoveElements = 0;
-            while (_head != null && _head.Value == val)
+            while (_head != null && _head.Value.CompareTo(val) == 0)
             {
                 numbersOfRemoveElements++;
                 _head = _head.Next;
@@ -482,11 +482,11 @@ namespace Lists
             {
                 return numbersOfRemoveElements;
             }
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
 
             while (temp != null)
             {
-                while (temp.Next != null && temp.Next.Value == val)
+                while (temp.Next != null && temp.Next.Value.CompareTo(val) == 0)
                 {
                     numbersOfRemoveElements++;
                     temp.Next = temp.Next.Next;
@@ -499,18 +499,18 @@ namespace Lists
             return numbersOfRemoveElements;
         }
 
-        public bool Contains(int val)
+        public bool Contains(T val)
         {
             if (_head == null)
                 throw new Exception("List is empty");
 
             if (_head == null)
                 return false;
-            else if (_head.Value == val)
+            else if (_head.Value.CompareTo(val) == 0)
                 return true;
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
 
-            while (temp.Value != val)
+            while (temp.Value.CompareTo(val) != 0)
             {
                 if (temp.Next == null)
                     return false;
@@ -520,15 +520,15 @@ namespace Lists
             return true;
         }
 
-        public int IndexOf(int val)
+        public int IndexOf(T val)
         {
             if (_head == null)
                 throw new Exception("List is empty");
-            else if (_head.Value == val)
+            else if (_head.Value.CompareTo(val) == 0)
                 return 0;
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
             int index = 0;
-            while (temp.Value != val)
+            while (temp.Value.CompareTo(val) != 0)
             {
                 if (temp.Next == null)
                     return -1;
@@ -538,7 +538,7 @@ namespace Lists
             return index;
         }
 
-        public int GetFirst()
+        public T GetFirst()
         {
             if (_head == null)
             {
@@ -547,7 +547,7 @@ namespace Lists
             return _head.Value;
         }
 
-        public int GetLast()
+        public T GetLast()
         {
             if (_head == null)
             {
@@ -556,13 +556,13 @@ namespace Lists
             return _tail.Value;
         }
 
-        public int Get(int idx)
+        public T Get(int idx)
         {
             if (_head == null)
             {
                 throw new Exception("List is empty");
             }
-            DoublyNode temp = _head;
+            DoublyNode<T> temp = _head;
             for (int i = 0; i < idx; i++)
             {
                 if (temp == null)
@@ -575,19 +575,19 @@ namespace Lists
             return temp.Value;
         }
 
-        public int Max()
+        public T Max()
         {
             if (_head == null)
             {
                 throw new Exception("List is empty");
             }
 
-            DoublyNode temp = _head;
-            int max = _head.Value;
+            DoublyNode<T> temp = _head;
+            T max = _head.Value;
             while (temp.Next != null)
             {
                 temp = temp.Next;
-                if (max < temp.Value)
+                if (max.CompareTo(temp.Value) < 0)
                 {
                     max = temp.Value;
                 }
@@ -595,18 +595,18 @@ namespace Lists
             return max;
         }
 
-        public int Min()
+        public T Min()
         {
             if (_head == null)
             {
                 throw new Exception("List is empty");
             }
-            DoublyNode temp = _head;
-            int min = _head.Value;
+            DoublyNode<T> temp = _head;
+            T min = _head.Value;
             while (temp.Next != null)
             {
                 temp = temp.Next;
-                if (min > temp.Value)
+                if (min.CompareTo(temp.Value) > 0)
                 {
                     min = temp.Value;
                 }
@@ -620,15 +620,15 @@ namespace Lists
             {
                 throw new Exception("List is empty");
             }
-            DoublyNode temp = _head;
-            int max = _head.Value;
+            DoublyNode<T> temp = _head;
+            T max = _head.Value;
             int indexOfMax = 0;
             int index = 0;
             while (temp.Next != null)
             {
                 index++;
                 temp = temp.Next;
-                if (max < temp.Value)
+                if (max.CompareTo(temp.Value) < 0)
                 {
                     indexOfMax = index;
                     max = temp.Value;
@@ -643,15 +643,15 @@ namespace Lists
             {
                 throw new Exception("List is empty");
             }
-            DoublyNode temp = _head;
-            int min = _head.Value;
+            DoublyNode<T> temp = _head;
+            T min = _head.Value;
             int indexOfMin = 0;
             int index = 0;
             while (temp.Next != null)
             {
                 index++;
                 temp = temp.Next;
-                if (min > temp.Value)
+                if (min.CompareTo(temp.Value) > 0)
                 {
                     indexOfMin = index;
                     min = temp.Value;
@@ -665,9 +665,9 @@ namespace Lists
             if (_head == null)
                 return;
 
-            DoublyNode temp = _head;
-            DoublyNode tempNext = temp.Next;
-            DoublyNode tempPrevious = temp.Previous;
+            DoublyNode<T> temp = _head;
+            DoublyNode<T> tempNext = temp.Next;
+            DoublyNode<T> tempPrevious = temp.Previous;
 
             while (tempNext != null)
             {
@@ -691,15 +691,15 @@ namespace Lists
             {
                 return;
             }
-            DoublyNode temp = _head;
-            DoublyNode tempNext = temp.Next;
+            DoublyNode<T> temp = _head;
+            DoublyNode<T> tempNext = temp.Next;
 
             while (temp != null)
             {
-                DoublyNode copy = temp;
+                DoublyNode<T> copy = temp;
                 
                 bool flag = false;
-                while (copy.Previous != null && copy.Previous.Value > temp.Value)
+                while (copy.Previous != null && copy.Previous.Value.CompareTo(temp.Value) > 0)
                 {
                     copy = copy.Previous;
                     flag = true;
@@ -741,15 +741,15 @@ namespace Lists
             {
                 return;
             }
-            DoublyNode temp = _head;
-            DoublyNode tempNext = temp.Next;
+            DoublyNode<T> temp = _head;
+            DoublyNode<T> tempNext = temp.Next;
 
             while (temp != null)
             {
-                DoublyNode copy = temp;
+                DoublyNode<T> copy = temp;
 
                 bool flag = false;
-                while (copy.Previous != null && copy.Previous.Value < temp.Value)
+                while (copy.Previous != null && copy.Previous.Value.CompareTo(temp.Value)<0)
                 {
                     copy = copy.Previous;
                     flag = true;
