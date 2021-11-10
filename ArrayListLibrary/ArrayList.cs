@@ -2,25 +2,25 @@
 
 namespace Lists
 {
-    public class ArrList
+    public class ArrList<T> : ILists<T> where T : IComparable<T>
     {
-        private int[] _arr;
+        private T[] _arr;
         private int _lengthArr;
 
         public ArrList()
         {
-            _arr = new int[10];
+            _arr = new T[10];
             _lengthArr = 0;
         }
 
-        public ArrList(int firstElementArrList)
+        public ArrList(T firstElementArrList)
         {
-            _arr = new int[10];
+            _arr = new T[10];
             _arr[0] = firstElementArrList;
             _lengthArr = 1;
         }
 
-        public ArrList(int[] inputArray)
+        public ArrList(T[] inputArray)
         {
             int arrLength = 10;
             _lengthArr = inputArray.Length;
@@ -28,12 +28,12 @@ namespace Lists
             {
                 arrLength = (arrLength * 3) / 2;
             }
-            _arr = new int[arrLength];
+            _arr = new T[arrLength];
             for (int i = 0; i < _lengthArr; i++)
                 _arr[i] = inputArray[i];
         }
 
-        public ArrList(ArrList inputArrList)
+        public ArrList(ArrList<T> inputArrList)
         {
             int arrLength = 10;
             _lengthArr = inputArrList.GetLength();
@@ -41,7 +41,7 @@ namespace Lists
             {
                 arrLength = (arrLength * 3) / 2;
             }
-            _arr = new int[arrLength];
+            _arr = new T[arrLength];
             for (int i = 0; i < _lengthArr; i++)
                 _arr[i] = inputArrList.Get(i);
         }
@@ -52,9 +52,9 @@ namespace Lists
             return _lengthArr;
         }
 
-        public int[] ToArray()
+        public T[] ToArray()
         {
-            int[] newArr = new int[_lengthArr];
+            T[] newArr = new T[_lengthArr];
             for (int i = 0; i < _lengthArr; i++)
             {
                 newArr[i] = _arr[i];
@@ -69,7 +69,7 @@ namespace Lists
                 int newArrLength = (_arr.Length * 3) / 2;
                 while (_lengthArr > newArrLength)
                     newArrLength = (newArrLength * 3) / 2;
-                int[] newArr = new int[newArrLength];
+                T[] newArr = new T[newArrLength];
                 for (int i = 0; i < _arr.Length; i++)
                 {
                     newArr[i] = _arr[i];
@@ -82,7 +82,7 @@ namespace Lists
                 int newArrLength = (_arr.Length * 2) / 3;
                 while (_lengthArr < newArrLength)
                     newArrLength = (newArrLength * 2) / 3;
-                int[] newArr = new int[newArrLength];
+                T[] newArr = new T[newArrLength];
                 for (int i = 0; i < _arr.Length; i++)
                 {
                     newArr[i] = _arr[i];
@@ -93,7 +93,7 @@ namespace Lists
             return false;
         }
 
-        public void AddFirst(int val)
+        public void AddFirst(T val)
         {
             _lengthArr++;
             this.ChangeLengthInserArray();
@@ -105,7 +105,7 @@ namespace Lists
         }
 
 
-        public void AddFirst(int[] arr)
+        public void AddFirst(T[] arr)
         {
             _lengthArr += arr.Length;
             this.ChangeLengthInserArray();
@@ -116,19 +116,19 @@ namespace Lists
                 _arr[i] = arr[i];
         }
 
-        public void AddFirst(ArrList list)
+        public void AddFirst(ArrList<T> list)
         {
             AddFirst(list.ToArray());
         }
 
-        public void AddLast(int val)
+        public void AddLast(T val)
         {
             _lengthArr++;
             this.ChangeLengthInserArray();
             _arr[_lengthArr - 1] = val;
         }
 
-        public void AddLast(int[] arr)
+        public void AddLast(T[] arr)
         {
             _lengthArr += arr.Length;
             this.ChangeLengthInserArray();
@@ -136,12 +136,12 @@ namespace Lists
                 _arr[i] = arr[i - (_lengthArr - arr.Length)];
         }
 
-        public void AddLast(ArrList list)
+        public void AddLast(ArrList<T> list)
         {
             AddLast(list.ToArray());
         }
 
-        public void AddAt(int idx, int val)
+        public void AddAt(int idx, T val)
         {
             if (idx > _lengthArr - 1 || idx < 0)
             {
@@ -154,7 +154,7 @@ namespace Lists
             _arr[idx] = val;
         }
 
-        public void AddAt(int idx, int[] arr)
+        public void AddAt(int idx, T[] arr)
         {
             if (idx > _lengthArr - 1 || idx < 0)
             {
@@ -168,12 +168,12 @@ namespace Lists
                 _arr[i] = arr[i - idx];
         }
 
-        public void AddAt(int idx, ArrList list)
+        public void AddAt(int idx, ArrList<T> list)
         {
             AddAt(idx, list.ToArray());
         }
 
-        public void Set(int idx, int val)
+        public void Set(int idx, T val)
         {
             if (idx > _lengthArr - 1 || idx < 0)
             {
@@ -193,7 +193,7 @@ namespace Lists
             this.ChangeLengthInserArray();
             for (int i = 0; i < _lengthArr; i++)
                 _arr[i] = _arr[i + 1];
-            _arr[_lengthArr] = 0;
+            _arr[_lengthArr] = default;
         }
 
         public void RemoveLast()
@@ -204,7 +204,7 @@ namespace Lists
             }
             _lengthArr--;
             this.ChangeLengthInserArray();
-            _arr[_lengthArr] = 0;
+            _arr[_lengthArr] = default;
         }
 
         public void RemoveAt(int idx)
@@ -222,7 +222,7 @@ namespace Lists
             this.ChangeLengthInserArray();
             for (int i = idx; i < _lengthArr; i++)
                 _arr[i] = _arr[i + 1];
-            _arr[_lengthArr] = 0;
+            _arr[_lengthArr] = default;
 
         }
 
@@ -234,7 +234,7 @@ namespace Lists
             }
             if (n > _lengthArr)
             {
-                int[] newArr = new int[10];
+                T[] newArr = new T[10];
                 _arr = newArr;
                 _lengthArr = 0;
                 return;
@@ -253,7 +253,7 @@ namespace Lists
             }
             if (n >= _lengthArr)
             {
-                int[] newArr = new int[10];
+                T[] newArr = new T[10];
                 _arr = newArr;
                 _lengthArr = 0;
                 return;
@@ -262,7 +262,7 @@ namespace Lists
             _lengthArr -= n;
             this.ChangeLengthInserArray();
             for (int i = _lengthArr; i < _lengthArr + n; i++)
-                _arr[i] = 0;
+                _arr[i] = default;
         }
 
         public void RemoveAtMultiple(int idx, int n)
@@ -287,12 +287,12 @@ namespace Lists
             for (int i = idx; i < _lengthArr; i++)
             {
                 _arr[i] = _arr[i + n];
-                _arr[i + n] = 0;
+                _arr[i + n] = default;
             }
 
         }
 
-        public int RemoveFirst(int val)
+        public int RemoveFirst(T val)
         {
             if (_lengthArr == 0)
             {
@@ -308,7 +308,7 @@ namespace Lists
         }
 
 
-        public int RemoveAll(int val)
+        public int RemoveAll(T val)
         {
             if (_lengthArr == 0)
             {
@@ -321,7 +321,7 @@ namespace Lists
 
             int j = 1; 
             int numberOfRemoveElements = 1;
-            while (_arr[iterator+1] == val)
+            while (_arr[iterator+1].CompareTo(val) == 0)
             {
                 j++;
                 iterator++;
@@ -339,9 +339,10 @@ namespace Lists
                 {
                     iterator++;
                     _arr[i] = _arr[i + j];
-                    if (i + j + 1 <= _arr.Length-1 && _arr[i+j+1] == val)
+                    if (i + j + 1 <= _arr.Length-1 && _arr[i+j+1].CompareTo(val) == 0)
                     {
-                        while (i + j + 1 <= _lengthArr - 1 && _arr[i + j + 1] == val)
+                        while (i + j + 1 <= _lengthArr - 1 
+                            && _arr[i + j + 1].CompareTo(val) == 0)
                         {
                             j++; numberOfRemoveElements++;
                         }
@@ -353,14 +354,14 @@ namespace Lists
                 {
                     _lengthArr = _lengthArr - numberOfRemoveElements ;
                     for (int i = _lengthArr; i < _lengthArr+numberOfRemoveElements; i++)
-                        _arr[i] = 0;
+                        _arr[i] = default;
                     break;
                 }
             }
             return numberOfRemoveElements;
         }
 
-        public bool Contains(int val)
+        public bool Contains(T val)
         {
             if (_lengthArr == 0)
             {
@@ -369,7 +370,7 @@ namespace Lists
             bool flag = false;
             for (int i = 0; i < _lengthArr; i++)
             {
-                if (_arr[i] == val)
+                if (_arr[i].CompareTo(val) == 0)
                 {
                     flag = true;
                     break;
@@ -378,7 +379,7 @@ namespace Lists
             return flag;
         }
 
-        public int IndexOf(int val)
+        public int IndexOf(T val)
         {
             if (_lengthArr == 0)
             {
@@ -387,7 +388,7 @@ namespace Lists
             int index = -1;
             for (int i = 0; i < _lengthArr; i++)
             {
-                if (_arr[i] == val)
+                if (_arr[i].CompareTo(val) == 0)
                 {
                     index = i;
                     break;
@@ -396,32 +397,32 @@ namespace Lists
             return index;
         }
 
-        public int[] IndexesOf(int val)
-        {
-            int[] arrayIndexes = new int[_lengthArr];
-            int lengthOfArrayIndexes = 0;
-            for (int i = 0; i < _lengthArr; i++)
-            {
-                if (_arr[i] == val)
-                {
-                    arrayIndexes[lengthOfArrayIndexes] = i;
-                    lengthOfArrayIndexes++;
-                }
-            }
-            return arrayIndexes;
-        }
+        //public int[] IndexesOf(int val)
+        //{
+        //    int[] arrayIndexes = new int[_lengthArr];
+        //    int lengthOfArrayIndexes = 0;
+        //    for (int i = 0; i < _lengthArr; i++)
+        //    {
+        //        if (_arr[i] == val)
+        //        {
+        //            arrayIndexes[lengthOfArrayIndexes] = i;
+        //            lengthOfArrayIndexes++;
+        //        }
+        //    }
+        //    return arrayIndexes;
+        //}
 
-        public int GetFirst()
+        public T GetFirst()
         {
             return _arr[0];
         }
 
-        public int GetLast()
+        public T GetLast()
         {
             return _arr[_lengthArr-1];
         }
 
-        public int Get(int idx)
+        public T Get(int idx)
         {
             if (idx > _lengthArr - 1 || idx < 0)
             {
@@ -434,31 +435,31 @@ namespace Lists
         {
             for (int i = _lengthArr - 1; i >= _lengthArr / 2; i--)
             {
-                int temp = _arr[i];
+                T temp = _arr[i];
                 _arr[i] = _arr[_lengthArr - 1 - i];
                 _arr[_lengthArr - 1 - i] = temp;
             }
         }
 
-        public int Max()
+        public T Max()
         {
-            int maxElementArr = _arr[0];
+            T maxElementArr = _arr[0];
 
             for (int i = 0; i < _lengthArr; i++)
             {
-                if (maxElementArr < _arr[i])
+                if (maxElementArr.CompareTo(_arr[i]) < 0)
                     maxElementArr = _arr[i];
             }
             return maxElementArr;
         }
 
-        public int Min()
+        public T Min()
         {
-            int minElementArr = _arr[0];
+            T minElementArr = _arr[0];
 
             for (int i = 0; i < _lengthArr; i++)
             {
-                if (minElementArr > _arr[i])
+                if (minElementArr.CompareTo(_arr[i]) > 0)
                     minElementArr = _arr[i];
             }
             return minElementArr;
@@ -466,11 +467,11 @@ namespace Lists
 
         public int IndexOfMax()
         {
-            int maxElementArr = _arr[0];
+            T maxElementArr = _arr[0];
             int indexOfMax = 0;
             for (int i = 0; i < _lengthArr; i++)
             {
-                if (maxElementArr < _arr[i])
+                if (maxElementArr.CompareTo(_arr[i]) < 0)
                 {
                     maxElementArr = _arr[i];
                     indexOfMax = i;
@@ -482,11 +483,11 @@ namespace Lists
 
         public int IndexOfMin()
         {
-            int minElementArr = _arr[0];
+            T minElementArr = _arr[0];
             int indexOfMin = 0;
             for (int i = 0; i < _lengthArr; i++)
             {
-                if (minElementArr > _arr[i])
+                if (minElementArr.CompareTo(_arr[i]) > 0)
                 {
                     minElementArr = _arr[i];
                     indexOfMin = i;
@@ -501,10 +502,10 @@ namespace Lists
             for (int i = 0; i < _lengthArr; i++)
             {
 
-                int temp = _arr[i];
+                T temp = _arr[i];
                 for (int j = i - 1; j >= 0; j--)
                 {
-                    if (temp < _arr[j])
+                    if (temp.CompareTo(_arr[j]) < 0)
                     {
                         _arr[j + 1] = _arr[j];
                         _arr[j] = temp;
@@ -518,10 +519,10 @@ namespace Lists
         {
             for (int i = 0; i < _lengthArr; i++)
             {
-                int temp = _arr[i];
+                T temp = _arr[i];
                 for (int j = i - 1; j >= 0; j--)
                 {
-                    if (temp > _arr[j])
+                    if (temp.CompareTo(_arr[j]) > 0)
                     {
                         _arr[j + 1] = _arr[j];
                         _arr[j] = temp;
